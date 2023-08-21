@@ -1,0 +1,11 @@
+{
+   "appTitle": "PlinePay",
+        
+   "apiServer" : {
+        "local" :"http://192.168.100.186:8083/user-api/",
+        "production" :""
+    },
+ 
+   "appSetting": {
+    }
+}

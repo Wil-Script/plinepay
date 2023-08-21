@@ -1,0 +1,63 @@
+<div class="opt-container">
+  <div class="brand-logo">
+    <span> Pline<b>Pay</b> </span>
+  </div>
+  <div class="otp-block">
+    <div class="otp-header">
+      <span>Entrez le code</span>
+      <p>
+        Nous avons envoyer un code de vérification dans votre boite mail
+        <b>username@gmail.com</b>
+      </p>
+    </div>
+    <div class="otp-body">
+      <div class="input-group">
+        <input
+          type="text"
+          min="0"
+          id="input-1"
+          maxlength="1"
+          #input1
+          required
+          (keyup)="inputSwitch(1)"
+        />
+        <input
+          type="text"
+          min="0"
+          id="input-2"
+          maxlength="1"
+          required
+          (keyup)="inputSwitch(2)"
+        />
+        <input
+          type="text"
+          min="0"
+          id="input-3"
+          maxlength="1"
+          required
+          (keyup)="inputSwitch(3)"
+        />
+        <input
+          type="text"
+          min="0"
+          id="input-4"
+          maxlength="1"
+          required
+          (keyup)="inputSwitch(4)"
+          [autofocus]="!inputRange"
+        />
+        <input type="text" min="0" id="input-5" maxlength="1" required />
+      </div>
+      <button>Vérifier</button>
+    </div>
+    <div class="otp-footer">
+      <span>
+        Vous n’avez pas reçu le code ?
+        <a href="#">
+          <b>Renvoyer le code</b>
+        </a>
+      </span>
+    </div>
+  </div>
+  <span>Pline<b>Pay</b> 2023 | Tous droits reservés </span>
+</div>

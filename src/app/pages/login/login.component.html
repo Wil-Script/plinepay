@@ -1,0 +1,61 @@
+<div class="auth">
+  <div class="form-side">
+    <div class="head-area">
+      <a href="#">Pline<b>Pay</b></a>
+      <div class="sliders">
+        <div></div>
+        <div></div>
+      </div>
+    </div>
+
+    <div class="form-block">
+      <div class="form-head">
+        <span>Connexion</span>
+        <p>
+          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi
+          consectetur sit ad?
+        </p>
+      </div>
+      <form (ngSubmit)="login()">
+        <app-input
+          (newItemEvent)="setVar('email', $event)"
+          [label]="'Email'"
+          [type]="'email'"
+          [placeholder]="'Entrez votre email'"
+        ></app-input>
+        <app-input
+          (newItemEvent)="setVar('mdp', $event)"
+          [label]="'Mot de passe'"
+          [type]="'password'"
+          [placeholder]="'Entrez mot de passe'"
+        ></app-input>
+        <button type="button" (click)="login()">Se connecter</button>
+        <p>
+          Vous n'avez pas de compte ? <a href="/register">Inscrivez-vous</a>
+        </p>
+      </form>
+    </div>
+  </div>
+
+  <div class="image-side">
+    <div class="image-side-txt">
+      <div class="txt">
+        <h1>
+          Une seule plateforme pour tous vos besoins en matière de paiement.
+        </h1>
+        <p>
+          En offrant à vos clients les moyens de paiement adaptés à leur
+          situation, vous développez votre activité à grande échelle et
+          augmentez vos taux de conversion locaux et internationaux.
+        </p>
+      </div>
+      <div class="footer">
+        <span>2023 PlinePay | Tous droits reservés</span>
+        <a href="#">A propos</a>
+        <a href="#">Termes etconditions d'utilisation</a>
+        <a href="#">confidentialité</a>
+      </div>
+    </div>
+    <img src="assets/bg.png" alt="" />
+  </div>
+</div>

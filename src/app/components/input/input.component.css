@@ -1,0 +1,18 @@
+.input {
+  display: flex;
+  flex-direction: column;
+  row-gap: 4px;
+  width: 100%;
+  height: auto;
+}
+.input span {
+  font-family: var(--headingFont);
+  font-size: 0.9rem;
+}
+.input input {
+  padding-left: 8px;
+  height: 48px;
+  border-radius: 12px;
+  border: 1px solid var(--border);
+  outline: none;
+}

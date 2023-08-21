@@ -1,0 +1,113 @@
+<div class="create-app">
+  <div class="content">
+    <div class="form-head">
+      <div class="head-left">
+        <div class="txt">
+          <span class="title">Créer une application</span>
+          <p>Lorem ipsum dolor, sit amet consectetur.</p>
+        </div>
+      </div>
+      <div class="head-right">
+        <lucide-angular
+          name="x"
+          [size]="20"
+          [color]="'#505050'"
+          [strokeWidth]="2.5"
+        ></lucide-angular>
+      </div>
+    </div>
+    <div class="form-body">
+      <form name="create-app">
+        <div class="input-group">
+          <app-input
+            (newItemEvent)="setVar($event)"
+            [label]="'Nom application'"
+            [type]="'text'"
+            [placeholder]="'ex: le nom de votre business'"
+          ></app-input>
+          <div class="img-input">
+            <span>Logo</span>
+            <label class="image-guetter">
+              <input
+                type="file"
+                multiple
+                accept="image/jpeg, image/png, image/jpg"
+              />
+              <lucide-angular
+                name="image-plus"
+                [size]="30"
+                [color]="'#505050'"
+              ></lucide-angular>
+              <span>Cliquer pour ajouter une image</span>
+              <span>JPG, PNG, JPEG</span>
+            </label>
+          </div>
+          <div class="transaction-tax">
+            <span class="title">
+              Facturation des taxes liées aux transactions ?
+            </span>
+            <div class="choice-group">
+              <label [style.opacity]="whoTakeFees == 1 ? '1' : '0.8'">
+                <span>La Facturation est partagée</span>
+                <input
+                  type="radio"
+                  [value]="1"
+                  (change)="fees()"
+                  name="taxe"
+                  [(ngModel)]="whoTakeFees"
+                  required
+                />
+              </label>
+              <label [style.opacity]="whoTakeFees == 2 ? '1' : '0.8'">
+                <span>Je prends en charge</span>
+                <input
+                  type="radio"
+                  [value]="2"
+                  name="taxe"
+                  [(ngModel)]="whoTakeFees"
+                  required
+                />
+              </label>
+              <label [style.opacity]="whoTakeFees == 3 ? '1' : '0.8'">
+                <span>Le client prend en charge</span>
+                <input
+                  type="radio"
+                  [value]="3"
+                  name="taxe"
+                  [(ngModel)]="whoTakeFees"
+                  required
+                />
+              </label>
+            </div>
+            <div class="share" *ngIf="whoTakeFees == 1">
+              <input
+                type="text"
+                inputMode="numeric"
+                pattern="[0-9]*"
+                maxlength="2"
+                [(ngModel)]="userPercent"
+                (keyup)="clientPercentage()"
+                placeholder="Votre marge"
+                [ngModelOptions]="{ standalone: true }"
+              />
+              <div class="mine">
+                <span
+                  >Marge du client : <b>{{ 100 - userPercent }}%</b></span
+                >
+              </div>
+            </div>
+          </div>
+          <div class="text-gray-500">
+            <span class="text-blue-600 font-bold">Besoin d'aide ? </span>
+            <a href="#" class="underline"
+              >En savoir plus sur la création d'une application</a
+            >
+          </div>
+        </div>
+      </form>
+    </div>
+    <div class="form-footer">
+      <button type="button">Créer l'application</button>
+    </div>
+  </div>
+</div>

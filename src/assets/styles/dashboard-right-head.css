@@ -1,0 +1,52 @@
+.head {
+    padding: 50px 0 0;
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    border-bottom: 1px solid var(--border);
+  }
+  .controller {
+    /* padding: 0px 0 30px 24px; */
+    padding-left: 24px;
+    margin-bottom: 30px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+    height: auto;
+  }
+  .controller .page-title {
+    font-weight: bold;
+    font-family: var(--headingFont);
+    font-size: 1.4rem;
+  }
+  .controller .btns {
+    display: flex;
+    column-gap: 8px;
+    width: auto;
+    height: 44px;
+  }
+  .btns button {
+    padding: 0 16px;
+    border-radius: 8px;
+    font-weight: bold;
+  }
+  .btns button:first-child {
+    color: var(--black);
+    border: 2px solid var(--border);
+  }
+  .btns button:last-child {
+    background: var(--mainColor);
+  }
+  .navigation {
+    display: flex;
+    height: auto;
+  }
+  .navigation a {
+    padding: 10px 24px;
+  }
+  .navigation a.active {
+    font-weight: bold;
+    border-bottom: 2px solid var(--black);
+  }
+  

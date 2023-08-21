@@ -1,0 +1,9 @@
+<div class="input">
+  <span>{{ label }}</span>
+  <input
+    #newItem
+    placeholder="{{ placeholder }}"
+    type="{{ type }}"
+    (keyup)="sendValue(newItem.value)"
+  />
+</div>

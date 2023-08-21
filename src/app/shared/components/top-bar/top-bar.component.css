@@ -1,0 +1,46 @@
+.menu-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 80px;
+  border-bottom: 1px solid var(--border);
+}
+.menu-container .menu-center {
+  display: flex;
+  height: 100%;
+}
+.menu-center a.active {
+  border-bottom: 2px solid var(--black);
+  font-weight: bold;
+}
+.menu-container .menu-right {
+  width: 20%;
+}
+
+.menu-container .menu-left {
+  width: 20%;
+}
+.menu-left span {
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: var(--headingFont);
+}
+.menu-left span b {
+  font-family: var(--headingFont);
+  color: var(--mainColor);
+}
+.avatar-container {
+  padding: 4px;
+  display: flex;
+  width: 48px;
+  height: 48px;
+  border-radius: 30px;
+  border: 2px solid var(--border);
+  cursor: pointer;
+}
+.avatar-container img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50px;
+}

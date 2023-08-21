@@ -1,0 +1,89 @@
+.opt-container {
+  padding: 40px 0 10px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  align-items: center;
+  width: 100%;
+  height: 100vh;
+  background: #f8f8f8;
+}
+.opt-container .brand-logo span {
+  font-size: 1.6rem;
+  font-weight: bold;
+  font-family: var(--headingFont);
+}
+.brand-logo span b {
+  font-family: var(--headingFont);
+  color: var(--mainColor);
+}
+.opt-container .otp-block {
+  padding: 30px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  max-width: 400px;
+  height: auto;
+  background: white;
+  border-radius: 24px;
+}
+
+.otp-block .otp-header {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  row-gap: 4px;
+  width: 100%;
+  height: auto;
+}
+.otp-header span {
+  font-family: var(--headingFont);
+  color: var(--black);
+  font-size: 1.8rem;
+  font-weight: bold;
+}
+.otp-header p {
+  text-align: center;
+}
+.otp-body {
+  margin-top: 40px;
+  width: 100%;
+  height: auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.otp-body .input-group {
+  display: grid;
+  grid-template-columns: repeat(5, calc(20% - 8px));
+  column-gap: 8px;
+  width: 100%;
+}
+.input-group input {
+  padding: 20px 0;
+  border-radius: 8px;
+  border: 2px solid var(--border);
+  text-align: center;
+  font-weight: bold;
+  font-size: 1.8rem;
+  outline-color: var(--mainColor);
+}
+.otp-body button {
+  margin-top: 40px;
+  width: 100%;
+  height: 50px;
+  background: var(--black);
+  color: white;
+  font-weight: bold;
+  font-size: 1.2rem;
+  border-radius: 12px;
+}
+.otp-footer {
+  margin-top: 80px;
+}
+.otp-footer span a b {
+  text-decoration: underline;
+}
+.opt > span{
+    font-size: .7rem;
+}
