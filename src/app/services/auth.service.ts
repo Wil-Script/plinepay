@@ -17,6 +17,7 @@ export class AuthService {
   configUrl = 'assets/config.json';
   private registerUrl = 'http://192.168.100.186:8086/api/auth/users/add';
   private loginUrl = 'http://192.168.100.186:8086/api/auth/users/authenticate';
+  private otpUrl = 'http://192.168.100.186:8083/api/auth/users/sendOtp';
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -44,12 +45,19 @@ export class AuthService {
     });
   }
 
-  registerUser(user: User): void {
-    this.http.post<User>(this.registerUrl, user).subscribe(async (res: any) => {
-      if (res.message.code == 200) {
-        this.router.navigate(['/otp']);
-        // this.router.url
+  registerUser(user: any): void {
+    this.http.post<User>(this.registerUrl, user).subscribe(
+      response =>{
+        if(response.status==201){
+          console.log(response);
+          localStorage.setItem('entityId',response.id);
+          this.router.navigate(['/otp']);
+        }
       }
-    });
+    )
+  }
+  //recupération OTP
+  calBackOtp(otp:string){
+    return this.http.post(this.otpUrl,{entityId:otp})
   }
 }
