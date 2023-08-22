@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 
@@ -26,6 +26,7 @@ import {
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
+import { AuthHttpInterceptorService } from './services/auth-http-interceptor.service';
 
 @NgModule({
   declarations: [
@@ -51,7 +52,10 @@ import { FactureComponent } from './pages/facture/facture.component';
     FormsModule,
     LucideAngularModule.pick({ AppWindow, Link2, AlertTriangle, ImagePlus, X }),
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    {provide:HTTP_INTERCEPTORS, useClass:AuthHttpInterceptorService,multi:true}
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}
