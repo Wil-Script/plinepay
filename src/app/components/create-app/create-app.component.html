@@ -7,7 +7,7 @@
           <p>Lorem ipsum dolor, sit amet consectetur.</p>
         </div>
       </div>
-      <div class="head-right">
+      <div class="head-right" (click)="closeModal()">
         <lucide-angular
           name="x"
           [size]="20"
@@ -29,9 +29,11 @@
             <span>Logo</span>
             <label class="image-guetter">
               <input
+                #image
                 type="file"
                 multiple
                 accept="image/jpeg, image/png, image/jpg"
+                (change)="getImage(image)"
               />
               <lucide-angular
                 name="image-plus"
@@ -42,6 +44,18 @@
               <span>JPG, PNG, JPEG</span>
             </label>
           </div>
+          <!-- <img
+            *ngIf="img"
+            src="{{ img }}"
+            alt=""
+            style="
+              width: 100%;
+              height: 70px;
+              background: teal;
+              border-radius: 8px;
+              object-fit: cover;
+            "
+          /> -->
           <div class="transaction-tax">
             <span class="title">
               Facturation des taxes liées aux transactions ?
@@ -98,7 +112,7 @@
             </div>
           </div>
           <div class="text-gray-500">
-            <span class="text-blue-600 font-bold">Besoin d'aide ? </span>
+            <span class="text-blue-600">Besoin d'aide ? </span>
             <a href="#" class="underline"
               >En savoir plus sur la création d'une application</a
             >
@@ -107,7 +121,7 @@
       </form>
     </div>
     <div class="form-footer">
-      <button type="button">Créer l'application</button>
+      <button type="button" (click)="createApp()">Créer l'application</button>
     </div>
   </div>
 </div>
