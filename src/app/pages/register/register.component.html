@@ -3,7 +3,7 @@
     <div class="head-area">
       <a href="#">Pline<b>Pay</b></a>
       <div class="sliders">
-        <div [class.active]="blockView"></div>
+        <div [class.active]="blockView" (click)="prev()"></div>
         <div [class.active]="!blockView"></div>
       </div>
     </div>
@@ -11,10 +11,8 @@
     <div class="form-block">
       <div class="form-head">
         <span>Inscription</span>
-        <p>
-          Lorem ipsum dolor sit amet consectetur, adipisicing elit. Animi
-          consectetur sit ad?
-        </p>
+        <!--commentaire à compléter-->
+        <p></p>
       </div>
       <form>
         <div class="input-group" [style.display]="blockView ? 'flex' : 'none'">

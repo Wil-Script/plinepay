@@ -96,9 +96,7 @@ export class RegisterComponent implements OnInit{
   }
   //remplissage step1 form register
   prev(){
-    console.log('entrée ici');
     this.blockView = true;
-    
   }
   register() {
     if (
