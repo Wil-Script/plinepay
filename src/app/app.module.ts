@@ -26,6 +26,8 @@ import {
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
+import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
+import { ActivateAccountModalComponent } from './components/activate-account-modal/activate-account-modal.component';
 
 @NgModule({
   declarations: [
@@ -42,6 +44,8 @@ import { FactureComponent } from './pages/facture/facture.component';
     RapportComponent,
     FactureComponent,
     CreateAppComponent,
+    AccountActivationComponent,
+    ActivateAccountModalComponent,
   ],
   imports: [
     BrowserModule,

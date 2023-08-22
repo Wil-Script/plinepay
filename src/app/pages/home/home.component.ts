@@ -7,10 +7,15 @@ import { Component } from '@angular/core';
 })
 export class HomeComponent {
   createAppVisible = false;
+  activeAccountVisible = true;
+
   showCreateApp() {
     this.createAppVisible = true;
   }
   hideCreateApp() {
     this.createAppVisible = false;
+  }
+  hideAccountActivationPop(){
+    this.activeAccountVisible = false;
   }
 }
