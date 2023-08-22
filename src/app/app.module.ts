@@ -27,6 +27,8 @@ import {
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
 import { AuthHttpInterceptorService } from './services/auth-http-interceptor.service';
+import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
+import { ActivateAccountModalComponent } from './components/activate-account-modal/activate-account-modal.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +45,8 @@ import { AuthHttpInterceptorService } from './services/auth-http-interceptor.ser
     RapportComponent,
     FactureComponent,
     CreateAppComponent,
+    AccountActivationComponent,
+    ActivateAccountModalComponent,
   ],
   imports: [
     BrowserModule,
@@ -54,7 +58,7 @@ import { AuthHttpInterceptorService } from './services/auth-http-interceptor.ser
   ],
   providers: [
     CookieService,
-    {provide:HTTP_INTERCEPTORS, useClass:AuthHttpInterceptorService,multi:true}
+    {provide:HTTP_INTERCEPTORS, useClass:AuthHttpInterceptorService,multi:true},
   ],
   bootstrap: [AppComponent],
 })

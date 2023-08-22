@@ -11,12 +11,14 @@ import { FactureComponent } from './pages/facture/facture.component';
 import { OverviewComponent } from './pages/payment-pages/overview/overview.component';
 import { FraudComponent } from './pages/payment-pages/fraud/fraud.component';
 import { PaymentLinkComponent } from './pages/payment-pages/payment-link/payment-link.component';
+import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
   { path: 'login', component: LoginComponent },
   { path: 'register', component: RegisterComponent },
   { path: 'otp', component: OtpComponent },
+  { path: 'activation', component: AccountActivationComponent },
   {
     path: 'dashboard',
     component: DashboardComponent,
