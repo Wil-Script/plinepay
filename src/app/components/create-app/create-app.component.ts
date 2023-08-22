@@ -1,4 +1,9 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, EventEmitter, Output } from '@angular/core';
+import { Applicationservice } from 'src/app/services/application';
+
+// class ImageSnippet {
+//   constructor(public src: string, public file: File) {}
+// }
 
 @Component({
   selector: 'app-create-app',
@@ -6,11 +11,14 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./create-app.component.css'],
 })
 export class CreateAppComponent implements OnInit {
-  constructor() {}
+  img: any;
+  constructor(private applicationService: Applicationservice) {}
+  @Output() close = new EventEmitter<string>();
   addFees = false;
   name = '';
   whoTakeFees = 4;
   userPercent = 0;
+  image = null;
 
   ngOnInit() {}
   setVar(value: string) {
@@ -31,5 +39,46 @@ export class CreateAppComponent implements OnInit {
       this.userPercent = 0;
       return alert('Entrez une valeur comprise entre 20 et 80%');
     }
+  }
+  getImage(imageInput: any) {
+    const file: File = imageInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (e: any) => {
+      this.img = e.target.result;
+      console.log(this.img);
+    });
+    reader.readAsDataURL(file);
+
+    // this.img = imageInput.target.files[0];
+
+    // reader.addEventListener('load', (event: any) => {
+    //   this.selectedFile = new ImageSnippet(event.target.result, file);
+    //   this.imageService.uploadImage(this.selectedFile.file).subscribe(
+    //     (res) => {
+    //     },
+    //     (err) => {
+    //     })
+    // });
+  }
+  createApp() {
+    if (this.name == '' || this.img == null) {
+      return alert('Informations incomplètes');
+    }
+    const app = {
+      name: this.name,
+      addFees: this.addFees,
+      percent: this.userPercent,
+      logoURL: this.img || '',
+    };
+    this.applicationService.createApp(app);
+  }
+
+  closeModal() {
+    this.name = '';
+    this.whoTakeFees = 4;
+    this.userPercent = 0;
+    this.img = '';
+    this.close.emit();
   }
 }

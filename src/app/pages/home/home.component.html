@@ -3,15 +3,36 @@
     <div class="app-head">
       <span class="title"> Mes Applications </span>
       <div class="btn">
-        <button>Ajouter une application</button>
+        <button (click)="showCreateApp()">Ajouter une application</button>
       </div>
     </div>
-    <div class="app-block">
-      <div class="app-item"></div>
-      <div class="app-item"></div>
-      <div class="app-item"></div>
+    <div class="empty-block">
+      <span class="title">Créer un compte marchand</span>
+      <p>
+        Donner à vos clients le meilleur moyen de s'offrir vos produits ou
+        services et exploser la rentabilité de votre activité.
+      </p>
+      <button (click)="showCreateApp()">Créer un compte marchand</button>
     </div>
-    <app-create-app></app-create-app>
+    <div class="empty-block" style="margin-top: 24px; background: #f0faeb">
+      <span class="title"
+        >Un site e-commerce, une application mobile, etc ?</span
+      >
+      <p>
+        Donner à vos clients le meilleur moyen de s'offrir vos produits ou
+        services et exploser la rentabilité de votre activité.
+      </p>
+      <button
+        (click)="showCreateApp()"
+        style="margin-top: 24px; background: #202020; color: white"
+      >
+        Connecter mon produit
+      </button>
+    </div>
   </div>
   <div class="recent-activities"></div>
+  <app-create-app
+    *ngIf="createAppVisible"
+    (close)="hideCreateApp()"
+  ></app-create-app>
 </div>
