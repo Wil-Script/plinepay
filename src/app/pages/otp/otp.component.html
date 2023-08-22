@@ -7,7 +7,7 @@
       <span>Entrez le code</span>
       <p>
         Nous avons envoyer un code de vérification dans votre boite mail
-        <b>username@gmail.com</b>
+        <b>{{ email }}</b>
       </p>
     </div>
     <div class="otp-body">
@@ -19,7 +19,7 @@
           maxlength="1"
           #input1
           required
-          (keyup)="inputSwitch(1)"
+          [(ngModel)]="otp.number1"
         />
         <input
           type="text"
@@ -27,7 +27,7 @@
           id="input-2"
           maxlength="1"
           required
-          (keyup)="inputSwitch(2)"
+          [(ngModel)]="otp.number2"
         />
         <input
           type="text"
@@ -35,7 +35,7 @@
           id="input-3"
           maxlength="1"
           required
-          (keyup)="inputSwitch(3)"
+          [(ngModel)]="otp.number3"
         />
         <input
           type="text"
@@ -43,17 +43,20 @@
           id="input-4"
           maxlength="1"
           required
-          (keyup)="inputSwitch(4)"
           [autofocus]="!inputRange"
+          [(ngModel)]="otp.number4"
         />
-        <input type="text" min="0" id="input-5" maxlength="1" required />
+        <input
+          [(ngModel)]="otp.number5"
+         type="text" min="0" id="input-5" maxlength="1" required />
       </div>
-      <button>Vérifier</button>
+      <button (click)="sendOtp()">
+        Vérifier</button>
     </div>
     <div class="otp-footer">
       <span>
         Vous n’avez pas reçu le code ?
-        <a href="#">
+        <a (click)="getCodeOtp()">
           <b>Renvoyer le code</b>
         </a>
       </span>

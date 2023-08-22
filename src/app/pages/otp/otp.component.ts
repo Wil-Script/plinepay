@@ -1,48 +1,53 @@
-import { Component, ElementRef, ViewChild } from '@angular/core';
+import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
+import { Router } from '@angular/router';
+import { Otp } from 'src/app/models/otp.model';
+import { AuthService } from 'src/app/services/auth.service';
 
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
   styleUrls: ['./otp.component.css'],
 })
-export class OtpComponent {
-  input1 = document.querySelector('#input-1') as HTMLInputElement | null;
-  input2 = document.querySelector('#input-2') as HTMLInputElement | null;
-  input3 = document.querySelector('#input-3') as HTMLInputElement | null;
-  input4 = document.querySelector('#input-4') as HTMLInputElement | null;
-  input5 = document.querySelector('#input-5') as HTMLInputElement | null;
-
-  // @ViewChild('input1', {static:false}) input1 : ElementRef
+export class OtpComponent implements OnInit{
+  otp!:Otp;
+  input1:string='';
+  input2:string='';
+  input3:string='';
+  input4:string='';
+  input5:string='';
+  email!:string;
+  constructor(private authService:AuthService, private router:Router){}
+  
+  ngOnInit(){
+    this.email = localStorage.getItem("userEmail")||""
+    this.otp=new Otp('','','','','');
+  }
+  getCodeOtp(){
+    let data=localStorage.getItem("entityId")||''
+    console.log(data);
+    this.authService.calBackOtp(data).subscribe(
+      response =>{
+        console.log(response);
+        alert(`otp obtenu`)
+      }
+    )
+  }
 
   inputRange = false;
-  inputSwitch(inputNumber: number): void {
-    switch (inputNumber) {
-      case 1:
-        this.input2?.focus();
-        console.log('envoies vers 2');
-        console.log(this.input1);
-
-        break;
-
-      case 2:
-        this.input3?.focus();
-        console.log('envoies vers 3');
-        console.log(this.input2);
-        break;
-
-      case 3:
-        this.input4?.focus();
-        console.log('envoies vers 4');
-        console.log(this.input3);
-        break;
-
-      case 4:
-        this.input5?.focus();
-        console.log('envoies vers 5');
-        break;
-
-      default:
-        break;
+ 
+  sendOtp(){
+    let data ={
+      entityId:localStorage.getItem("entityId"),
+      otp:+(this.otp.number1+this.otp.number2+this.otp.number3+this.otp.number4+this.otp.number5)
     }
+    this.authService.enableAccount(data).subscribe(
+      response =>{
+        console.log('response ',response);
+        if(response.status==200){
+          localStorage.removeItem("entityId")
+          localStorage.removeItem("userEmail")
+          this.router.navigate(['login'])
+        }
+      })
   }
 }

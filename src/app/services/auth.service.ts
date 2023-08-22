@@ -11,13 +11,15 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private cookieService: CookieService
+    //private cookieService: CookieService
   ) {}
 
   configUrl = 'assets/config.json';
-  private registerUrl = 'http://192.168.100.186:8086/api/auth/users/add';
+  private baseUrl='http://192.168.100.186:8086/'
+  private registerUrl = this.baseUrl+'api/auth/users/add';
   private loginUrl = 'http://192.168.100.186:8086/api/auth/users/authenticate';
-  private otpUrl = 'http://192.168.100.186:8083/api/auth/users/sendOtp';
+  private otpUrl = this.baseUrl+'api/auth/users/sendOtp';
+  private enableUrl = this.baseUrl+'api/auth/users/enable';
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -37,7 +39,7 @@ export class AuthService {
     this.http.post<User>(this.loginUrl, user).subscribe(async (res: any) => {
       console.log(res);
       if (res.message.code == 200) {
-        this.cookieService.set('token', res.jwttoken);
+       // this.cookieService.set('token', res.jwttoken);
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
         }, 200);
@@ -51,6 +53,7 @@ export class AuthService {
         if(response.status==201){
           console.log(response);
           localStorage.setItem('entityId',response.id);
+          localStorage.setItem('userEmail',user.email);
           this.router.navigate(['/otp']);
         }
       }
@@ -58,6 +61,9 @@ export class AuthService {
   }
   //recupération OTP
   calBackOtp(otp:string){
-    return this.http.post(this.otpUrl,{entityId:otp})
+    return this.http.post<Response>(this.otpUrl,{entityId:otp})
+  }
+  enableAccount(data:any){
+    return this.http.post<Response>(this.enableUrl,data)
   }
 }

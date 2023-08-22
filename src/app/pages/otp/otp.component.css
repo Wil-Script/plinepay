@@ -87,3 +87,6 @@
 .opt > span{
     font-size: .7rem;
 }
+.otp-footer span a:hover {
+  cursor: pointer;
+}
