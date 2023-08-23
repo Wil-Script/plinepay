@@ -1,17 +1,17 @@
 import { Injectable } from '@angular/core';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
 import { Observable, throwError } from 'rxjs';
-import { catchError, retry } from 'rxjs/operators';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { CookieService } from 'ngx-cookie-service';
+
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    //private cookieService: CookieService
+    private cookieService:CookieService
   ) {}
 
   configUrl = 'assets/config.json';
@@ -36,10 +36,10 @@ export class AuthService {
   }
 
   loginUser(user: User): void {
-    this.http.post<User>(this.loginUrl, user).subscribe(async (res: any) => {
+   this.http.post<User>(this.loginUrl, user).subscribe(async (res: any) => {
       console.log(res);
       if (res.message.code == 200) {
-       // this.cookieService.set('token', res.jwttoken);
+        this.cookieService.set('token', res.jwttoken);
         setTimeout(() => {
           this.router.navigate(['/dashboard']);
         }, 200);
@@ -65,5 +65,9 @@ export class AuthService {
   }
   enableAccount(data:any){
     return this.http.post<Response>(this.enableUrl,data)
+  }
+  //récupération du token
+  getAuthToken():string {
+    return this.cookieService.get('token');
   }
 }
