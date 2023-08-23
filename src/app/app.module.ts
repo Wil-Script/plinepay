@@ -1,6 +1,6 @@
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { HttpClientModule } from '@angular/common/http';
+import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
 import { FormsModule } from '@angular/forms';
 
@@ -26,10 +26,13 @@ import {
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
+import { AuthHttpInterceptorService } from './services/auth-http-interceptor.service';
 import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
 import { ActivateAccountModalComponent } from './components/activate-account-modal/activate-account-modal.component';
 import { ButtonComponent } from './components/btn/btn.component';
 
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -50,6 +53,8 @@ import { ButtonComponent } from './components/btn/btn.component';
     ButtonComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,
@@ -57,7 +62,10 @@ import { ButtonComponent } from './components/btn/btn.component';
     FormsModule,
     LucideAngularModule.pick({ AppWindow, Link2, AlertTriangle, ImagePlus, X }),
   ],
-  providers: [CookieService],
+  providers: [
+    CookieService,
+    {provide:HTTP_INTERCEPTORS, useClass:AuthHttpInterceptorService,multi:true},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

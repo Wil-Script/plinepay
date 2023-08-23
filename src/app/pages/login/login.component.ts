@@ -1,27 +1,20 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.css'],
-  providers: [AuthService],
+  //providers: [AuthService],
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit{
   constructor(private authService: AuthService) {}
-  user = {
-    name: '',
-    surname: '',
-    username: '',
-    phone: '',
-    email: '',
-    pays: '',
-    ville: '',
-    password: '',
-    enable: false,
-    roleId: 'f5b76116-cfa8-4793-95c2-7bb517176f3a',
-    userType: 'USER',
-  };
+  user!:User
+
+  ngOnInit(){
+    this.user =new User("",0,'','','',0,'','','','','',false,0,'',0)
+  }
   setVar(type: string, value: string) {
     switch (type) {
       case 'email':
@@ -41,6 +34,10 @@ export class LoginComponent {
     if (this.user.password == '' || this.user.email == '') {
       return alert('Veuillez remplir tous les champs');
     }
-    this.authService.loginUser(this.user);
+    let data={
+      email:this.user.email,
+      password:this.user.password
+    }
+    this.authService.loginUser(data);
   }
 }
