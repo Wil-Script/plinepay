@@ -2,7 +2,7 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { Router } from '@angular/router';
 import { Otp } from 'src/app/models/otp.model';
 import { AuthService } from 'src/app/services/auth.service';
-
+import { NgxSpinnerService } from "ngx-spinner";
 @Component({
   selector: 'app-otp',
   templateUrl: './otp.component.html',
@@ -16,7 +16,10 @@ export class OtpComponent implements OnInit{
   input4:string='';
   input5:string='';
   email!:string;
-  constructor(private authService:AuthService, private router:Router){}
+  constructor(private authService:AuthService,
+    private SpinnerSevice:NgxSpinnerService,
+
+    private router:Router){}
   
   ngOnInit(){
     this.email = localStorage.getItem("userEmail")||""
@@ -25,10 +28,12 @@ export class OtpComponent implements OnInit{
   getCodeOtp(){
     let data=localStorage.getItem("entityId")||''
     console.log(data);
+    this.SpinnerSevice.show();
     this.authService.calBackOtp(data).subscribe(
       response =>{
         console.log(response);
         alert(`otp obtenu`)
+        this.SpinnerSevice.hide();
       }
     )
   }

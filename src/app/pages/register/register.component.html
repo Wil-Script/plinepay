@@ -42,18 +42,6 @@
           ></app-input>
         </div>
         <div class="input-group" [style.display]="!blockView ? 'flex' : 'none'">
-          <!-- <app-input
-            (newItemEvent)="setVar('pays', $event)"
-            [label]="'Pays'"
-            [type]="'text'"
-            [placeholder]="'Cameroun'"
-          ></app-input>
-          <app-input
-            (newItemEvent)="setVar('ville', $event)"
-            [label]="'Ville'"
-            [type]="'text'"
-            [placeholder]="'Entrez votre ville'"
-          ></app-input> -->
           <app-input
             (newItemEvent)="setVar('mdp', $event)"
             [label]="'Mot de passe'"
@@ -115,3 +103,6 @@
     <img src="assets/bg.png" alt="" />
   </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+  <p style="color: white">Veuillez patienter ... </p>  
+</ngx-spinner>

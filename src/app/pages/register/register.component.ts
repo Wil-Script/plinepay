@@ -6,7 +6,7 @@ import { User } from 'src/app/models/user.model';
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css'],
-  providers: [AuthService],
+  //providers: [AuthService],
 })
 export class RegisterComponent implements OnInit{
   constructor(private authService: AuthService) {}
@@ -17,19 +17,7 @@ export class RegisterComponent implements OnInit{
   ngOnInit(){
     this.user =new User("",0,'','','',0,'','','','','',false,0,'',0)
   }
-  /*user = {
-    name: '',
-    surname: '',
-    username: '',
-    phone: '',
-    email: '',
-    pays: '',
-    ville: '',
-    password: '',
-    enable: false,
-    roleId: 'f5b76116-cfa8-4793-95c2-7bb517176f3a',
-    userType: 'USER',
-  };*/
+
   passwordVerification = '';
 
   setVar(type: string, value: string) {

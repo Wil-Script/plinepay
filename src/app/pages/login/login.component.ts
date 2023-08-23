@@ -34,6 +34,10 @@ export class LoginComponent implements OnInit{
     if (this.user.password == '' || this.user.email == '') {
       return alert('Veuillez remplir tous les champs');
     }
-    this.authService.loginUser(this.user);
+    let data={
+      email:this.user.email,
+      password:this.user.password
+    }
+    this.authService.loginUser(data);
   }
 }

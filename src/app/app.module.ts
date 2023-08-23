@@ -29,7 +29,8 @@ import { FactureComponent } from './pages/facture/facture.component';
 import { AuthHttpInterceptorService } from './services/auth-http-interceptor.service';
 import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
 import { ActivateAccountModalComponent } from './components/activate-account-modal/activate-account-modal.component';
-
+import { NgxSpinnerModule } from 'ngx-spinner';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 @NgModule({
   declarations: [
     AppComponent,
@@ -49,6 +50,8 @@ import { ActivateAccountModalComponent } from './components/activate-account-mod
     ActivateAccountModalComponent,
   ],
   imports: [
+    BrowserAnimationsModule,
+    NgxSpinnerModule,
     BrowserModule,
     AppRoutingModule,
     HttpClientModule,

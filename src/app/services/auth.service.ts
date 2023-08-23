@@ -4,22 +4,17 @@ import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { CookieService } from 'ngx-cookie-service';
-
+import { NgxSpinnerService } from "ngx-spinner";
+import { API_URL } from '../app.constantes';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private cookieService:CookieService
+    private cookieService:CookieService,
+    private SpinnerSevice:NgxSpinnerService
   ) {}
-
-  configUrl = 'assets/config.json';
-  private baseUrl='http://192.168.100.186:8086/'
-  private registerUrl = this.baseUrl+'api/auth/users/add';
-  private loginUrl = 'http://192.168.100.186:8086/api/auth/users/authenticate';
-  private otpUrl = this.baseUrl+'api/auth/users/sendOtp';
-  private enableUrl = this.baseUrl+'api/auth/users/enable';
 
   private handleError(error: HttpErrorResponse) {
     if (error.status === 0) {
@@ -35,12 +30,14 @@ export class AuthService {
     );
   }
 
-  loginUser(user: User): void {
-   this.http.post<User>(this.loginUrl, user).subscribe(async (res: any) => {
+  loginUser(data:any): void {
+    this.SpinnerSevice.show();
+   this.http.post<User>(`${API_URL}/auth/users/authenticate`, data).subscribe(async (res: any) => {
       console.log(res);
       if (res.message.code == 200) {
         this.cookieService.set('token', res.jwttoken);
         setTimeout(() => {
+          this.SpinnerSevice.hide();
           this.router.navigate(['/dashboard']);
         }, 200);
       }
@@ -48,12 +45,14 @@ export class AuthService {
   }
 
   registerUser(user: any): void {
-    this.http.post<User>(this.registerUrl, user).subscribe(
+    this.SpinnerSevice.show();
+    this.http.post<User>(`${API_URL}/auth/users/add`, user).subscribe(
       response =>{
         if(response.status==201){
           console.log(response);
           localStorage.setItem('entityId',response.id);
           localStorage.setItem('userEmail',user.email);
+          this.SpinnerSevice.hide();
           this.router.navigate(['/otp']);
         }
       }
@@ -61,10 +60,10 @@ export class AuthService {
   }
   //recupération OTP
   calBackOtp(otp:string){
-    return this.http.post<Response>(this.otpUrl,{entityId:otp})
+    return this.http.post<Response>(`${API_URL}/auth/users/sendOtp`,{entityId:otp})
   }
   enableAccount(data:any){
-    return this.http.post<Response>(this.enableUrl,data)
+    return this.http.post<Response>(`${API_URL}/auth/users/enable`,data)
   }
   //récupération du token
   getAuthToken():string {
