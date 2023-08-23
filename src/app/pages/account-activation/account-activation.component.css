@@ -1,0 +1,89 @@
+.activation-page {
+  display: grid;
+  grid-template-columns: 1fr 3fr;
+  width: 100%;
+  height: 100vh;
+}
+.tab-side {
+  padding: 60px 10%;
+  display: flex;
+  flex-direction: column;
+  row-gap: 94px;
+  width: 100%;
+  height: 100%;
+}
+.tab-side .title {
+  font-weight: bold;
+  font-size: 1rem;
+  font-family: var(--headingFont);
+}
+.step-group {
+  margin-top: 24px;
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+  height: auto;
+}
+.step-group .step-item {
+  padding: 18px 0;
+  width: 100%;
+  height: auto;
+  cursor: pointer;
+}
+.step-group .step-item:not(:last-child) {
+  border-bottom: 1px solid var(--border);
+}
+.step-item .step-head {
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+}
+.step-head .check {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 24px;
+  height: 24px;
+  border-radius: 25px;
+  border: 1px solid var(--border);
+}
+.check div {
+  width: 16px;
+  height: 16px;
+  background: var(--black);
+  border-radius: 16px;
+  background: none;
+}
+.step-head .check.active {
+  border-color: var(--black);
+  border: 1px solid var(--black);
+}
+.step-head .check.active div {
+  background: var(--black);
+}
+.step-head .step-title {
+  font-weight: bold;
+  font-family: var(--headingFont);
+  font-size: 1.2rem;
+}
+.step-item .step-body {
+  margin-top: 24px;
+  display: none;
+}
+.form-side {
+  padding: 60px 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-left: 1px solid var(--border);
+}
+.form-side form {
+  display: flex;
+  flex-direction: column;
+  row-gap: 24px;
+  width: 100%;
+  max-width: 600px;
+}

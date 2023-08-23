@@ -1,1 +1,86 @@
-<p>account-activation works!</p>
+<div class="activation-page">
+  <div class="tab-side">
+    <span class="title"> Activer votre compte </span>
+    <div class="step-group">
+      <div class="step-item" (click)="step = 0">
+        <div class="step-head">
+          <div class="check" [class.active]="step >= 0">
+            <div></div>
+          </div>
+          <span class="step-title"> Informations sur l'entreprise </span>
+        </div>
+        <div class="step-body">
+          <p>
+            Ces informations nous permettent de mieux accompagner votre
+            entreprise et de nous conformer aux exigences des organismes de
+            régulation, de nos partenaires financiers et de notre Contrat
+            d'utilisation du service Stripe.
+          </p>
+        </div>
+      </div>
+      <div class="step-item" (click)="step = 1">
+        <div class="step-head">
+          <div class="check" [class.active]="step >= 1">
+            <div></div>
+          </div>
+          <span class="step-title"> Dirigeants de l'entreprise </span>
+        </div>
+        <div class="step-body">
+          <p>
+            Nous sommes tenus de recueillir des informations relatives à tout
+            dirigeant ou cadre supérieur assumant des responsabilités
+            importantes dans la direction de cette entreprise. Assurez-vous de
+            saisir ces informations correctement, car nous sommes susceptibles
+            de les vérifier
+          </p>
+        </div>
+      </div>
+      <div class="step-item" (click)="step = 2">
+        <div class="step-head">
+          <div class="check" [class.active]="step == 2">
+            <div></div>
+          </div>
+          <span class="step-title">
+            Ajouter votre compte de reception d'argent
+          </span>
+        </div>
+        <div class="step-body">
+          <p>
+            Ajouter votre compte bancaire pour recevoir des virements. Un
+            virement est un transfert de fonds de Stripe vers votre compte
+            bancaire.
+          </p>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="form-side">
+    <form action="">
+      <app-input
+        [label]="'Nom'"
+        [type]="'text'"
+        [placeholder]="'Entrez votre nom'"
+      ></app-input>
+      <app-input
+        [label]="'Nom'"
+        [type]="'text'"
+        [placeholder]="'Entrez votre nom'"
+      ></app-input>
+      <app-input
+        [label]="'Nom'"
+        [type]="'text'"
+        [placeholder]="'Entrez votre nom'"
+      ></app-input>
+      <app-input
+        [label]="'Nom'"
+        [type]="'text'"
+        [placeholder]="'Entrez votre nom'"
+      ></app-input>
+      <app-input
+        [label]="'Nom'"
+        [type]="'text'"
+        [placeholder]="'Entrez votre nom'"
+      ></app-input>
+    </form>
+  </div>
+</div>

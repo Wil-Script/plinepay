@@ -1,0 +1,19 @@
+button {
+  padding: 0 24px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 44px;
+  font-weight: bold;
+  background: var(--mainColor);
+  border-radius: 8px;
+}
+button.black {
+  background: var(--black);
+  color: white;
+}
+button.outline {
+  background: transparent;
+  border: 1px solid var(--black);
+  outline: none;
+}

@@ -6,5 +6,9 @@ import { Component } from '@angular/core';
   styleUrls: ['./account-activation.component.css']
 })
 export class AccountActivationComponent {
-
+  step = 0
+  con(){
+    console.log('hihihihih');
+    
+  }
 }

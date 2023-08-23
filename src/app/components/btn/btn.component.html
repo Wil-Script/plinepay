@@ -1,0 +1,8 @@
+<button
+  [class.black]="state == 'black'"
+  [class.outline]="state == 'outline'"
+  [class.w-full]="fullWidth"
+  (click)="actionFunc()"
+>
+  {{ label }}
+</button>

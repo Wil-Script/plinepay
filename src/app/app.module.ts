@@ -28,6 +28,7 @@ import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
 import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
 import { ActivateAccountModalComponent } from './components/activate-account-modal/activate-account-modal.component';
+import { ButtonComponent } from './components/btn/btn.component';
 
 @NgModule({
   declarations: [
@@ -46,6 +47,7 @@ import { ActivateAccountModalComponent } from './components/activate-account-mod
     CreateAppComponent,
     AccountActivationComponent,
     ActivateAccountModalComponent,
+    ButtonComponent,
   ],
   imports: [
     BrowserModule,
