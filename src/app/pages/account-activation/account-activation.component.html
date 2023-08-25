@@ -1,86 +1,305 @@
 <div class="activation-page">
-  <div class="tab-side">
-    <span class="title"> Activer votre compte </span>
-    <div class="step-group">
-      <div class="step-item" (click)="step = 0">
-        <div class="step-head">
-          <div class="check" [class.active]="step >= 0">
-            <div></div>
+  <div class="barmenu">
+    <div class="left-part">
+      <span class="brand" (click)="addMember()">Pline<b>Pay</b></span>
+      <div>|</div>
+      <span>Activation du compte</span>
+    </div>
+    <div class="right-part">
+      <a href="/dashboard">Fermer</a>
+    </div>
+  </div>
+  <div class="main">
+    <div class="tab-side">
+      <div class="step-group">
+        <div class="step-item" (click)="step = 0">
+          <div class="step-head">
+            <div class="check" [class.active]="step >= 0">
+              <div></div>
+            </div>
+            <span class="step-title" [class.active]="step == 0">
+              Informations sur l'entreprise
+            </span>
           </div>
-          <span class="step-title"> Informations sur l'entreprise </span>
         </div>
-        <div class="step-body">
-          <p>
-            Ces informations nous permettent de mieux accompagner votre
-            entreprise et de nous conformer aux exigences des organismes de
-            régulation, de nos partenaires financiers et de notre Contrat
-            d'utilisation du service Stripe.
-          </p>
+        <div class="step-item" (click)="step = 1">
+          <div class="step-head">
+            <div class="check" [class.active]="step >= 1">
+              <div></div>
+            </div>
+            <span class="step-title" [class.active]="step == 1">
+              Dirigeants de l'entreprise
+            </span>
+          </div>
+        </div>
+        <div class="step-item" (click)="step = 2">
+          <div class="step-head">
+            <div class="check" [class.active]="step >= 2">
+              <div></div>
+            </div>
+            <span class="step-title" [class.active]="step == 2">
+              Ajouter votre compte de reception d'argent
+            </span>
+          </div>
+        </div>
+        <div class="step-item" (click)="step = 3" [class.active]="step == 3">
+          <div class="step-head">
+            <div class="check" [class.active]="step == 3">
+              <div></div>
+            </div>
+            <span class="step-title"> Résumé </span>
+          </div>
         </div>
       </div>
-      <div class="step-item" (click)="step = 1">
-        <div class="step-head">
-          <div class="check" [class.active]="step >= 1">
-            <div></div>
-          </div>
-          <span class="step-title"> Dirigeants de l'entreprise </span>
+    </div>
+    <div class="form-side">
+      <div class="form-block">
+        <div class="form-item" *ngIf="step == 0">
+          <form action="">
+            <app-input
+              [label]="'Dénomination sociale'"
+              [type]="'text'"
+              [placeholder]="'Le nom de votre entreprise'"
+              (newItemEvent)="setVar('company-name', $event)"
+            ></app-input>
+            <app-input
+              [label]="'Numéro registre de commerce'"
+              [type]="'text'"
+              [placeholder]="'--- --- --- --- ---'"
+              (newItemEvent)="setVar('commercial-register', $event)"
+            ></app-input>
+            <app-input
+              [label]="'Type entreprise'"
+              [type]="'text'"
+              [placeholder]="'SARL - SA'"
+              (newItemEvent)="setVar('company-type', $event)"
+            ></app-input>
+            <app-input
+              [label]="'Numéro de téléphone de  l\'entreprise'"
+              [type]="'tel'"
+              [placeholder]="'+237 6-- --- ---'"
+              (newItemEvent)="setVar('company-tel', $event)"
+            ></app-input>
+            <app-input
+              [label]="'company-domain'"
+              [type]="'text'"
+              [placeholder]="'Selectionnez votre secteur d\'activité'"
+              (newItemEvent)="setVar('company-domain', $event)"
+            ></app-input>
+            <div class="flex flex-col gap-2">
+              <app-input
+                [label]="'Adresse de l\'entreprise'"
+                [type]="'text'"
+                [placeholder]="'Pays'"
+                (newItemEvent)="setVar('company-domain', $event)"
+              ></app-input>
+              <app-input [type]="'text'" [placeholder]="'Ville'"></app-input>
+            </div>
+            <app-input
+              [label]="'Site web de l \'entreprise (Facultatif)'"
+              [type]="'text'"
+              [placeholder]="'Entrez votre nom'"
+            ></app-input>
+
+            <app-button
+              [label]="'Suivant'"
+              [fullWidth]="true"
+              class="mt-8"
+              (action)="setCompanyInfos()"
+            ></app-button>
+          </form>
         </div>
-        <div class="step-body">
-          <p>
-            Nous sommes tenus de recueillir des informations relatives à tout
-            dirigeant ou cadre supérieur assumant des responsabilités
-            importantes dans la direction de cette entreprise. Assurez-vous de
-            saisir ces informations correctement, car nous sommes susceptibles
-            de les vérifier
-          </p>
+        <div class="form-item" *ngIf="step == 1">
+          <div class="flex flex-col items-center w-full">
+            <div class="member-group" style="max-width: 500px">
+              <div class="member-item">
+                <span>claude Kuaté</span>
+                <span>claudkuate@gmail.com</span>
+              </div>
+              <div class="member-item">
+                <span>claude Kuaté</span>
+                <span>claudkuate@gmail.com</span>
+              </div>
+              <div class="member-item">
+                <span>claude Kuaté</span>
+                <span>claudkuate@gmail.com</span>
+              </div>
+            </div>
+            <form action="" class="mt-8">
+              <app-input
+                [label]="'Nom'"
+                [type]="'text'"
+                [placeholder]="'Entrez le prénom'"
+              ></app-input>
+              <app-input
+                [label]="'Prénom'"
+                [type]="'text'"
+                [placeholder]="'Entrez le prénom'"
+              ></app-input>
+              <app-input
+                [label]="'Adresse email'"
+                [type]="'email'"
+                [placeholder]="'Entrez l\'adresse mail'"
+              ></app-input>
+              <div class="btns"></div>
+
+              <app-button
+                [label]="'Ajouter un dirigeant'"
+                [fullWidth]="true"
+                [state]="'black'"
+                class="mt-8"
+                (action)="addMember()"
+                style="width: 100%"
+              ></app-button>
+
+              <!-- <app-button
+                [label]="'Suivant'"
+                [fullWidth]="true"
+                class="mt-8"
+                (action)="next()"
+              ></app-button> -->
+            </form>
+          </div>
+        </div>
+        <div class="form-item" *ngIf="step == 2">
+          <div>
+            <div class="mobile-payment">
+              <span class="title">Paiments mobile</span>
+              <div class="payment-group">
+                <div
+                  class="payment-item"
+                  (click)="selectMobilePayment('orange')"
+                  [class.active]="mobilePayment == 'orange'"
+                >
+                  <div class="pay-checker">
+                    <div></div>
+                  </div>
+                  <div class="pay-txt">
+                    <span> ORANGE Mobile Money </span>
+                    <p>
+                      Recevez votre argent directement dans votre compte Orange
+                      (OM).
+                    </p>
+                  </div>
+                </div>
+                <div
+                  class="payment-item"
+                  (click)="selectMobilePayment('mtn')"
+                  [class.active]="mobilePayment == 'mtn'"
+                >
+                  <div class="pay-checker">
+                    <div></div>
+                  </div>
+                  <div class="pay-txt">
+                    <span> MTN Mobile money </span>
+                    <p>
+                      Recevez votre argent directement dans votre compte MTN
+                      (MoMo).
+                    </p>
+                  </div>
+                </div>
+                <app-input
+                  *ngIf="mobilePayment !== ''"
+                  [label]="'Numéro de téléphone de reception'"
+                  [type]="'tel'"
+                  [placeholder]="'+237 6-- --- ---'"
+                ></app-input>
+              </div>
+            </div>
+            <div
+              class="my-8"
+              style="
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+              "
+            >
+              <hr style="width: 30%" />
+              <span class="font-bold">Ou par compte bancaire</span>
+              <hr style="width: 30%" />
+            </div>
+            <div class="bank-area w-full flex justify-center mt-8">
+              <form action="">
+                <app-input
+                  [label]="'Nom de la banque'"
+                  [type]="'text'"
+                  [placeholder]="'Nom de la banque'"
+                ></app-input>
+                <app-input
+                  [label]="'Numéro IBAN'"
+                  [type]="'number'"
+                  [placeholder]="'00012345'"
+                ></app-input>
+                <app-input
+                  [label]="'Confirmer le numéro IBAN'"
+                  [type]="'number'"
+                  [placeholder]="'00012345'"
+                ></app-input>
+                <app-input
+                  [label]="'Pays du compte bancaire'"
+                  [type]="'text'"
+                  [placeholder]="'Entrez le pays de votre banque'"
+                ></app-input>
+                <app-button
+                  [label]="'Continuer'"
+                  [fullWidth]="true"
+                  class="mt-8"
+                  (action)="addMember()"
+                ></app-button>
+              </form>
+            </div>
+          </div>
         </div>
       </div>
-      <div class="step-item" (click)="step = 2">
-        <div class="step-head">
-          <div class="check" [class.active]="step == 2">
-            <div></div>
+      <div class="doc-block">
+        <div class="doc-top">
+          <div class="illustration">
+            <lucide-icon name="info" [size]="30"></lucide-icon>
           </div>
-          <span class="step-title">
-            Ajouter votre compte de reception d'argent
-          </span>
+          <div class="txt" *ngIf="step == 0">
+            <span class="title"> Dites-nous en plus sur votre entreprise </span>
+            <p>
+              Ces informations nous permettent de mieux accompagner votre
+              entreprise et de nous conformer aux exigences des organismes de
+              régulation, de nos partenaires financiers et de notre Contrat
+              d'utilisation du service PlinePay.
+            </p>
+          </div>
+          <div class="txt" *ngIf="step == 1">
+            <span class="title"> Dirigéants de l'entreprise </span>
+            <p>
+              Veuillez fournir des informations sur tout dirigeant ou cadre
+              supérieur assumant des responsabilités importantes dans la
+              direction de cette entreprise. <br /><br />
+              Assurez-vous de saisir ces informations correctement, car nous
+              sommes susceptibles de les vérifier <br /><br />
+              Veuillez indiquer tous les dirigeants principaux de votre
+              entreprise
+            </p>
+          </div>
+          <div class="txt" *ngIf="step == 2">
+            <span class="title">
+              Lier votre compte bancaire ou mobile money pour recevoir des
+              virements.
+            </span>
+            <p>
+              Un virement est un transfert de fonds de PlinePay vers votre
+              compte.
+            </p>
+          </div>
         </div>
-        <div class="step-body">
-          <p>
-            Ajouter votre compte bancaire pour recevoir des virements. Un
-            virement est un transfert de fonds de Stripe vers votre compte
-            bancaire.
-          </p>
+        <div class="doc-bottom">
+          <span>PlinePay 2023 | Tous droits reservés</span>
+          <a href="#">Termes et conditions d'utilisation</a>
         </div>
       </div>
     </div>
   </div>
-  <div class="form-side">
-    <form action="">
-      <app-input
-        [label]="'Nom'"
-        [type]="'text'"
-        [placeholder]="'Entrez votre nom'"
-      ></app-input>
-      <app-input
-        [label]="'Nom'"
-        [type]="'text'"
-        [placeholder]="'Entrez votre nom'"
-      ></app-input>
-      <app-input
-        [label]="'Nom'"
-        [type]="'text'"
-        [placeholder]="'Entrez votre nom'"
-      ></app-input>
-      <app-input
-        [label]="'Nom'"
-        [type]="'text'"
-        [placeholder]="'Entrez votre nom'"
-      ></app-input>
-      <app-input
-        [label]="'Nom'"
-        [type]="'text'"
-        [placeholder]="'Entrez votre nom'"
-      ></app-input>
-    </form>
-  </div>
 </div>
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-spin-clockwise"
+>
+  <p style="color: white">Veuillez patienter ...</p>
+</ngx-spinner>

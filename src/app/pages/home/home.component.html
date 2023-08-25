@@ -1,11 +1,5 @@
 <div class="homepage">
   <div class="application-block">
-    <div class="app-head">
-      <span class="title"> Mes Applications </span>
-      <div class="btn">
-        <button (click)="showCreateApp()">Ajouter une application</button>
-      </div>
-    </div>
     <div class="empty-block complete-register">
       <span class="title">Activez votre compte</span>
       <p>
@@ -27,17 +21,72 @@
         (click)="showCreateApp()"
         style="margin-top: 24px; background: #202020; color: white"
       >
-        Connecter mon produit
+        Connecter mon application
       </button>
     </div>
   </div>
-  <div class="recent-activities"></div>
+  <div class="recent-activities">
+    <div class="resume">
+      <span class="title-4"> Resumé de votre activité </span>
+      <div class="resume-grid">
+        <div class="resume-item">
+          <div class="head">
+            <div class="icon">
+              <lucide-angular
+                name="coins"
+                [size]="24"
+              ></lucide-angular>
+            </div>
+            <span>Balance totale</span>
+          </div>
+          <span class="title-2"> 0.00 XAF </span>
+        </div>
+        <div class="resume-item">
+          <div class="head">
+            <div class="icon">
+              
+              <lucide-angular
+                name="gantt-chart"
+                [size]="24"
+              ></lucide-angular>
+            </div>
+            <span>Nombres d'opérations</span>
+          </div>
+          <span class="title-2"> 0 </span>
+        </div>
+        <div class="resume-item">
+          <div class="head">
+            <div class="icon"></div>
+            <span>Balance totale</span>
+          </div>
+          <span class="title-2"> 0.00 XAF </span>
+        </div>
+      </div>
+    </div>
+    <div class="app-other">
+      <div class="app-group">
+        <span class="title-4">Mes applications</span>
+        <div class="app-parent">
+          <app-application-item
+            *ngFor="let item of applicationList"
+            [name]="item.name"
+            [logoUrl]="item.logoURL"
+            [balance]="item.balance"
+          ></app-application-item>
+        </div>
+      </div>
+      <div class="other">
+        <span class="title-4">Mes applications</span>
+        <div></div>
+      </div>
+    </div>
+  </div>
   <app-create-app
     *ngIf="createAppVisible"
     (close)="hideCreateApp()"
   ></app-create-app>
   <app-activate-account-modal
-    *ngIf="activeAccountVisible"
+    *ngIf="!activeAccountVisible"
     (close)="hideAccountActivationPop()"
   ></app-activate-account-modal>
 </div>

@@ -1,5 +1,5 @@
 import { Component, OnInit, EventEmitter, Output } from '@angular/core';
-import { Applicationservice } from 'src/app/services/application';
+import { Applicationservice } from 'src/app/services/application.service';
 
 // class ImageSnippet {
 //   constructor(public src: string, public file: File) {}
@@ -70,6 +70,7 @@ export class CreateAppComponent implements OnInit {
       addFees: this.addFees,
       percent: this.userPercent,
       logoURL: this.img || '',
+      balance: 0,
     };
     this.applicationService.createApp(app);
   }

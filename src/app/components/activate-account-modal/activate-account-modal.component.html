@@ -22,7 +22,12 @@
         <span class="info-item"> Votre équipe </span>
         <span class="info-item"> Paramètres de paiements </span>
       </div>
-      <app-button [label]="'Activer mon compte'" [fullWidth]="true" class="mt-8"></app-button>
+      <app-button
+        [label]="'Activer mon compte'"
+        [fullWidth]="true"
+        class="mt-8"
+        (action)="goToActivation()"
+      ></app-button>
     </div>
   </div>
 </div>

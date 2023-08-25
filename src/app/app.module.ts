@@ -22,7 +22,11 @@ import {
   AppWindow,
   Link2,
   AlertTriangle,
-  ImagePlus, X
+  ImagePlus,
+  X,
+  Info,
+  Coins,
+  GanttChart,
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
@@ -33,6 +37,7 @@ import { ButtonComponent } from './components/btn/btn.component';
 
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
+import { ApplicationItemComponent } from './components/application-item/application-item.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -51,6 +56,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     AccountActivationComponent,
     ActivateAccountModalComponent,
     ButtonComponent,
+    ApplicationItemComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -60,11 +66,24 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
     HttpClientModule,
     DashboardModule,
     FormsModule,
-    LucideAngularModule.pick({ AppWindow, Link2, AlertTriangle, ImagePlus, X }),
+    LucideAngularModule.pick({
+      AppWindow,
+      Link2,
+      AlertTriangle,
+      ImagePlus,
+      X,
+      Info,
+      Coins,
+      GanttChart,
+    }),
   ],
   providers: [
     CookieService,
-    {provide:HTTP_INTERCEPTORS, useClass:AuthHttpInterceptorService,multi:true},
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthHttpInterceptorService,
+      multi: true,
+    },
   ],
   bootstrap: [AppComponent],
 })

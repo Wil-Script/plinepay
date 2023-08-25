@@ -59,7 +59,7 @@ export class AuthService {
     )
   }
   //recupération OTP
-  calBackOtp(otp:string){
+  callBackOtp(otp:string){
     return this.http.post<Response>(`${API_URL}/auth/users/sendOtp`,{entityId:otp})
   }
   enableAccount(data:any){

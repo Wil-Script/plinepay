@@ -1,5 +1,5 @@
 <div class="input">
-  <span>{{ label }}</span>
+  <span *ngIf="label !== ''">{{ label }}</span>
   <input
     #newItem
     placeholder="{{ placeholder }}"

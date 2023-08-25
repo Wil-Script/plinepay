@@ -1,8 +1,20 @@
+import { Application } from './application';
 export class Response{
-    constructor(
-      public id:number,
-      public message:string,
-      public status:string,
-    ){}
+  constructor(
+    public operationDate: number,
+    public numberElement: number,
+    public message: {},
+    public errorService: {},
+    public paymentDtos: [],
+    public privilegeDtos: [],
+    public resourceDtos: [],
+    public roleDtos: [],
+    public traderAccountDtos: [],
+    public userDtos: [],
+    public settingDtos: [],
+    public applicationDtos: Application[],
+    public mobileAccountDtos: [],
+    public paymentMethodDtos: []
+  ) {}
   }
   

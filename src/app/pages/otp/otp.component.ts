@@ -29,7 +29,7 @@ export class OtpComponent implements OnInit{
     let data=localStorage.getItem("entityId")||''
     console.log(data);
     this.SpinnerSevice.show();
-    this.authService.calBackOtp(data).subscribe(
+    this.authService.callBackOtp(data).subscribe(
       response =>{
         console.log(response);
         alert(`otp obtenu`)

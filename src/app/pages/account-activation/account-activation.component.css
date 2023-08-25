@@ -1,16 +1,46 @@
 .activation-page {
-  display: grid;
-  grid-template-columns: 1fr 3fr;
+  display: block;
   width: 100%;
   height: 100vh;
+  overflow: hidden;
+}
+.barmenu {
+  padding: 0 50px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid var(--border);
+}
+.barmenu .left-part {
+  width: auto;
+  display: flex;
+  align-items: center;
+  column-gap: 44px;
+}
+.left-part .brand {
+  font-size: 1.4rem;
+  font-family: var(--headingFont);
+}
+.left-part .brand b {
+  font-family: var(--headingFont);
+  color: var(--mainColor);
+}
+.main {
+  display: grid;
+  grid-template-columns: 350px 1fr;
+  width: 100%;
+  height: calc(100vh - 80px);
 }
 .tab-side {
-  padding: 60px 10%;
+  padding: 40px 40px;
   display: flex;
   flex-direction: column;
   row-gap: 94px;
   width: 100%;
   height: 100%;
+  overflow-y: auto;
 }
 .tab-side .title {
   font-weight: bold;
@@ -18,7 +48,6 @@
   font-family: var(--headingFont);
 }
 .step-group {
-  margin-top: 24px;
   display: flex;
   flex-direction: column;
   row-gap: 8px;
@@ -30,6 +59,9 @@
   width: 100%;
   height: auto;
   cursor: pointer;
+}
+.step-group .step-item:first-child {
+  padding-top: 0px;
 }
 .step-group .step-item:not(:last-child) {
   border-bottom: 1px solid var(--border);
@@ -63,27 +95,143 @@
   background: var(--black);
 }
 .step-head .step-title {
-  font-weight: bold;
-  font-family: var(--headingFont);
   font-size: 1.2rem;
+  width: calc(100% - 54px);
+}
+.step-head .step-title.active {
+  font-weight: bold;
 }
 .step-item .step-body {
   margin-top: 24px;
   display: none;
 }
 .form-side {
-  padding: 60px 0;
-  display: flex;
-  align-items: center;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: 1.5fr 1fr;
   width: 100%;
   height: 100%;
   border-left: 1px solid var(--border);
+  overflow-y: auto;
 }
-.form-side form {
+.form-side .form-block {
+  padding: 40px 5% 0;
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  border-right: 1px solid var(--border);
+  background: #fefefe;
+}
+.form-block .form-item {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  height: auto;
+}
+.form-item form {
   display: flex;
   flex-direction: column;
   row-gap: 24px;
   width: 100%;
-  max-width: 600px;
+  max-width: 500px;
+}
+.form-side .doc-block {
+  padding: 40px 40px 20px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.member-group {
+  padding-bottom: 24px;
+  white-space: nowrap;
+  width: 100%;
+  height: auto;
+  border-bottom: 1px solid var(--border);
+  overflow:auto;
+}
+.member-group .member-item {
+  margin-right: 12px;
+  padding: 8px 12px;
+  display: inline-flex;
+  flex-direction: column;
+  column-gap: 12px;
+  height: 100%;
+  width: auto;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+  background: #eee;
+}
+.member-item span:nth-child(1) {
+  font-weight: bold;
+}
+.doc-block .illustration {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 80px;
+  width: 80px;
+  border-radius: 50%;
+  background: rgba(173, 216, 230, 0.336);
+}
+.doc-block .txt {
+  margin-top: 34px;
+}
+.doc-block .txt .title {
+  font-weight: bold;
+  font-family: var(--headingFont);
+  font-size: 1.8rem;
+}
+.doc-block .doc-bottom {
+  display: flex;
+  column-gap: 24px;
+}
+.doc-block .doc-bottom span,
+.doc-block .doc-bottom a {
+  font-size: 0.8rem;
+}
+.mobile-payment {
+  width: 100%;
+  height: auto;
+}
+.mobile-payment .title {
+  font-weight: bold;
+}
+.payment-group {
+  margin-top: 12px;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 24px 8px;
+}
+.payment-group .payment-item {
+  position: relative;
+  cursor: pointer;
+  padding: 12px 8px;
+  border-radius: 8px;
+  border: 1px solid var(--border);
+}
+.payment-item span {
+  font-weight: bold;
+}
+.payment-item p {
+  margin-top: 4px;
+  font-size: 0.9rem;
+  line-height: 1.2rem;
+}
+.pay-checker {
+  position: absolute;
+  right: 8px;
+  top: 8px;
+  padding: 3px;
+  width: 25px;
+  height: 25px;
+  border: solid var(--border) 2px;
+  border-radius: 50%;
+}
+.pay-checker div {
+  width: 100%;
+  height: 100%;
+  border-radius: 50%;
+}
+.payment-item.active .pay-checker div {
+  background: var(--mainColor);
 }
