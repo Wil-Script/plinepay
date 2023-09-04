@@ -11,12 +11,11 @@ export class Applicationservice {
 
   configUrl = 'assets/config.json';
 
-  createApp(application: Application): void {
-    this.http
-      .post<Application>(`${API_URL}/applications/add`, application)
-      .subscribe(async (res: any) => {
-        console.log(res);
-      });
+  createApp(application: Application) {
+    return this.http.post<Application>(
+      `${API_URL}/applications/add`,
+      application
+    );
   }
   getApplicationList(): Observable<Response> {
     return this.http

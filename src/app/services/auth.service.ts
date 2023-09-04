@@ -4,7 +4,7 @@ import { Observable, throwError } from 'rxjs';
 import { Router } from '@angular/router';
 import { User } from '../models/user.model';
 import { CookieService } from 'ngx-cookie-service';
-import { NgxSpinnerService } from "ngx-spinner";
+import { NgxSpinnerService } from 'ngx-spinner';
 import { API_URL } from '../app.constantes';
 
 @Injectable({ providedIn: 'root' })
@@ -12,8 +12,8 @@ export class AuthService {
   constructor(
     private http: HttpClient,
     private router: Router,
-    private cookieService:CookieService,
-    private SpinnerSevice:NgxSpinnerService
+    private cookieService: CookieService,
+    private SpinnerSevice: NgxSpinnerService
   ) {}
 
   private handleError(error: HttpErrorResponse) {
@@ -30,43 +30,49 @@ export class AuthService {
     );
   }
 
-  loginUser(data:any): void {
+  loginUser(data: any): void {
     this.SpinnerSevice.show();
-   this.http.post<User>(`${API_URL}/auth/users/authenticate`, data).subscribe(async (res: any) => {
-      console.log(res);
-      if (res.message.code == 200) {
-        this.cookieService.set('token', res.jwttoken);
-        setTimeout(() => {
-          this.SpinnerSevice.hide();
-          this.router.navigate(['/dashboard']);
-        }, 200);
-      }
-    });
+    this.http
+      .post<User>(`${API_URL}/auth/users/authenticate`, data)
+      .subscribe(async (res: any) => {
+        console.log(res);
+        if (res.message.code == 200) {
+          this.cookieService.set('token', res.jwttoken);
+          setTimeout(() => {
+            this.SpinnerSevice.hide();
+            this.router.navigate(['/dashboard']);
+          }, 200);
+        }
+      });
   }
 
   registerUser(user: any): void {
     this.SpinnerSevice.show();
-    this.http.post<User>(`${API_URL}/auth/users/add`, user).subscribe(
-      response =>{
-        if(response.status==201){
+    this.http
+      .post<User>(`${API_URL}/auth/users/add`, user)
+      .subscribe((response) => {
+        if (response.status == 201) {
           console.log(response);
-          localStorage.setItem('entityId',response.id);
-          localStorage.setItem('userEmail',user.email);
+          localStorage.setItem('entityId', response.id);
+          localStorage.setItem('userEmail', user.email);
           this.SpinnerSevice.hide();
           this.router.navigate(['/otp']);
         }
-      }
-    )
+        this.SpinnerSevice.hide();
+        this.router.navigate(['/otp']);
+      });
   }
   //recupération OTP
-  callBackOtp(otp:string){
-    return this.http.post<Response>(`${API_URL}/auth/users/sendOtp`,{entityId:otp})
+  callBackOtp(otp: string) {
+    return this.http.post<Response>(`${API_URL}/auth/users/sendOtp`, {
+      entityId: otp,
+    });
   }
-  enableAccount(data:any){
-    return this.http.post<Response>(`${API_URL}/auth/users/enable`,data)
+  enableAccount(data: any) {
+    return this.http.post<Response>(`${API_URL}/auth/users/enable`, data);
   }
   //récupération du token
-  getAuthToken():string {
+  getAuthToken(): string {
     return this.cookieService.get('token');
   }
 }

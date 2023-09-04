@@ -1,28 +1,40 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { TraderService } from 'src/app/services/trader.service';
 import { NgxSpinnerService } from 'ngx-spinner';
+import { Response } from 'src/app/models/response.model';
+import { Router } from '@angular/router';
+
+interface Member {
+  name: string;
+  surname: string;
+  email: string;
+  phone: string;
+}
 
 @Component({
   selector: 'app-account-activation',
   templateUrl: './account-activation.component.html',
   styleUrls: ['./account-activation.component.css'],
 })
-export class AccountActivationComponent {
+export class AccountActivationComponent implements OnInit {
+  requestReponse!: Response[];
+  paymentList: any[] = [];
   constructor(
     private traderservice: TraderService,
-    private spinnerSevice: NgxSpinnerService
+    private router: Router,
+    private spinnerSevice: NgxSpinnerService // private memberItem: member
   ) {}
-  step = 0;
-  mobilePayment = '';
-  members = [];
+  members: Member[] = [];
   member = {
     name: '',
     surname: '',
     email: '',
+    phone: '',
   };
+  step = 0;
+  mobilePayment = '';
   company = {
     name: '',
-    commercialRegister: '',
     phone: '',
     domainActivity: '',
     country: '',
@@ -30,74 +42,216 @@ export class AccountActivationComponent {
     website: '',
     type: '',
   };
-  payments = {
-    mobiles: [],
-    banks: [],
+  bank = {
+    nomBanque: '',
+    numIbamCompte: '',
+    localisationBanque: '',
+    nomTitulaireCompte: '',
   };
   mobile = {
-    agent: '',
-    tel: '',
+    paymentMethodId: '',
+    phoneNumber: '',
   };
-  bank = {
-    name: '',
-    ibanNumber: '',
-    countryBank: '',
+  payments = {
+    payementMobiles: [this.mobile],
+    payementBancaires: [this.bank],
   };
-
-  setVar(type: string, value: string) {
-    switch (type) {
-      case 'company-name':
-        this.company.name = value;
-        break;
-
-      case 'commercial-register':
-        this.company.commercialRegister = value;
-        break;
-      case 'company-type':
-        this.company.type = value;
-        break;
-
-      case 'company-tel':
-        this.company.phone = value;
-        break;
-
-      case 'company-domain':
-        this.company.domainActivity = value;
-        break;
-
-      case 'company-country':
-        this.company.country = value;
-        break;
-
-      case 'company-city':
-        this.company.city = value;
-        break;
-
-      default:
-        break;
+  documents = {
+    commercialRegister: '',
+    idNumberCardRectoUrl: '',
+    idNumberCardVersoUrl: '',
+    attestaionDomitiliationBancaire: '',
+    statusEntreprise: '',
+    carteContribuable: '',
+    nie: '',
+  };
+  checkCompanyInfos() {
+    if (
+      this.company.name == '' ||
+      this.company.domainActivity == '' ||
+      this.company.type == '' ||
+      this.company.country == '' ||
+      this.company.city == '' ||
+      this.company.website == ''
+    ) {
+      return false;
+    } else if (!this.phoneNumberChecker(this.company.phone)) {
+      return false;
+    } else {
+      return true;
     }
   }
-  next() {
-    if (this.step < 3) this.step++;
+  checkMemberInfos() {
+    if (this.company.name == '') {
+      return false;
+    } else if (!this.phoneNumberChecker(this.company.phone)) {
+      return false;
+    } else {
+      return true;
+    }
   }
-  selectMobilePayment(mean: string) {
+  ngOnInit(): void {
+    this.getMethodsPayment();
+  }
+  phoneNumberChecker(phone: string) {
+    let number = phone.trim();
+    if (number.length <= 8) return false;
+    return true;
+  }
+  inputTextChecker(text: any) {
+    if (text.length <= 1) return false;
+    return true;
+  }
+  selectMobilePayment(mean: string, idCode: string) {
     this.mobilePayment = mean;
+    this.mobile.paymentMethodId = idCode;
   }
   addMember() {
+    if (this.member.name == '' || this.member.surname == '') {
+      return alert('Veuillez remplir tous les champs');
+    } else if (!this.phoneNumberChecker(this.member.phone)) {
+      return alert('Numéro de téléphone invalide');
+    } else {
+      let data = {
+        name: this.member.name,
+        surname: this.member.surname,
+        email: this.member.email,
+        phone: this.member.phone,
+      };
+      this.members = [...this.members, data];
+      this.member.name =
+        this.member.surname =
+        this.member.phone =
+        this.member.email =
+          '';
+    }
+  }
+  setMember() {
     this.spinnerSevice.show();
+    this.traderservice
+      .setCompanyMembers(this.members)
+      .subscribe(async (res: any) => {
+        console.log(res);
+        this.spinnerSevice.hide();
+        if (res.message.code == 200 || res.message.code == 201) {
+          this.step = 2;
+        }
+      });
   }
   setCompanyInfos() {
+    if (!this.checkCompanyInfos()) {
+      return alert('Completez toutes les informations');
+    }
     this.spinnerSevice.show();
     this.traderservice
       .setCompanyInfos(this.company)
       .subscribe(async (res: any) => {
         console.log(res);
         this.spinnerSevice.hide();
-        if (res.message.code == 200) {
-          this.next();
+        if (res.message.code == 200 || res.message.code == 201) {
+          this.step = 1;
         }
       });
+  }
+  getMethodsPayment() {
+    this.traderservice.getMethodsPayment().subscribe(async (requestReponse) => {
+      this.paymentList = requestReponse.paymentMethodDtos;
+    });
+  }
+  setCompanyMoneyAccount() {
+    this.spinnerSevice.show();
+    this.traderservice
+      .setCompanyMoneyAccount(this.payments)
+      .subscribe(async (res: any) => {
+        console.log(res);
+        this.spinnerSevice.hide();
+        if (res.message.code == 200 || res.message.code == 201) {
+          this.router.navigate(['/dashboard']);
+        }
+      });
+  }
+  setDocuments() {
+    this.traderservice
+      .setDocuments(this.documents)
+      .subscribe(async (res: any) => {
+        console.log(res);
+        this.spinnerSevice.hide();
+        if (res.message.code == 200 || res.message.code == 201) {
+          this.step = 3;
+        }
+      });
+  }
+  goStep2() {
+    if (
+      this.company.name == '' ||
+      this.company.domainActivity == '' ||
+      this.company.type == '' ||
+      this.company.country == '' ||
+      this.company.city == '' ||
+      this.company.website == ''
+    ) {
+      return alert('Veullez remplir toutes les informations');
+    } else if (!this.phoneNumberChecker(this.company.phone)) {
+      alert('Le numéro de téléphone est invalide');
+    } else {
+      this.step = 1;
+    }
+  }
+  goStep3() {
+    if (!this.members.length) {
+      alert('Veuillez renseigner au moins un dirigeant');
+    } else {
+      this.step = 2;
+    }
+  }
+  goStep4() {
+    if (
+      this.documents.commercialRegister == '' ||
+      this.documents.idNumberCardRectoUrl == '' ||
+      this.documents.idNumberCardVersoUrl == '' ||
+      this.documents.attestaionDomitiliationBancaire == '' ||
+      this.documents.statusEntreprise == '' ||
+      this.documents.carteContribuable == ''
+    ) {
+      alert('Veuillez renseigner tous les documents necessaires.');
+    } else {
+      this.step = 3;
+    }
+  }
 
-    //
+  getImage(fileInput: any, docType: any) {
+    const file: File = fileInput.files[0];
+    const reader = new FileReader();
+
+    reader.addEventListener('load', (e: any) => {
+      switch (docType) {
+        case 'registreCommerce':
+          this.documents.commercialRegister = e.target.result;
+          break;
+        case 'cniRecto':
+          this.documents.idNumberCardRectoUrl = e.target.result;
+          break;
+        case 'cniVerso':
+          this.documents.idNumberCardVersoUrl = e.target.result;
+          break;
+        case 'domiciliation':
+          this.documents.attestaionDomitiliationBancaire = e.target.result;
+          break;
+        case 'status':
+          this.documents.statusEntreprise = e.target.result;
+          break;
+        case 'contribuable':
+          this.documents.carteContribuable = e.target.result;
+          break;
+        case 'niu':
+          this.documents.nie = e.target.result;
+          break;
+
+        default:
+          break;
+      }
+      console.log(this.documents);
+    });
+    reader.readAsDataURL(file);
   }
 }

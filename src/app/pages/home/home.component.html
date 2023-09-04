@@ -29,44 +29,27 @@
     <div class="resume">
       <span class="title-4"> Resumé de votre activité </span>
       <div class="resume-grid">
-        <div class="resume-item">
-          <div class="head">
-            <div class="icon">
-              <lucide-angular
-                name="coins"
-                [size]="24"
-              ></lucide-angular>
-            </div>
-            <span>Balance totale</span>
-          </div>
-          <span class="title-2"> 0.00 XAF </span>
-        </div>
-        <div class="resume-item">
-          <div class="head">
-            <div class="icon">
-              
-              <lucide-angular
-                name="gantt-chart"
-                [size]="24"
-              ></lucide-angular>
-            </div>
-            <span>Nombres d'opérations</span>
-          </div>
-          <span class="title-2"> 0 </span>
-        </div>
-        <div class="resume-item">
-          <div class="head">
-            <div class="icon"></div>
-            <span>Balance totale</span>
-          </div>
-          <span class="title-2"> 0.00 XAF </span>
-        </div>
+        <app-home-resume-card
+          [label]="'Balance totale'"
+          [value]="'0.00'"
+          [type]="'balance'"
+        ></app-home-resume-card>
+        <app-home-resume-card
+          [label]="'Nombres d\'operation'"
+          [value]="'0'"
+          [type]="'operation'"
+        ></app-home-resume-card>
+        <app-home-resume-card
+          [label]="'Transaction réussies'"
+          [value]="'0'"
+          [type]="'transaction'"
+        ></app-home-resume-card>
       </div>
     </div>
     <div class="app-other">
       <div class="app-group">
         <span class="title-4">Mes applications</span>
-        <div class="app-parent">
+        <div class="app-parent" *ngIf="applicationList.length">
           <app-application-item
             *ngFor="let item of applicationList"
             [name]="item.name"
@@ -74,10 +57,11 @@
             [balance]="item.balance"
           ></app-application-item>
         </div>
-      </div>
-      <div class="other">
-        <span class="title-4">Mes applications</span>
-        <div></div>
+        <div class="app-parent" *ngIf="!applicationList.length">
+          <app-application-item-skeleton></app-application-item-skeleton>
+          <app-application-item-skeleton></app-application-item-skeleton>
+          <app-application-item-skeleton></app-application-item-skeleton>
+        </div>
       </div>
     </div>
   </div>
@@ -89,4 +73,5 @@
     *ngIf="!activeAccountVisible"
     (close)="hideAccountActivationPop()"
   ></app-activate-account-modal>
+  <!-- <app-app-view-modal></app-app-view-modal> -->
 </div>

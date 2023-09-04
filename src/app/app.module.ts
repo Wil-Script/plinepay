@@ -26,7 +26,7 @@ import {
   X,
   Info,
   Coins,
-  GanttChart,
+  GanttChart, File, Repeat2
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
@@ -38,6 +38,9 @@ import { ButtonComponent } from './components/btn/btn.component';
 import { NgxSpinnerModule } from 'ngx-spinner';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ApplicationItemComponent } from './components/application-item/application-item.component';
+import { ApplicationItemSkeletonComponent } from './components/application-item-skeleton/application-item-skeleton.component';
+import { HomeResumeCardComponent } from './components/home-resume-card/home-resume-card.component';
+import { AppViewModalComponent } from './components/app-view-modal/app-view-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -57,6 +60,9 @@ import { ApplicationItemComponent } from './components/application-item/applicat
     ActivateAccountModalComponent,
     ButtonComponent,
     ApplicationItemComponent,
+    ApplicationItemSkeletonComponent,
+    HomeResumeCardComponent,
+    AppViewModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -74,7 +80,7 @@ import { ApplicationItemComponent } from './components/application-item/applicat
       X,
       Info,
       Coins,
-      GanttChart,
+      GanttChart, File,Repeat2
     }),
   ],
   providers: [

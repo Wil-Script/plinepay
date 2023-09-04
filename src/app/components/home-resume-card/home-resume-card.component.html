@@ -1,0 +1,25 @@
+<div class="resume-item">
+  <div class="head">
+    <div class="icon">
+      <lucide-angular
+        name="coins"
+        [size]="24"
+        *ngIf="type == 'balance'"
+      ></lucide-angular>
+      <lucide-angular
+        name="gantt-chart"
+        [size]="24"
+        *ngIf="type == 'operation'"
+      ></lucide-angular>
+      <lucide-angular
+        name="repeat-2"
+        [size]="24"
+        *ngIf="type == 'transaction'"
+      ></lucide-angular>
+    </div>
+    <span>{{ label }}</span>
+  </div>
+  <span class="title-2">
+    {{ value }} <span *ngIf="label == 'Balance totale'">XAF</span>
+  </span>
+</div>

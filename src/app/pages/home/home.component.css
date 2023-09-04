@@ -63,40 +63,10 @@
   width: 100%;
   height: auto;
 }
-.resume-grid .resume-item {
-  padding: 12px;
-  display: flex;
-  flex-direction: column;
-  row-gap: 24px;
-  width: 100%;
-  height: 100%;
-  border-radius: 15px;
-  border: 1px solid var(--border);
-}
-.resume-item .head {
-  display: flex;
-  flex-direction: column;
-  row-gap: 8px;
-  width: auto;
-  height: auto;
-}
-.resume-item .head .icon {
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  height: 44px;
-  width: 44px;
-  background: #f8f8f8;
-  border-radius: 8px;
-}
-.resume-value {
-  font-size: 1.4rem;
-  font-weight: bold;
-}
 .app-other {
   margin-top: 54px;
   display: grid;
-  grid-template-columns: 1fr 1fr;
+  grid-template-columns: 1fr;
   column-gap: 16px;
   width: 100%;
   height: 300px;

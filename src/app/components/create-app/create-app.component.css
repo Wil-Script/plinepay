@@ -99,12 +99,17 @@
   background: transparent;
   cursor: pointer;
 }
-
-.img-input label span:nth-child(3) {
+label .image-guetter-txt {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+.image-guetter-txt span:nth-child(3) {
   margin-top: 12px;
 }
 
-.img-input label span:last-child {
+.image-guetter-txt span:last-child {
   font-size: 0.8rem;
   color: var(--gris-txt);
 }

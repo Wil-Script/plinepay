@@ -12,7 +12,7 @@
   <div class="main">
     <div class="tab-side">
       <div class="step-group">
-        <div class="step-item" (click)="step = 0">
+        <div class="step-item" (click)="step = 1">
           <div class="step-head">
             <div class="check" [class.active]="step >= 0">
               <div></div>
@@ -22,7 +22,7 @@
             </span>
           </div>
         </div>
-        <div class="step-item" (click)="step = 1">
+        <div class="step-item" (click)="goStep2()">
           <div class="step-head">
             <div class="check" [class.active]="step >= 1">
               <div></div>
@@ -32,22 +32,24 @@
             </span>
           </div>
         </div>
-        <div class="step-item" (click)="step = 2">
+        <div class="step-item" (click)="goStep3()">
           <div class="step-head">
             <div class="check" [class.active]="step >= 2">
               <div></div>
             </div>
             <span class="step-title" [class.active]="step == 2">
-              Ajouter votre compte de reception d'argent
+              Documents
             </span>
           </div>
         </div>
-        <div class="step-item" (click)="step = 3" [class.active]="step == 3">
+        <div class="step-item" (click)="goStep4()" [class.active]="step == 3">
           <div class="step-head">
             <div class="check" [class.active]="step == 3">
               <div></div>
             </div>
-            <span class="step-title"> Résumé </span>
+            <span class="step-title">
+              Ajouter votre compte de reception d'argent
+            </span>
           </div>
         </div>
       </div>
@@ -56,50 +58,85 @@
       <div class="form-block">
         <div class="form-item" *ngIf="step == 0">
           <form action="">
-            <app-input
-              [label]="'Dénomination sociale'"
-              [type]="'text'"
-              [placeholder]="'Le nom de votre entreprise'"
-              (newItemEvent)="setVar('company-name', $event)"
-            ></app-input>
-            <app-input
-              [label]="'Numéro registre de commerce'"
-              [type]="'text'"
-              [placeholder]="'--- --- --- --- ---'"
-              (newItemEvent)="setVar('commercial-register', $event)"
-            ></app-input>
-            <app-input
-              [label]="'Type entreprise'"
-              [type]="'text'"
-              [placeholder]="'SARL - SA'"
-              (newItemEvent)="setVar('company-type', $event)"
-            ></app-input>
-            <app-input
-              [label]="'Numéro de téléphone de  l\'entreprise'"
-              [type]="'tel'"
-              [placeholder]="'+237 6-- --- ---'"
-              (newItemEvent)="setVar('company-tel', $event)"
-            ></app-input>
-            <app-input
-              [label]="'company-domain'"
-              [type]="'text'"
-              [placeholder]="'Selectionnez votre secteur d\'activité'"
-              (newItemEvent)="setVar('company-domain', $event)"
-            ></app-input>
-            <div class="flex flex-col gap-2">
-              <app-input
-                [label]="'Adresse de l\'entreprise'"
-                [type]="'text'"
-                [placeholder]="'Pays'"
-                (newItemEvent)="setVar('company-domain', $event)"
-              ></app-input>
-              <app-input [type]="'text'" [placeholder]="'Ville'"></app-input>
+            <div class="input-group">
+              <span>Dénomination sociale</span>
+              <input
+                type="text"
+                placeholder="Entrez le nom de votre entreprise"
+                [(ngModel)]="company.name"
+                name="company-name"
+              />
             </div>
-            <app-input
-              [label]="'Site web de l \'entreprise (Facultatif)'"
-              [type]="'text'"
-              [placeholder]="'Entrez votre nom'"
-            ></app-input>
+            <div class="input-group">
+              <span>Numéro registre de commerce</span>
+              <input
+                type="text"
+                placeholder="--- --- --- --- ---"
+                name="company-registry"
+              />
+            </div>
+            <div class="input-group">
+              <span>Type entreprise</span>
+              <select name="company-type" id="" [(ngModel)]="company.type">
+                <option value="" ngDefaultControl disabled>
+                  Choisir le type de votre entreprise
+                </option>
+                <option value="SARL">SARL</option>
+                <option value="S.A">S.A</option>
+                <option value="SAS">SAS</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <span>Numéro de téléphone de l'entreprise</span>
+              <input
+                type="tel"
+                placeholder="+237  6  --  --  --  --"
+                [(ngModel)]="company.phone"
+                name="company-phone"
+              />
+            </div>
+            <div class="input-group">
+              <span>Domaine d'activité</span>
+              <select
+                name="company-domain"
+                id=""
+                [(ngModel)]="company.domainActivity"
+              >
+                <option value="" ngDefaultControl disabled>
+                  Votre domaine d'activité
+                </option>
+                <option value="tech">Technologie</option>
+                <option value="ecommerce">Ecommerce</option>
+                <option value="finance">Finance</option>
+                <option value="transport">Transport</option>
+                <option value="restauration">Restauration</option>
+                <option value="santé">Santé</option>
+              </select>
+            </div>
+            <div class="input-group">
+              <span>Adresse de l'entreprise</span>
+              <input
+                type="text"
+                placeholder="Pays"
+                [(ngModel)]="company.country"
+                name="company-country"
+              />
+              <input
+                type="text"
+                placeholder="Ville"
+                [(ngModel)]="company.city"
+                name="company-city"
+              />
+            </div>
+            <div class="input-group">
+              <span>Site web de l'entreprise (Facultatif)</span>
+              <input
+                type="text"
+                placeholder="www.votreentreprise.com"
+                [(ngModel)]="company.website"
+                name="company-website"
+              />
+            </div>
 
             <app-button
               [label]="'Suivant'"
@@ -111,36 +148,53 @@
         </div>
         <div class="form-item" *ngIf="step == 1">
           <div class="flex flex-col items-center w-full">
-            <div class="member-group" style="max-width: 500px">
-              <div class="member-item">
-                <span>claude Kuaté</span>
-                <span>claudkuate@gmail.com</span>
-              </div>
-              <div class="member-item">
-                <span>claude Kuaté</span>
-                <span>claudkuate@gmail.com</span>
-              </div>
-              <div class="member-item">
-                <span>claude Kuaté</span>
-                <span>claudkuate@gmail.com</span>
+            <div
+              class="member-group"
+              *ngIf="members.length"
+              style="max-width: 500px"
+            >
+              <div class="member-item" *ngFor="let item of members">
+                <span>{{ item.name }} {{ item.surname }}</span>
+                <span>{{ item.email }}</span>
               </div>
             </div>
-            <form action="" class="mt-8">
-              <app-input
-                [label]="'Nom'"
-                [type]="'text'"
-                [placeholder]="'Entrez le prénom'"
-              ></app-input>
-              <app-input
-                [label]="'Prénom'"
-                [type]="'text'"
-                [placeholder]="'Entrez le prénom'"
-              ></app-input>
-              <app-input
-                [label]="'Adresse email'"
-                [type]="'email'"
-                [placeholder]="'Entrez l\'adresse mail'"
-              ></app-input>
+            <form action="post" name="user" class="mt-8">
+              <div class="input-group">
+                <span>Nom</span>
+                <input
+                  type="text"
+                  placeholder="Entrez le nom"
+                  [(ngModel)]="member.name"
+                  name="name"
+                />
+              </div>
+              <div class="input-group">
+                <span>Prénom</span>
+                <input
+                  type="text"
+                  placeholder="Entrez le prénom"
+                  [(ngModel)]="member.surname"
+                  name="surname"
+                />
+              </div>
+              <div class="input-group">
+                <span>Téléphone</span>
+                <input
+                  type="phone"
+                  placeholder="Entrez le numéro du dirigeant"
+                  [(ngModel)]="member.phone"
+                  name="phone"
+                />
+              </div>
+              <div class="input-group">
+                <span>Adresse email</span>
+                <input
+                  type="email"
+                  placeholder="Entrez l 'adresse mail"
+                  [(ngModel)]="member.email"
+                  name="email"
+                />
+              </div>
               <div class="btns"></div>
 
               <app-button
@@ -152,58 +206,289 @@
                 style="width: 100%"
               ></app-button>
 
-              <!-- <app-button
+              <app-button
+                *ngIf="members.length"
                 [label]="'Suivant'"
                 [fullWidth]="true"
                 class="mt-8"
-                (action)="next()"
-              ></app-button> -->
+                (action)="setMember()"
+              ></app-button>
             </form>
           </div>
         </div>
         <div class="form-item" *ngIf="step == 2">
+          <div class="doc-group">
+            <div class="doc-item">
+              <span class="title-3">Registre de commerce</span>
+              <div class="img-input">
+                <label class="image-guetter">
+                  <input
+                    #image
+                    type="file"
+                    multiple
+                    accept="application/pdf"
+                    (change)="getImage(image, 'registreCommerce')"
+                  />
+                  <div
+                    class="img-input-txt"
+                    *ngIf="documents.commercialRegister == ''"
+                  >
+                    <lucide-angular
+                      name="file"
+                      [size]="30"
+                      [color]="'#505050'"
+                    ></lucide-angular>
+                    <span>Cliquer pour ajouter un document</span>
+                    <span>PDF</span>
+                  </div>
+                  <div
+                    *ngIf="documents.commercialRegister !== ''"
+                    class="file-add"
+                  >
+                    <span> Chargement fichier réussi </span>
+                    <button>Changer</button>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="doc-item">
+              <span class="title-3">CNI (Verso)</span>
+              <div class="img-input">
+                <label class="image-guetter">
+                  <input
+                    #image
+                    type="file"
+                    multiple
+                    accept="image/jpeg, image/png, image/jpg"
+                    (change)="getImage(image, 'cniVerso')"
+                  />
+                  <div
+                    class="img-input-txt"
+                    *ngIf="documents.idNumberCardVersoUrl == ''"
+                  >
+                    <lucide-angular
+                      name="image-plus"
+                      [size]="30"
+                      [color]="'#505050'"
+                    ></lucide-angular>
+                    <span>Cliquer pour ajouter une image</span>
+                    <span>JPG, PNG, JPEG</span>
+                  </div>
+                  <div
+                    *ngIf="documents.idNumberCardVersoUrl !== ''"
+                    class="file-add"
+                  >
+                    <span> Chargement fichier réussi </span>
+                    <button>Changer</button>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="doc-item">
+              <span class="title-3">CNI (Recto)</span>
+              <div class="img-input">
+                <label class="image-guetter">
+                  <input
+                    #image
+                    type="file"
+                    multiple
+                    accept="image/jpeg, image/png, image/jpg"
+                    (change)="getImage(image, 'cniRecto')"
+                  />
+                  <div
+                    class="img-input-txt"
+                    *ngIf="documents.idNumberCardRectoUrl == ''"
+                  >
+                    <lucide-angular
+                      name="image-plus"
+                      [size]="30"
+                      [color]="'#505050'"
+                    ></lucide-angular>
+                    <span>Cliquer pour ajouter une image</span>
+                    <span>JPG, PNG, JPEG</span>
+                  </div>
+                  <div
+                    *ngIf="documents.idNumberCardRectoUrl !== ''"
+                    class="file-add"
+                  >
+                    <span> Chargement fichier réussi </span>
+                    <button>Changer</button>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="doc-item">
+              <span class="title-3">Domiciliation bancaire</span>
+              <div class="img-input">
+                <label class="image-guetter">
+                  <input
+                    #image
+                    type="file"
+                    multiple
+                    accept="application/pdf"
+                    (change)="getImage(image, 'domiciliation')"
+                  />
+                  <div
+                    class="img-input-txt"
+                    *ngIf="documents.attestaionDomitiliationBancaire == ''"
+                  >
+                    <lucide-angular
+                      name="file"
+                      [size]="30"
+                      [color]="'#505050'"
+                    ></lucide-angular>
+                    <span>Cliquer pour ajouter un document</span>
+                    <span>PDF</span>
+                  </div>
+                  <div
+                    *ngIf="documents.attestaionDomitiliationBancaire !== ''"
+                    class="file-add"
+                  >
+                    <span> Chargement fichier réussi </span>
+                    <button>Changer</button>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="doc-item">
+              <span class="title-3">Status entreprise</span>
+              <div class="img-input">
+                <label class="image-guetter">
+                  <input
+                    #image
+                    type="file"
+                    multiple
+                    accept="application/pdf"
+                    (change)="getImage(image, 'status')"
+                  />
+                  <div
+                    class="img-input-txt"
+                    *ngIf="documents.statusEntreprise == ''"
+                  >
+                    <lucide-angular
+                      name="file"
+                      [size]="30"
+                      [color]="'#505050'"
+                    ></lucide-angular>
+                    <span>Cliquer pour ajouter un document</span>
+                    <span>PDF</span>
+                  </div>
+                  <div
+                    *ngIf="documents.statusEntreprise !== ''"
+                    class="file-add"
+                  >
+                    <span> Chargement fichier réussi </span>
+                    <button>Changer</button>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="doc-item">
+              <span class="title-3">Carte contribuable</span>
+              <div class="img-input">
+                <label class="image-guetter">
+                  <input
+                    #image
+                    type="file"
+                    multiple
+                    accept="application/pdf"
+                    (change)="getImage(image, 'contribuable')"
+                  />
+                  <div
+                    class="img-input-txt"
+                    *ngIf="documents.carteContribuable == ''"
+                  >
+                    <lucide-angular
+                      name="file"
+                      [size]="30"
+                      [color]="'#505050'"
+                    ></lucide-angular>
+                    <span>Cliquer pour ajouter un document</span>
+                    <span>PDF</span>
+                  </div>
+                  <div
+                    *ngIf="documents.carteContribuable !== ''"
+                    class="file-add"
+                  >
+                    <span> Chargement fichier réussi </span>
+                    <button>Changer</button>
+                  </div>
+                </label>
+              </div>
+            </div>
+            <div class="doc-item">
+              <span class="title-3">NIU</span>
+              <div class="img-input">
+                <label class="image-guetter">
+                  <input
+                    #image
+                    type="file"
+                    multiple
+                    accept="application/pdf"
+                    (change)="getImage(image, 'niu')"
+                  />
+                  <div
+                    class="img-input-txt"
+                    *ngIf="documents.nie == ''"
+                  >
+                    <lucide-angular
+                      name="file"
+                      [size]="30"
+                      [color]="'#505050'"
+                    ></lucide-angular>
+                    <span>Cliquer pour ajouter un document</span>
+                    <span>PDF</span>
+                  </div>
+                  <div
+                    *ngIf="documents.nie !== ''"
+                    class="file-add"
+                  >
+                    <span> Chargement fichier réussi </span>
+                    <button>Changer</button>
+                  </div>
+                </label>
+              </div>
+            </div>
+          </div>
+          <app-button
+            [label]="'Envoyer les documents'"
+            [fullWidth]="true"
+            class="mt-8"
+            (action)="setDocuments()"
+          ></app-button>
+        </div>
+        <div class="form-item" *ngIf="step == 3">
           <div>
             <div class="mobile-payment">
               <span class="title">Paiments mobile</span>
               <div class="payment-group">
                 <div
+                  *ngFor="let item of paymentList"
                   class="payment-item"
-                  (click)="selectMobilePayment('orange')"
-                  [class.active]="mobilePayment == 'orange'"
+                  (click)="selectMobilePayment(item.code, item.id)"
+                  [class.active]="mobilePayment == item.code"
                 >
                   <div class="pay-checker">
                     <div></div>
                   </div>
                   <div class="pay-txt">
-                    <span> ORANGE Mobile Money </span>
+                    <span> {{ item.name }} </span>
                     <p>
-                      Recevez votre argent directement dans votre compte Orange
-                      (OM).
+                      Recevez votre argent directement dans votre compte
+                      {{ item.name }} ({{ item.code }}).
                     </p>
                   </div>
                 </div>
-                <div
-                  class="payment-item"
-                  (click)="selectMobilePayment('mtn')"
-                  [class.active]="mobilePayment == 'mtn'"
-                >
-                  <div class="pay-checker">
-                    <div></div>
-                  </div>
-                  <div class="pay-txt">
-                    <span> MTN Mobile money </span>
-                    <p>
-                      Recevez votre argent directement dans votre compte MTN
-                      (MoMo).
-                    </p>
-                  </div>
+
+                <div class="input-group" *ngIf="mobilePayment !== ''">
+                  <span>Numéro de téléphone de reception</span>
+                  <input
+                    type="tel"
+                    placeholder="+237 6-- --- ---"
+                    [(ngModel)]="mobile.phoneNumber"
+                    name="mobile-phone"
+                  />
                 </div>
-                <app-input
-                  *ngIf="mobilePayment !== ''"
-                  [label]="'Numéro de téléphone de reception'"
-                  [type]="'tel'"
-                  [placeholder]="'+237 6-- --- ---'"
-                ></app-input>
               </div>
             </div>
             <div
@@ -220,31 +505,47 @@
             </div>
             <div class="bank-area w-full flex justify-center mt-8">
               <form action="">
-                <app-input
-                  [label]="'Nom de la banque'"
-                  [type]="'text'"
-                  [placeholder]="'Nom de la banque'"
-                ></app-input>
-                <app-input
-                  [label]="'Numéro IBAN'"
-                  [type]="'number'"
-                  [placeholder]="'00012345'"
-                ></app-input>
-                <app-input
-                  [label]="'Confirmer le numéro IBAN'"
-                  [type]="'number'"
-                  [placeholder]="'00012345'"
-                ></app-input>
-                <app-input
-                  [label]="'Pays du compte bancaire'"
-                  [type]="'text'"
-                  [placeholder]="'Entrez le pays de votre banque'"
-                ></app-input>
+                <div class="input-group">
+                  <span>Nom de la banque</span>
+                  <input
+                    type="text"
+                    placeholder="Entrez le nom complet de votre banque"
+                    [(ngModel)]="bank.nomBanque"
+                    name="name"
+                  />
+                </div>
+                <div class="input-group">
+                  <span>Numéro IBAN</span>
+                  <input
+                    type="text"
+                    placeholder="--- --- --- --- ---"
+                    [(ngModel)]="bank.numIbamCompte"
+                    name="surname"
+                  />
+                </div>
+                <div class="input-group">
+                  <span>Nom sur la carte</span>
+                  <input
+                    type="text"
+                    placeholder="nom du titulaire de la carte"
+                    [(ngModel)]="bank.nomTitulaireCompte"
+                    name="titulaire"
+                  />
+                </div>
+                <div class="input-group">
+                  <span>Pays du compte bancaire</span>
+                  <input
+                    type="text"
+                    placeholder="Veuillez sélectionnez le pays"
+                    [(ngModel)]="bank.localisationBanque"
+                    name="localisation"
+                  />
+                </div>
                 <app-button
-                  [label]="'Continuer'"
+                  [label]="'Enregistrer'"
                   [fullWidth]="true"
                   class="mt-8"
-                  (action)="addMember()"
+                  (action)="setCompanyMoneyAccount()"
                 ></app-button>
               </form>
             </div>
@@ -278,6 +579,13 @@
             </p>
           </div>
           <div class="txt" *ngIf="step == 2">
+            <span class="title"> Ajoutez les documents </span>
+            <p>
+              Dans le but d'authentifier votre entreprise, veuillez fournir ces
+              documents
+            </p>
+          </div>
+          <div class="txt" *ngIf="step == 3">
             <span class="title">
               Lier votre compte bancaire ou mobile money pour recevoir des
               virements.

@@ -72,7 +72,14 @@ export class CreateAppComponent implements OnInit {
       logoURL: this.img || '',
       balance: 0,
     };
-    this.applicationService.createApp(app);
+    this.applicationService.createApp(app).subscribe(async (res: any) => {
+      if (res.message.code == 200 || res.message.code == 201) {
+        this.closeModal();
+        setTimeout(() => {
+          location.reload();
+        }, 1500);
+      }
+    });
   }
 
   closeModal() {

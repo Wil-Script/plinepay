@@ -1,12 +1,27 @@
 <div class="app-item">
   <div class="img">
-    <img src="{{logoUrl}}" alt="">
+    <img src="{{ logoUrl }}" alt="" />
   </div>
   <div class="app-txt">
-    <span>{{name}}</span>
-    <span>Balance <b class="title-4">{{balance}} XAF</b></span>
-  </div>
-  <div class="app-activity">
-    <span><b>15</b> opérations</span>
+    <div class="top-txt">
+      <span>{{ name }}</span>
+      <div class="app-activity">
+        <span>Activée</span>
+      </div>
+    </div>
+    <div class="bottom-txt">
+      <div class="elt-item">
+        <span>Balance</span>
+        <span>{{ balance }} XAF</span>
+      </div>
+      <div class="elt-item">
+        <span>Nombre opérations</span>
+        <span>{{ balance }}</span>
+      </div>
+      <div class="elt-item">
+        <span>Taux</span>
+        <span>{{ balance }}%</span>
+      </div>
+    </div>
   </div>
 </div>

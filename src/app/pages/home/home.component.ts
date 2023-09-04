@@ -10,7 +10,7 @@ import { Response } from 'src/app/models/response.model';
 })
 export class HomeComponent implements OnInit {
   requestReponse!: Response;
-  applicationList!: Application[];
+  applicationList: Application[] = [];
   
 
   constructor(private applicationService: Applicationservice) {}
