@@ -31,7 +31,7 @@ export class AccountActivationComponent implements OnInit {
     email: '',
     phone: '',
   };
-  step = 0;
+  step = 2;
   mobilePayment = '';
   company = {
     name: '',
