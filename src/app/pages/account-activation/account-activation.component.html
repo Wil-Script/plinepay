@@ -68,14 +68,6 @@
               />
             </div>
             <div class="input-group">
-              <span>Numéro registre de commerce</span>
-              <input
-                type="text"
-                placeholder="--- --- --- --- ---"
-                name="company-registry"
-              />
-            </div>
-            <div class="input-group">
               <span>Type entreprise</span>
               <select name="company-type" id="" [(ngModel)]="company.type">
                 <option value="" ngDefaultControl disabled>
@@ -92,6 +84,15 @@
                 type="tel"
                 placeholder="+237  6  --  --  --  --"
                 [(ngModel)]="company.phone"
+                name="company-phone"
+              />
+            </div>
+            <div class="input-group">
+              <span>Date création entreprise</span>
+              <input
+                type="tel"
+                placeholder="+237  6  --  --  --  --"
+                [(ngModel)]="company.companyRegistrationDate"
                 name="company-phone"
               />
             </div>
@@ -427,10 +428,7 @@
                     accept="application/pdf"
                     (change)="getImage(image, 'niu')"
                   />
-                  <div
-                    class="img-input-txt"
-                    *ngIf="documents.nie == ''"
-                  >
+                  <div class="img-input-txt" *ngIf="documents.nie == ''">
                     <lucide-angular
                       name="file"
                       [size]="30"
@@ -439,10 +437,7 @@
                     <span>Cliquer pour ajouter un document</span>
                     <span>PDF</span>
                   </div>
-                  <div
-                    *ngIf="documents.nie !== ''"
-                    class="file-add"
-                  >
+                  <div *ngIf="documents.nie !== ''" class="file-add">
                     <span> Chargement fichier réussi </span>
                     <button>Changer</button>
                   </div>
