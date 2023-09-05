@@ -57,7 +57,7 @@ export class AccountActivationComponent implements OnInit {
     payementBancaires: [this.bank],
   };
   documents = {
-    commercialRegister: '',
+    commercialRegister:'',
     idNumberCardRectoUrl: '',
     idNumberCardVersoUrl: '',
     attestaionDomitiliationBancaire: '',
@@ -65,6 +65,7 @@ export class AccountActivationComponent implements OnInit {
     carteContribuable: '',
     nie: '',
   };
+  errorFileMessage=''
   checkCompanyInfos() {
     if (
       this.company.name == '' ||
@@ -206,7 +207,7 @@ export class AccountActivationComponent implements OnInit {
   }
   goStep4() {
     if (
-      this.documents.commercialRegister == '' ||
+      !this.documents.commercialRegister  ||
       this.documents.idNumberCardRectoUrl == '' ||
       this.documents.idNumberCardVersoUrl == '' ||
       this.documents.attestaionDomitiliationBancaire == '' ||
@@ -218,9 +219,41 @@ export class AccountActivationComponent implements OnInit {
       this.step = 3;
     }
   }
-
+  async handleUploadRC(event :any) {
+    this.documents.commercialRegister=await this.getBase64(event.target.files[0]) as string;
+  }
+  async handleUploadCNIRecto(event :any) {
+    this.documents.idNumberCardRectoUrl=await this.getBase64(event.target.files[0]) as string;
+  }
+  async handleUploadCNIVerso(event :any) {
+    this.documents.idNumberCardVersoUrl=await this.getBase64(event.target.files[0]) as string;
+  }
+  async handleUploadDomiciliationBancaire(event :any) {
+    this.documents.attestaionDomitiliationBancaire=await this.getBase64(event.target.files[0]) as string;
+  }
+  async handleUploadStatutsEntreprise(event :any) {
+    this.documents.statusEntreprise=await this.getBase64(event.target.files[0]) as string;
+  }
+  async handleUploadCartecontribuable(event :any) {
+    this.documents.carteContribuable=await this.getBase64(event.target.files[0]) as string;
+  }
+  async handleUploadNiu(event :any) {
+    this.documents.nie=await this.getBase64(event.target.files[0]) as string;
+  }
+  
+  getBase64(file:any) {
+    return new Promise((resolve, reject) => {
+        const reader = new FileReader();
+        reader.readAsDataURL(file);
+        reader.onload = () => resolve(reader.result);
+        reader.onerror = (error) => reject(error);
+    });
+  }
   getImage(fileInput: any, docType: any) {
-    const file: File = fileInput.files[0];
+    console.log('ff ',fileInput);
+    
+    //const file: File = fileInput.files[0];
+    const file = fileInput.target.files[0];
     const reader = new FileReader();
 
     reader.addEventListener('load', (e: any) => {
