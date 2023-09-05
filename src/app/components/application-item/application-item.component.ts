@@ -10,5 +10,7 @@ export class ApplicationItemComponent {
   @Input() app = {};
   @Input() name = '';
   @Input() balance= 0 ;
+  @Input() percent= 0 ;
+  @Input() statusApplication='';
   @Input() logoUrl= '';
 }
