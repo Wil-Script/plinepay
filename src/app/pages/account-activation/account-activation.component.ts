@@ -41,6 +41,7 @@ export class AccountActivationComponent implements OnInit {
     city: '',
     website: '',
     type: '',
+    companyRegistrationDate: '',
   };
   bank = {
     nomBanque: '',
@@ -73,7 +74,8 @@ export class AccountActivationComponent implements OnInit {
       this.company.type == '' ||
       this.company.country == '' ||
       this.company.city == '' ||
-      this.company.website == ''
+      this.company.website == '' ||
+      this.company.companyRegistrationDate == ''
     ) {
       return false;
     } else if (!this.phoneNumberChecker(this.company.phone)) {
@@ -189,7 +191,8 @@ export class AccountActivationComponent implements OnInit {
       this.company.type == '' ||
       this.company.country == '' ||
       this.company.city == '' ||
-      this.company.website == ''
+      this.company.website == '' ||
+      this.company.companyRegistrationDate == ''
     ) {
       return alert('Veullez remplir toutes les informations');
     } else if (!this.phoneNumberChecker(this.company.phone)) {
