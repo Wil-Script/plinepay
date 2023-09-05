@@ -69,9 +69,9 @@
             </div>
             <div class="input-group">
               <span>Type entreprise</span>
-              <select name="company-type" id="" [(ngModel)]="company.type">
+              <select name="company-type" id="" [(ngModel)]="company.typeBusiness">
                 <option value="" ngDefaultControl disabled>
-                  Choisir le type de votre entreprise
+                  Choisir votre statut juridique
                 </option>
                 <option value="SARL">SARL</option>
                 <option value="S.A">S.A</option>
@@ -83,7 +83,7 @@
               <input
                 type="tel"
                 placeholder="+237  6  --  --  --  --"
-                [(ngModel)]="company.phone"
+                [(ngModel)]="company.phoneNumber"
                 name="company-phone"
               />
             </div>
@@ -101,7 +101,7 @@
               <select
                 name="company-domain"
                 id=""
-                [(ngModel)]="company.domainActivity"
+                [(ngModel)]="company.sectorActivity"
               >
                 <option value="" ngDefaultControl disabled>
                   Votre domaine d'activité
@@ -134,7 +134,7 @@
               <input
                 type="text"
                 placeholder="www.votreentreprise.com"
-                [(ngModel)]="company.website"
+                [(ngModel)]="company.siteWeb"
                 name="company-website"
               />
             </div>
