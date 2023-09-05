@@ -7,4 +7,13 @@ export class Otp{
       public number5:string,
     ){}
   }
+
+  export class OtpResponse{
+    constructor(
+      public code:string,
+      public userEmail:string,
+      public name:string,
+      public createdAt:number
+    ){}
+  }
   

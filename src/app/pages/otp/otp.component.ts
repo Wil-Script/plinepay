@@ -48,11 +48,11 @@ export class OtpComponent implements OnInit{
     this.authService.enableAccount(data).subscribe(
       response =>{
         console.log('response ',response);
-        if(response.status==200){
+        //if(response.status==200){
           localStorage.removeItem("entityId")
           localStorage.removeItem("userEmail")
           this.router.navigate(['login'])
-        }
+        //}
       })
   }
 }

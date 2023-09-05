@@ -6,6 +6,8 @@ import { User } from '../models/user.model';
 import { CookieService } from 'ngx-cookie-service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { API_URL } from '../app.constantes';
+import { Response } from '../models/response.model';
+import { Otp, OtpResponse } from '../models/otp.model';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
@@ -49,12 +51,14 @@ export class AuthService {
   registerUser(user: any): void {
     this.SpinnerSevice.show();
     this.http
-      .post<User>(`${API_URL}/auth/users/add`, user)
-      .subscribe((response) => {
-        if (response.status == 201) {
+      .post(`${API_URL}/auth/users/add`, user)
+      .subscribe((response:any) => {
+        if (response.message.code == 201) {
+          console.log('entrée ici détails user creation');
+          
           console.log(response);
-          localStorage.setItem('entityId', response.id);
-          localStorage.setItem('userEmail', user.email);
+          localStorage.setItem('entityId', response.userDtos[0].id);
+          localStorage.setItem('userEmail', response.userDtos[0].email);
           this.SpinnerSevice.hide();
           this.router.navigate(['/otp']);
         }
@@ -69,7 +73,7 @@ export class AuthService {
     });
   }
   enableAccount(data: any) {
-    return this.http.post<Response>(`${API_URL}/auth/users/enable`, data);
+    return this.http.post<OtpResponse>(`${API_URL}/auth/users/enable`, data);
   }
   //récupération du token
   getAuthToken(): string {
