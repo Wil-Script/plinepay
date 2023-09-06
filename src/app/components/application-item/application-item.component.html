@@ -5,22 +5,22 @@
   <div class="app-txt">
     <div class="top-txt">
       <span>{{ name }}</span>
-      <div class="app-activity">
-        <span>Activée</span>
+      <div class="app-activity" [ngStyle]="{'background-color':getBgColor(statusApplication)}">
+        <span>{{displayName(statusApplication)}} </span>
       </div>
     </div>
     <div class="bottom-txt">
       <div class="elt-item">
         <span>Balance</span>
-        <span>{{ balance }} XAF</span>
+        <span>{{ balance | currency:'XAF' }} </span>
       </div>
       <div class="elt-item">
         <span>Nombre opérations</span>
-        <span>{{ balance }}</span>
+        <span>0</span>
       </div>
       <div class="elt-item">
         <span>Taux</span>
-        <span>{{ balance }}%</span>
+        <span> {{percent}} %</span>
       </div>
     </div>
   </div>
