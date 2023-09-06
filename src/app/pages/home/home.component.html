@@ -48,13 +48,15 @@
     </div>
     <div class="app-other">
       <div class="app-group">
-        <span class="title-4">Mes applications</span>
+        <span class="title-4">Mes applications <span class="empty-data-table">( {{ applicationList.length }} application<span *ngIf="applicationList.length>0">s</span> )</span>  </span>
         <div class="app-parent" *ngIf="applicationList.length">
           <app-application-item
             *ngFor="let item of applicationList"
             [name]="item.name"
             [logoUrl]="item.logoURL"
             [balance]="item.balance"
+            [percent]="item.percent"
+            [statusApplication]="item.statusApplication"
           ></app-application-item>
         </div>
         <div class="app-parent" *ngIf="!applicationList.length">
