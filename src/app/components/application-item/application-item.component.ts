@@ -17,13 +17,13 @@ export class ApplicationItemComponent {
   getBgColor(statusApplication:string) { 
     switch (statusApplication) {
       case 'UNDER_REVIEW':
-        return '#6c757d';
+        return '#e1f5f9';
       case 'DESACTIVATED':
-        return 'red';
+        return '#f9e2e1';
       case 'ACTIVATED':
-        return 'green';
+        return '#d9f6e3';
       case 'APPROVED':
-        return 'green';
+        return '#d9f6e3';
         default:
           return '';
     }
@@ -31,13 +31,13 @@ export class ApplicationItemComponent {
   displayName(statusApplication:string){
     switch (statusApplication) {
       case 'UNDER_REVIEW':
-        return 'en cours d\'approbtion';
+        return 'En cours d\'approbtion';
       case 'DESACTIVATED':
-        return 'désactivé';
+        return 'Désactivé';
       case 'ACTIVATED':
-        return 'activé';
+        return 'Activé';
       case 'APPROVED':
-        return 'approuvé';
+        return 'Approuvé';
         default:
           return '';
     }

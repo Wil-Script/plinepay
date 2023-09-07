@@ -10,16 +10,16 @@
   border-radius: 24px;
   border: 1px solid var(--border);
   cursor: pointer;
-  transition: 0.3s ease;
+  transition: 0.2s ease;
 }
 .app-item:hover {
-  transform: translateX(10px);
+  background: #fcfcfc;
 }
 .app-item .img {
   width: 100px;
-  height: auto;
+  aspect-ratio: 1/1;
   border-radius: 16px;
-  /* background: #f5f5f5; */
+  background: #f5f5f5;
 }
 .app-item .img img {
   width: 100%;
@@ -66,9 +66,8 @@
   align-items: center;
   height: 34px;
   font-size: 0.9rem;
-  /*background: var(--mainColorLowOpacity);*/
   border-radius: 25px;
 }
-.app-item .app-activity span{
-  color:white!important
+.app-item .app-activity span {
+  font-weight: bold;
 }
