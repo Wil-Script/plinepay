@@ -35,9 +35,9 @@
     color: var(--black);
     border: 2px solid var(--border);
   }
-  .btns button:last-child {
+  /* .btns button:last-child {
     background: var(--mainColor);
-  }
+  } */
   .navigation {
     display: flex;
     height: auto;
