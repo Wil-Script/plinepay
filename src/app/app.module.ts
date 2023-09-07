@@ -17,6 +17,8 @@ import { PaymentComponent } from './pages/payment/payment.component';
 import { OverviewComponent } from './pages/payment-pages/overview/overview.component';
 import { FraudComponent } from './pages/payment-pages/fraud/fraud.component';
 import { PaymentLinkComponent } from './pages/payment-pages/payment-link/payment-link.component';
+import { PaiementComponent } from './pages/payment-pages/overview-pages/paiement/paiement.component';
+import { PaiementTousComponent } from './pages/payment-pages/overview-pages/paiement-tous/paiement-tous.component';
 import {
   LucideAngularModule,
   AppWindow,
@@ -26,7 +28,10 @@ import {
   X,
   Info,
   Coins,
-  GanttChart, File, Repeat2, PackageOpen
+  GanttChart,
+  File,
+  Repeat2,
+  PackageOpen,
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
@@ -65,6 +70,8 @@ import { FilterBtnComponent } from './components/filter-btn/filter-btn.component
     HomeResumeCardComponent,
     AppViewModalComponent,
     FilterBtnComponent,
+    PaiementComponent,
+    PaiementTousComponent,
   ],
   imports: [
     BrowserAnimationsModule,
@@ -82,7 +89,10 @@ import { FilterBtnComponent } from './components/filter-btn/filter-btn.component
       X,
       Info,
       Coins,
-      GanttChart, File,Repeat2, PackageOpen
+      GanttChart,
+      File,
+      Repeat2,
+      PackageOpen,
     }),
   ],
   providers: [

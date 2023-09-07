@@ -2,24 +2,21 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Application } from 'src/app/models/application';
 import { Applicationservice } from 'src/app/services/application.service';
-import { Router } from '@angular/router';
 @Component({
-  selector: 'app-overview',
-  templateUrl: './overview.component.html',
-  styleUrls: ['./overview.component.css'],
+  selector: 'app-paiement',
+  templateUrl: './paiement.component.html',
+  styleUrls: ['./paiement.component.css']
 })
-export class OverviewComponent implements OnInit {
+export class PaiementComponent implements OnInit {
   constructor(
     private SpinnerSevice: NgxSpinnerService,
-    private applicationService: Applicationservice,
-    private router: Router
+    private applicationService: Applicationservice
   ) {}
   application = new Application('', '', false, 0, '', '');
   apps: Application[] = [];
   paiments: any[] = [];
   applicationSelected: any;
   status = '';
-  route = this.router.url;
 
   ngOnInit() {
     this.SpinnerSevice.show();

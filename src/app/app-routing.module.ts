@@ -12,6 +12,9 @@ import { OverviewComponent } from './pages/payment-pages/overview/overview.compo
 import { FraudComponent } from './pages/payment-pages/fraud/fraud.component';
 import { PaymentLinkComponent } from './pages/payment-pages/payment-link/payment-link.component';
 import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
+import { PaiementComponent } from './pages/payment-pages/overview-pages/paiement/paiement.component';
+import { PaiementTousComponent } from './pages/payment-pages/overview-pages/paiement-tous/paiement-tous.component';
+import { LitigesComponent } from './pages/payment-pages/overview-pages/litiges/litiges.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -34,6 +37,20 @@ const routes: Routes = [
           {
             path: '',
             component: OverviewComponent,
+            children: [
+              {
+                path: '',
+                component: PaiementComponent,
+              },
+              {
+                path: 'tous',
+                component: PaiementTousComponent,
+              },
+              {
+                path: 'litiges',
+                component: LitigesComponent,
+              },
+            ],
           },
           {
             path: 'fraude',
