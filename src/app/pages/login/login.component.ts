@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { AuthService } from '../../services/auth.service';
 import { User } from 'src/app/models/user.model';
+import { AuthenticationService } from 'src/app/services/authGuard/authentication.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-login',
@@ -9,10 +11,15 @@ import { User } from 'src/app/models/user.model';
   //providers: [AuthService],
 })
 export class LoginComponent implements OnInit{
-  constructor(private authService: AuthService) {}
+  constructor(private authService: AuthService,
+    private authenticationService:AuthenticationService,
+    private router:Router) {}
   user!:User
 
   ngOnInit(){
+    if(this.authenticationService.isUserLoggedIn()){
+      this.router.navigate(['dashboard'])
+    }
     this.user =new User("",0,'','','',0,'','','','','',false,0,'',0,false)
   }
   setVar(type: string, value: string) {
