@@ -11,4 +11,49 @@
     <a href="#">Litiges</a>
     <a href="#">Toutes les transactions</a>
   </nav>
+  <!--Listing des paiements-->
+  <div>
+    <div>
+      <div style="margin:2em">
+        <select class="payment-app-select"  name="application" id="" [(ngModel)]="applicationSelected" (change)="loadPayments(applicationSelected)">
+          <option value="" ngDefaultControl disabled>
+            Choisir une application
+          </option>
+          <option *ngFor="let app of apps " [value]="app.id">{{ app.name }}</option>
+        </select>
+      </div>
+      
+    </div>
+    <div style="margin:1em">
+      <table id="customers">
+        <tr>
+          <th>Raison</th>
+          <th>Montant</th>
+          <th>Méthode de Paiement</th>
+          <th>Dévise</th>
+          <th>Statut</th>
+          <th>Action</th>
+        </tr>
+        <tr *ngFor="let paiement of paiments">
+          <td>{{paiement.reason}}</td>
+          <td>{{paiement.amount}}</td>
+          <td>{{paiement.paymentMethod}}</td>
+          <td>{{paiement.currency}}</td>
+          <td >
+            <button  *ngIf="paiement.status==='PENDING'" class="table-statut"  style="background-color:#6c757d" disabled> en cours</button>
+            <button   *ngIf="paiement.status==='SUCCESS'" class="table-statut" style="background-color: green;color:white" disabled> validé</button>
+            <button  *ngIf="paiement.status==='ABORTED'||paiement.status==='ERROR'" class="table-statut" style="background-color: #292221; color:white" disabled> erreur</button>
+            <button  *ngIf="paiement.status==='REFUSED'" class="table-statut" style="background-color: rgb(43, 45, 43);color:white" disabled> Refusé</button>
+          </td>
+          <td><button>consulter</button></td>
+         
+        </tr>
+    </table>
+    <div *ngIf="paiments.length === 0" class="empty-data-table">Aucune donnée trouvée</div>  
+
+    </div>
+  </div>
 </div>
+<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
+  <p style="color: white">Veuillez patienter ... </p>  
+</ngx-spinner>
