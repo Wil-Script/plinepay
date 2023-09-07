@@ -70,7 +70,7 @@ export class CreateAppComponent implements OnInit {
       name: this.name,
       addFees: this.addFees,
       percent: this.userPercent,
-      statusApplication: this.statusApplication,
+      statusApplication: "UNDER_REVIEW",
       logoURL: this.img || '',
       balance: 0,
     };
