@@ -39,7 +39,7 @@ export class AuthService {
       .subscribe(async (res: any) => {
         console.log(res);
         if (res.message.code == 200) {
-          localStorage.setItem('res',JSON.stringify(res))
+          localStorage.setItem('userDto',JSON.stringify(res.userDto))
           this.cookieService.set('token', res.jwttoken);
           setTimeout(() => {
             this.SpinnerSevice.hide();
