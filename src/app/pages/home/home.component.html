@@ -1,6 +1,6 @@
 <div class="homepage">
   <div class="application-block">
-    <div class="empty-block complete-register">
+    <div class="empty-block complete-register" *ngIf="user.traderAccountIsComplet===true">
       <span class="title">Activez votre compte</span>
       <p>
         Juste quelques petites minutes pour <b>activer votre compte</b> avant de

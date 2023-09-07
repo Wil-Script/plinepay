@@ -15,6 +15,7 @@ import { AccountActivationComponent } from './pages/account-activation/account-a
 import { PaiementComponent } from './pages/payment-pages/overview-pages/paiement/paiement.component';
 import { PaiementTousComponent } from './pages/payment-pages/overview-pages/paiement-tous/paiement-tous.component';
 import { LitigesComponent } from './pages/payment-pages/overview-pages/litiges/litiges.component';
+import { RouteGuardService } from './services/routeGuard/route-guard.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate:[RouteGuardService],
     children: [
       {
         path: '',
