@@ -83,10 +83,9 @@
   width: 100%;
   height: auto;
 }
-.empty-data-table{
-  font-family: sans-serif;
-  letter-spacing: 0.5rem;
-  font-weight: bold;
+.empty-data-table {
+  font-weight: normal;
+  font-size: 0.95rem;
 }
 .app-other .other {
   display: flex;

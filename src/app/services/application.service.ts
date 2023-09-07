@@ -25,19 +25,38 @@ export class Applicationservice {
         catchError((error) => this.handleError(error, []))
       );
   }
-  getSingleAppPayments(id:string): Observable<any> {
+  getSingleAppPayments(id: string): Observable<any> {
     return this.http
       .post<any>(`${API_URL}/payments/retrieve`, {
-        operationType:"",
-        statusPayment:"",
-        traderAccountId:"",
-        applicationId:id,
-        paymentMethodId:"",
-        statusApplication:"",
-        startDate:"",
-        endDate:"",
-        firstResult:"0", //page
-        maxResults:"10" // size
+        operationType: '',
+        statusPayment: '',
+        traderAccountId: '',
+        applicationId: id,
+        paymentMethodId: '',
+        statusApplication: '',
+        startDate: '',
+        endDate: '',
+        firstResult: '0', //page
+        maxResults: '10', // size
+      })
+      .pipe(
+        tap((response) => this.log(response)),
+        catchError((error) => this.handleError(error, []))
+      );
+  }
+  getAppPaymentByStatus(id: string, status: string): Observable<any> {
+    return this.http
+      .post<any>(`${API_URL}/payments/retrieve`, {
+        operationType: '',
+        statusPayment: status,
+        traderAccountId: '',
+        applicationId: id,
+        paymentMethodId: '',
+        statusApplication: '',
+        startDate: '',
+        endDate: '',
+        firstResult: '0', //page
+        maxResults: '10', // size
       })
       .pipe(
         tap((response) => this.log(response)),
