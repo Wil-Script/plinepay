@@ -36,7 +36,7 @@ export class OverviewComponent implements OnInit {
   getPayment(id:string){
     this.SpinnerSevice.show();
     this.applicationService.getSingleAppPayments(id).subscribe(
-      (response) =>{
+      (response) =>{        
         (this.paiments = response.payementDtoSearch.items)
         this.SpinnerSevice.hide();
       }  

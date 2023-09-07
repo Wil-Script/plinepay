@@ -37,7 +37,12 @@
         <tr *ngFor="let paiement of paiments">
           <td>{{paiement.reason}}</td>
           <td>{{paiement.amount}}</td>
-          <td>{{paiement.paymentMethod}}</td>
+          <td>
+            <div class="payment-img-container">
+              <img class="circular--square" src="{{ paiement.paymentMethodDto.logo }}" alt="{{paiement.paymentMethodDto.name}}" />
+            </div>
+          </td>
+          <!--<td>{{paiement.paymentMethod}}</td>-->
           <td>{{paiement.currency}}</td>
           <td >
             <button  *ngIf="paiement.status==='PENDING'" class="table-statut"  style="background-color:#6c757d" disabled> en cours</button>

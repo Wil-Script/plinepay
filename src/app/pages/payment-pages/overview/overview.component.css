@@ -45,3 +45,21 @@
     color:white!important;
     border-radius: 25px;
   }
+ td .img {
+    width: 100px;
+    height: auto;
+    border-radius: 16px;
+  }
+  .payment-img-container{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+  .payment-img-container img {
+    width: 100px;
+    height: auto;
+     border-top-left-radius: 50% 50%;
+      border-top-right-radius: 50% 50%; 
+      border-bottom-right-radius: 50% 50%; 
+      border-bottom-left-radius: 50% 50%; 
+    }
