@@ -25,7 +25,7 @@ export class OverviewComponent implements OnInit {
     this.SpinnerSevice.show();
     this.applicationService.getApplicationList().subscribe((response) => {
       this.apps = response.applicationDtos;
-      this.applicationSelected = this.apps[0].id;
+      this.applicationSelected = this.apps[0]?.id;
       this.getPayment(this.applicationSelected);
     });
   }
