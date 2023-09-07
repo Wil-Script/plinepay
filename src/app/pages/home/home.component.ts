@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Applicationservice } from 'src/app/services/application.service';
 import { Application } from 'src/app/models/application';
 import { Response } from 'src/app/models/response.model';
+import { User } from 'src/app/models/user.model';
 
 @Component({
   selector: 'app-home',
@@ -11,11 +12,12 @@ import { Response } from 'src/app/models/response.model';
 export class HomeComponent implements OnInit {
   requestReponse!: Response;
   applicationList: Application[] = [];
-  
+  user!:User;
 
   constructor(private applicationService: Applicationservice) {}
 
   ngOnInit() {
+    this.user = JSON.parse(localStorage.getItem("userDto")||'');    
     this.applicationService
       .getApplicationList()
       .subscribe(
