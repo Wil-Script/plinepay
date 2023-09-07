@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
+import { AuthenticationService } from 'src/app/services/authGuard/authentication.service';
 
 @Component({
   selector: 'app-top-bar',
@@ -9,11 +10,11 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class TopBarComponent {
   constructor(private router: Router,
-    private cookieService: CookieService) {}
+    private cookieService: CookieService,
+    private authenticationService: AuthenticationService) {}
   route = this.router.url
   logout(){
-    localStorage.removeItem('userDto');
-    this.cookieService.delete('token');
+    this.authenticationService.logout();
     this.router.navigate(['/']);
   }
 }

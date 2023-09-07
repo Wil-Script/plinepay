@@ -12,6 +12,7 @@ import { OverviewComponent } from './pages/payment-pages/overview/overview.compo
 import { FraudComponent } from './pages/payment-pages/fraud/fraud.component';
 import { PaymentLinkComponent } from './pages/payment-pages/payment-link/payment-link.component';
 import { AccountActivationComponent } from './pages/account-activation/account-activation.component';
+import { RouteGuardService } from './services/routeGuard/route-guard.service';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -22,6 +23,7 @@ const routes: Routes = [
   {
     path: 'dashboard',
     component: DashboardComponent,
+    canActivate:[RouteGuardService],
     children: [
       {
         path: '',
