@@ -31,17 +31,19 @@ export class AccountActivationComponent implements OnInit {
     email: '',
     phone: '',
   };
-  step = 0;
+  step = 2;
   mobilePayment = '';
   company = {
-    name: '',
-    phone: '',
-    domainActivity: '',
-    country: '',
-    city: '',
-    website: '',
-    type: '',
-    companyRegistrationDate: '',
+    sectorActivity: "",
+    typeBusiness: "",
+    country: "",
+    city:"",
+    adresse:"",
+    companyRegistrationDate: "", 
+    phoneNumber: '',
+    name: "",
+    accountType:"ENTERPRISE",
+    siteWeb:""
   };
   bank = {
     nomBanque: '',
@@ -68,17 +70,20 @@ export class AccountActivationComponent implements OnInit {
   };
   errorFileMessage=''
   checkCompanyInfos() {
+    console.log('compagny ',this.company);
+    
     if (
       this.company.name == '' ||
-      this.company.domainActivity == '' ||
-      this.company.type == '' ||
+      this.company.sectorActivity == '' ||
+      this.company.typeBusiness == '' ||
+      this.company.accountType == '' ||
       this.company.country == '' ||
       this.company.city == '' ||
-      this.company.website == '' ||
+      this.company.siteWeb == '' ||
       this.company.companyRegistrationDate == ''
     ) {
       return false;
-    } else if (!this.phoneNumberChecker(this.company.phone)) {
+    } else if (!this.phoneNumberChecker(this.company.phoneNumber)) {
       return false;
     } else {
       return true;
@@ -87,7 +92,7 @@ export class AccountActivationComponent implements OnInit {
   checkMemberInfos() {
     if (this.company.name == '') {
       return false;
-    } else if (!this.phoneNumberChecker(this.company.phone)) {
+    } else if (!this.phoneNumberChecker(this.company.phoneNumber)) {
       return false;
     } else {
       return true;
@@ -145,6 +150,7 @@ export class AccountActivationComponent implements OnInit {
     if (!this.checkCompanyInfos()) {
       return alert('Completez toutes les informations');
     }
+    this.company.adresse = this.company.country+', '+this.company.city
     this.spinnerSevice.show();
     this.traderservice
       .setCompanyInfos(this.company)
@@ -174,6 +180,7 @@ export class AccountActivationComponent implements OnInit {
       });
   }
   setDocuments() {
+    this.spinnerSevice.show();
     this.traderservice
       .setDocuments(this.documents)
       .subscribe(async (res: any) => {
@@ -187,15 +194,15 @@ export class AccountActivationComponent implements OnInit {
   goStep2() {
     if (
       this.company.name == '' ||
-      this.company.domainActivity == '' ||
-      this.company.type == '' ||
+      this.company.sectorActivity == '' ||
+      this.company.accountType == '' ||
       this.company.country == '' ||
       this.company.city == '' ||
-      this.company.website == '' ||
+      this.company.siteWeb == '' ||
       this.company.companyRegistrationDate == ''
     ) {
       return alert('Veullez remplir toutes les informations');
-    } else if (!this.phoneNumberChecker(this.company.phone)) {
+    } else if (!this.phoneNumberChecker(this.company.phoneNumber)) {
       alert('Le numéro de téléphone est invalide');
     } else {
       this.step = 1;

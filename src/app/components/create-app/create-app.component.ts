@@ -18,6 +18,7 @@ export class CreateAppComponent implements OnInit {
   name = '';
   whoTakeFees = 4;
   userPercent = 0;
+  statusApplication='';
   image = null;
 
   ngOnInit() {}
@@ -69,6 +70,7 @@ export class CreateAppComponent implements OnInit {
       name: this.name,
       addFees: this.addFees,
       percent: this.userPercent,
+      statusApplication: "UNDER_REVIEW",
       logoURL: this.img || '',
       balance: 0,
     };

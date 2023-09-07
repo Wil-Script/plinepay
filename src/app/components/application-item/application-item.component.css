@@ -66,6 +66,9 @@
   align-items: center;
   height: 34px;
   font-size: 0.9rem;
-  background: var(--mainColorLowOpacity);
+  /*background: var(--mainColorLowOpacity);*/
   border-radius: 25px;
+}
+.app-item .app-activity span{
+  color:white!important
 }
