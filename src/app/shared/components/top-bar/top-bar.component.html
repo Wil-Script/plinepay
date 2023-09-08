@@ -29,8 +29,30 @@
     >
   </nav>
   <div class="menu-right flex items-center justify-end h-full">
-    <a (click)="logout()" class="avatar-container" title="Deconnexion">
+    <a class="avatar-container" title="Deconnexion">
       <img src="assets/user.png" alt="Pline Pay logo" />
     </a>
+    <div class="more-option">
+      <div class="user-block">
+        <span>Assomo Kevin</span>
+        <span>@kevin-plinepay</span>
+      </div>
+      <div class="option-block">
+        <a>
+          <span>Mon compte</span>
+        </a>
+        <a>
+          <span>Paramètres</span>
+        </a>
+        <a>
+          <span>Mes préférences</span>
+        </a>
+      </div>
+      <div class="option-block">
+        <a (click)="logout()">
+          <span>Deconnexion</span>
+        </a>
+      </div>
+    </div>
   </div>
 </div>
