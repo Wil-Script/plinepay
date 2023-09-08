@@ -1,0 +1,54 @@
+<div class="overlay">
+  <div class="detail-app">
+    <div class="head">
+      <div class="app-icon">
+        <img src="{{img}}" alt="" />
+      </div>
+      <div class="txt">
+        <span>Nom de l'application</span>
+        <span class="title-2">{{ name }}</span>
+      </div>
+    </div>
+    <div class="situation">
+      <span>Status</span>
+      <div class="sit-group">
+        <div class="sit-item">
+          <span>{{ state }}</span>
+        </div>
+        <div class="sit-item">
+          <span> Solde </span>
+          <span> {{ solde }} XAF </span>
+        </div>
+        <div class="sit-item">
+          <span>Prise en charge des frais</span>
+          <span *ngIf="fees == false">Non</span>
+          <span>Oui à {{ percent }}%</span>
+        </div>
+      </div>
+    </div>
+    <div class="situation mt-6">
+      <span>Clé publique</span>
+      <div class="fake-key">
+        <span class="key-f" *ngIf="keyVisibility == false"
+          >xjsdjkfkjsdklfdlkfdjkdfjfdjkdfjkdfjkfdjkfdjkfdhjfdhjfhjfdf</span
+        >
+        <span class="key-a" *ngIf="keyVisibility == true">{{ key }}</span>
+        <button *ngIf="keyVisibility == false" (click)="keyVisibility = true">
+          Voir la clé publique
+        </button>
+        <button *ngIf="keyVisibility == true" (click)="keyVisibility = false">
+          Masquer la clé publique
+        </button>
+      </div>
+    </div>
+    <div class="situation mt-6">
+      <span>Identifiant application</span>
+      <div class="sit-group">
+        <div class="sit-item">
+          <span>{{ app }}</span>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="close" (click)="closeModal()"></div>
+</div>

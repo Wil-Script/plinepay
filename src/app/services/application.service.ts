@@ -45,6 +45,15 @@ export class Applicationservice {
         catchError((error) => this.handleError(error, []))
       );
   }
+  getApp(id: string): Observable<any> {
+    this.paymentObject.applicationId = id;
+    return this.http
+      .post<any>(`${API_URL}/applications/retrieve/one`, this.paymentObject)
+      .pipe(
+        tap((response) => this.log(response)),
+        catchError((error) => this.handleError(error, []))
+      );
+  }
   getAllPayments(): Observable<any> {
     this.paymentObject.applicationId = '';
     this.paymentObject.statusPayment = '';

@@ -75,13 +75,13 @@
             [class.pending]="paiement.status === 'PENDING'"
             [class.refuse]="paiement.status === 'REFUSED'"
           >
-            <span *ngIf="paiement.status === 'SUCCESS'">Validé</span>
+            <span *ngIf="paiement.status === 'SUCCESS'">Réussi</span>
             <span *ngIf="paiement.status === 'PENDING'">En cours</span>
             <span
               *ngIf="
                 paiement.status === 'ABORTED' || paiement.status === 'ERROR'
               "
-              >Erreur</span
+              >Echoué</span
             >
             <span *ngIf="paiement.status === 'REFUSED'">Refusé</span>
           </button>

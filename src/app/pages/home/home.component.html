@@ -48,7 +48,16 @@
     </div>
     <div class="app-other">
       <div class="app-group">
-        <span class="title-4">Mes applications <span class="empty-data-table">( {{ applicationList.length }} application<span *ngIf="applicationList.length>0">s</span> )</span>  </span>
+        <span class="title-4"
+          >Mes applications
+          <span class="empty-data-table"
+            >( {{ applicationList.length }} application<span
+              *ngIf="applicationList.length > 0"
+              >s</span
+            >
+            )</span
+          >
+        </span>
         <div class="app-parent" *ngIf="applicationList.length">
           <app-application-item
             *ngFor="let item of applicationList"
@@ -57,6 +66,7 @@
             [balance]="item.balance"
             [percent]="item.percent"
             [statusApplication]="item.statusApplication"
+            (click)="share(item)"
           ></app-application-item>
         </div>
         <div class="app-parent" *ngIf="!applicationList.length">
@@ -75,8 +85,23 @@
     *ngIf="!activeAccountVisible"
     (close)="hideAccountActivationPop()"
   ></app-activate-account-modal>
-  <!-- <app-app-view-modal></app-app-view-modal> -->
+  <app-detail-app-modal
+    *ngIf="viewApp"
+    (close)="hideAppDetail()"
+    [name]="name"
+    [state]="stat"
+    [solde]="balance"
+    [fees]="fees"
+    [percent]="percent"
+    [img]="img"
+    [key]="key"
+    [app]="appId"
+  ></app-detail-app-modal>
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-  <p style="color: white">Veuillez patienter ... </p>  
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-spin-clockwise"
+>
+  <p style="color: white">Veuillez patienter ...</p>
 </ngx-spinner>
