@@ -3,6 +3,9 @@ import { TraderService } from 'src/app/services/trader.service';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Response } from 'src/app/models/response.model';
 import { Router } from '@angular/router';
+import { AuthenticationService } from 'src/app/services/authGuard/authentication.service';
+import { NotificationsService } from 'src/app/notifications/services/notifications.service';
+import { Notification } from 'src/app/notifications/model/notification';
 
 interface Member {
   name: string;
@@ -19,11 +22,17 @@ interface Member {
 export class AccountActivationComponent implements OnInit {
   requestReponse!: Response[];
   paymentList: any[] = [];
+  notificationCompleteAccount = { title: 'Succès', 
+  text: 'Profil complété avec succès', 
+  level: 'success', options: { timeout: 6 } 
+};
   constructor(
     private traderservice: TraderService,
     private router: Router,
-    private spinnerSevice: NgxSpinnerService // private memberItem: member
-  ) {}
+    private spinnerSevice: NgxSpinnerService, // private memberItem: member
+    private authService : AuthenticationService,
+    private notificationsService:NotificationsService
+    ) {}
   members: Member[] = [];
   member = {
     name: '',
@@ -175,7 +184,12 @@ export class AccountActivationComponent implements OnInit {
         console.log(res);
         this.spinnerSevice.hide();
         if (res.message.code == 200 || res.message.code == 201) {
-          this.router.navigate(['/dashboard']);
+          const n = new Notification(this.notificationCompleteAccount);
+            this.notificationsService.addNotification(n);
+          setTimeout(() =>{
+             this.authService.logout();
+          }, 3000 )
+          //this.router.navigate(['/dashboard']);
         }
       });
   }
