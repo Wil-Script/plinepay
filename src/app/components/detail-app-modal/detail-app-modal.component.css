@@ -1,0 +1,116 @@
+.overlay {
+  position: absolute;
+  left: 0;
+  top: 0;
+  display: grid;
+  grid-template-columns: 45% 55%;
+  width: 100%;
+  height: 100%;
+  background: rgba(0, 0, 0, 0.2);
+}
+.detail-app {
+  padding: 8%;
+  height: 100%;
+  width: 100%;
+  background: white;
+}
+.detail-app .head {
+  margin-bottom: 44px;
+  display: flex;
+  column-gap: 12px;
+  width: 100%;
+  height: auto;
+}
+.head .app-icon {
+  display: flex;
+  height: 98px;
+  width: 98px;
+  background: #eee;
+  border-radius: 16px;
+}
+.app-icon img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+}
+.head .txt {
+  margin-top: 20px;
+  display: flex;
+  flex-direction: column;
+}
+.head .txt span:first-child {
+  font-size: 0.8rem;
+}
+.detail-app .situation {
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  border: 1px solid var(--border);
+  border-radius: 24px;
+}
+.situation .sit-group {
+  margin-top: 16px;
+  display: flex;
+  column-gap: 16px;
+  width: 100%;
+  height: auto;
+}
+.sit-group .sit-item {
+  padding: 10px 16px;
+  display: flex;
+  column-gap: 8px;
+  background: #f5f5f5;
+  border-radius: 35px;
+  font-size: 0.9rem;
+}
+.sit-item span:first-child {
+  font-weight: 600;
+}
+.fake-key {
+  margin-top: 24px;
+  display: flex;
+  align-items: center;
+  column-gap: 16px;
+  width: 100%;
+  height: auto;
+  min-height: 34px;
+  border-radius: 35px;
+}
+.fake-key button {
+  padding: 0 15px;
+  height: 44px;
+  background: var(--black);
+  color: white;
+  font-weight: bold;
+  border-radius: 35px;
+  font-size: 0.9rem;
+}
+.fake-key .key-f {
+  padding: 8px;
+  height: auto;
+  width: calc(100% - 220px);
+  background: #f5f5f5;
+  text-align: center;
+  border-radius: 16px;
+  filter: blur(2px);
+  border: 1px solid;
+  overflow: hidden;
+}
+.fake-key .key-a {
+  padding: 16px;
+  height: auto;
+  min-height: 100px;
+  width: calc(100% - 220px);
+  background: #f5f5f5;
+  text-align: left;
+  border-radius: 16px;
+  border: 1px solid;
+  word-wrap: break-word;
+}
+
+.close {
+  height: 100%;
+  width: 100%;
+}

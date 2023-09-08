@@ -47,6 +47,7 @@ import { ApplicationItemSkeletonComponent } from './components/application-item-
 import { HomeResumeCardComponent } from './components/home-resume-card/home-resume-card.component';
 import { AppViewModalComponent } from './components/app-view-modal/app-view-modal.component';
 import { FilterBtnComponent } from './components/filter-btn/filter-btn.component';
+import { DetailAppModalComponent } from './components/detail-app-modal/detail-app-modal.component';
 @NgModule({
   declarations: [
     AppComponent,
@@ -72,6 +73,7 @@ import { FilterBtnComponent } from './components/filter-btn/filter-btn.component
     FilterBtnComponent,
     PaiementComponent,
     PaiementTousComponent,
+    DetailAppModalComponent,
   ],
   imports: [
     BrowserAnimationsModule,
