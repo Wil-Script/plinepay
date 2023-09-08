@@ -1,4 +1,5 @@
 import { Injectable } from '@angular/core';
+import { Router } from '@angular/router';
 import { CookieService } from 'ngx-cookie-service';
 
 @Injectable({
@@ -6,7 +7,8 @@ import { CookieService } from 'ngx-cookie-service';
 })
 export class AuthenticationService {
 
-  constructor(private cookieService:CookieService) { }
+  constructor(private cookieService:CookieService,
+    private router:Router) { }
     isUserLoggedIn(){
       let user = localStorage.getItem('userDto')
       return !(user === null)
@@ -15,5 +17,6 @@ export class AuthenticationService {
   logout(){
     this.cookieService.delete('token')
     localStorage.removeItem('userDto')
+    this.router.navigate(["/"])
   }
 }

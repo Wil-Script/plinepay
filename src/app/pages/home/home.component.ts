@@ -18,8 +18,6 @@ export class HomeComponent implements OnInit {
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("userDto")||''); 
-    console.log('uc',this.user.traderAccountIsComplet);
-       
     this.applicationService
       .getApplicationList()
       .subscribe(
