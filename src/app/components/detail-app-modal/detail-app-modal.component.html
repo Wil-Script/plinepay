@@ -1,8 +1,8 @@
 <div class="overlay">
-  <div class="detail-app">
+  <div class="detail-app" *ngIf="state !== 'DESACTIVATED'">
     <div class="head">
       <div class="app-icon">
-        <img src="{{img}}" alt="" />
+        <img src="{{ img }}" alt="" />
       </div>
       <div class="txt">
         <span>Nom de l'application</span>
@@ -22,33 +22,84 @@
         <div class="sit-item">
           <span>Prise en charge des frais</span>
           <span *ngIf="fees == false">Non</span>
-          <span>Oui à {{ percent }}%</span>
+          <span *ngIf="fees == true">Oui à {{ percent }}%</span>
         </div>
       </div>
     </div>
     <div class="situation mt-6">
       <span>Clé publique</span>
+      <span *ngIf="copykey == true" class="text-green-500 mt-4"
+        >Copié avec succès</span
+      >
       <div class="fake-key">
-        <span class="key-f" *ngIf="keyVisibility == false"
-          >xjsdjkfkjsdklfdlkfdjkdfjfdjkdfjkdfjkfdjkfdjkfdhjfdhjfhjfdf</span
-        >
-        <span class="key-a" *ngIf="keyVisibility == true">{{ key }}</span>
-        <button *ngIf="keyVisibility == false" (click)="keyVisibility = true">
-          Voir la clé publique
-        </button>
-        <button *ngIf="keyVisibility == true" (click)="keyVisibility = false">
-          Masquer la clé publique
-        </button>
+        <div class="key-group">
+          <span class="key-f" *ngIf="keyVisibility == false"
+            >xjsdjkfkjsdklfdlkfdjkdfjfdjkdfjkdfjkfdjkfdjkfdhjfdhjfhjfdf</span
+          >
+          <span class="key-a" *ngIf="keyVisibility == true">{{ key }}</span>
+        </div>
+        <div class="btns">
+          <button *ngIf="keyVisibility == false" (click)="keyVisibility = true">
+            Voir la clé publique
+          </button>
+          <button
+            *ngIf="keyVisibility == true"
+            (click)="copySomething(key, 'key')"
+            class="flex items-center justify-center gap-2"
+          >
+            <lucide-angular
+              name="clipboard-copy"
+              [size]="18"
+              [color]="'white'"
+            ></lucide-angular>
+            Copier la clé
+          </button>
+          <button
+            class="mask"
+            *ngIf="keyVisibility == true"
+            (click)="keyVisibility = false"
+          >
+            Masquer la clé publique
+          </button>
+        </div>
       </div>
     </div>
     <div class="situation mt-6">
       <span>Identifiant application</span>
+      <span *ngIf="copyAppId == true" class="text-green-500 mt-4"
+        >Copié avec succès</span
+      >
       <div class="sit-group">
         <div class="sit-item">
           <span>{{ app }}</span>
         </div>
+        <div
+          class="sit-item cursor-pointer"
+          (click)="copySomething(app, 'appId')"
+        >
+          <lucide-angular
+            name="clipboard-copy"
+            [size]="18"
+            [color]="'#202020'"
+          ></lucide-angular>
+          Copier la l'Identifiant
+        </div>
       </div>
     </div>
+  </div>
+  <div class="not-activated" *ngIf="state == 'DESACTIVATED'">
+    <lucide-angular
+      name="alert-circle"
+      [size]="34"
+      [color]="'#505050'"
+      [strokeWidth]="2.5"
+    ></lucide-angular>
+    <span class="mt-4">
+      Cette application n'est pas active. Veuillez vérifier ses
+      <b class="cursor-pointer">paramètres de configuration.</b> Si le problème
+      persiste,
+      <u class="underline cursor-pointer">contactez-nous.</u>
+    </span>
   </div>
   <div class="close" (click)="closeModal()"></div>
 </div>

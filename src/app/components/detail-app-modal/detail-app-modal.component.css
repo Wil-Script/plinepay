@@ -8,11 +8,18 @@
   height: 100%;
   background: rgba(0, 0, 0, 0.2);
 }
-.detail-app {
+.detail-app,
+.not-activated {
   padding: 8%;
   height: 100%;
   width: 100%;
   background: white;
+}
+.not-activated {
+  padding-top: 15%;
+  display: flex;
+  flex-direction: column;
+  
 }
 .detail-app .head {
   margin-bottom: 44px;
@@ -70,15 +77,39 @@
 }
 .fake-key {
   margin-top: 24px;
-  display: flex;
-  align-items: center;
-  column-gap: 16px;
+  display: grid;
+  grid-template-columns: calc(100% - 222px) 206px;
+  column-gap: 12px;
   width: 100%;
   height: auto;
-  min-height: 34px;
-  border-radius: 35px;
 }
-.fake-key button {
+.key-group {
+  padding: 12px;
+  width: 100%;
+  height: auto;
+  min-height: 44px;
+  background: #f5f5f5;
+  border: 1px solid var(--black);
+  border-radius: 16px;
+}
+.key-group span {
+  height: auto;
+  width: 100%;
+  text-align: left;
+  border-radius: 16px;
+  word-wrap: break-word;
+}
+.key-group .key-f {
+  filter: blur(2px);
+}
+.btns {
+  display: flex;
+  flex-direction: column;
+  row-gap: 8px;
+  width: 100%;
+  height: auto;
+}
+.btns button {
   padding: 0 15px;
   height: 44px;
   background: var(--black);
@@ -87,28 +118,15 @@
   border-radius: 35px;
   font-size: 0.9rem;
 }
-.fake-key .key-f {
-  padding: 8px;
-  height: auto;
-  width: calc(100% - 220px);
-  background: #f5f5f5;
-  text-align: center;
-  border-radius: 16px;
+.btns button.mask {
+  background: transparent;
+  border: 1px solid var(--black);
+  color: var(--black);
+}
+/* .key-group span.key-f {
   filter: blur(2px);
-  border: 1px solid;
   overflow: hidden;
-}
-.fake-key .key-a {
-  padding: 16px;
-  height: auto;
-  min-height: 100px;
-  width: calc(100% - 220px);
-  background: #f5f5f5;
-  text-align: left;
-  border-radius: 16px;
-  border: 1px solid;
-  word-wrap: break-word;
-}
+} */
 
 .close {
   height: 100%;

@@ -21,4 +21,21 @@ export class DetailAppModalComponent {
     this.close.emit();
   }
   keyVisibility = false;
+  copykey = false;
+  copyAppId = false;
+
+  async copySomething(cop: string, type: string) {
+    try {
+      const toCopy = cop;
+      await navigator.clipboard.writeText(toCopy);
+      if (type == 'key') {
+        this.copykey = true;
+      } else {
+        this.copyAppId = true;
+      }
+      console.log('Text or Page URL copied');
+    } catch (err) {
+      console.error('Failed to copy: ', err);
+    }
+  }
 }

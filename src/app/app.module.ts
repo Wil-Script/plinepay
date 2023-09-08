@@ -31,7 +31,7 @@ import {
   GanttChart,
   File,
   Repeat2,
-  PackageOpen,
+  PackageOpen, AlertCircle, ClipboardCopy
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
@@ -97,7 +97,7 @@ import { NotificationsModule } from './notifications/notifications.module';
       GanttChart,
       File,
       Repeat2,
-      PackageOpen
+      PackageOpen, AlertCircle, ClipboardCopy
     }),
   ],
   providers: [
