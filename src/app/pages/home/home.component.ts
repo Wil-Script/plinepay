@@ -17,7 +17,9 @@ export class HomeComponent implements OnInit {
   constructor(private applicationService: Applicationservice) {}
 
   ngOnInit() {
-    this.user = JSON.parse(localStorage.getItem("userDto")||'');    
+    this.user = JSON.parse(localStorage.getItem("userDto")||''); 
+    console.log('uc',this.user.traderAccountIsComplet);
+       
     this.applicationService
       .getApplicationList()
       .subscribe(

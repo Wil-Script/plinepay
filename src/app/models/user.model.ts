@@ -15,6 +15,6 @@ export class User {
     public roleId:number,
     public userType:string,
     public status:number,
-    public traderAccountIsComplet:boolean
+    public traderAccountIsComplet:string
   ){}
 }

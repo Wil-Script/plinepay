@@ -8,14 +8,25 @@ import { NgxSpinnerService } from 'ngx-spinner';
 import { API_URL } from '../app.constantes';
 import { Response } from '../models/response.model';
 import { Otp, OtpResponse } from '../models/otp.model';
+import { NotificationsService } from 'src/app/notifications/services/notifications.service';
+import { Notification } from 'src/app/notifications/model/notification';
 
 @Injectable({ providedIn: 'root' })
 export class AuthService {
+  notification = { title: 'Accès Refusé', 
+  text: 'Email ou mot de passe incorrect.', 
+  level: 'error', options: { timeout: 8 } 
+};
+notificationInscription = { title: 'Succès', 
+  text: 'Compte crée avec succès', 
+  level: 'success', options: { timeout: 6 } 
+};
   constructor(
     private http: HttpClient,
     private router: Router,
     private cookieService: CookieService,
-    private SpinnerSevice: NgxSpinnerService
+    private SpinnerSevice: NgxSpinnerService,
+    private _notificationsService: NotificationsService
   ) {}
 
   private handleError(error: HttpErrorResponse) {
@@ -46,7 +57,13 @@ export class AuthService {
             this.router.navigate(['/dashboard']);
           }, 200);
         }
-      });
+      },
+      error =>{
+        this.SpinnerSevice.hide();
+        const n = new Notification(this.notification);
+        return this._notificationsService.addNotification(n);
+      }
+      );
   }
 
   registerUser(user: any): void {
@@ -61,6 +78,8 @@ export class AuthService {
           localStorage.setItem('entityId', response.userDtos[0].id);
           localStorage.setItem('userEmail', response.userDtos[0].email);
           this.SpinnerSevice.hide();
+          const n = new Notification(this.notificationInscription);
+          this._notificationsService.addNotification(n);
           this.router.navigate(['/otp']);
         }
         this.SpinnerSevice.hide();

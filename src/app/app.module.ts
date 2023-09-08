@@ -47,6 +47,8 @@ import { ApplicationItemSkeletonComponent } from './components/application-item-
 import { HomeResumeCardComponent } from './components/home-resume-card/home-resume-card.component';
 import { AppViewModalComponent } from './components/app-view-modal/app-view-modal.component';
 import { FilterBtnComponent } from './components/filter-btn/filter-btn.component';
+import { NotificationsModule } from './notifications/notifications.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -74,6 +76,7 @@ import { FilterBtnComponent } from './components/filter-btn/filter-btn.component
     PaiementTousComponent,
   ],
   imports: [
+    NotificationsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
     BrowserModule,
@@ -92,7 +95,7 @@ import { FilterBtnComponent } from './components/filter-btn/filter-btn.component
       GanttChart,
       File,
       Repeat2,
-      PackageOpen,
+      PackageOpen
     }),
   ],
   providers: [
