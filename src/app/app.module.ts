@@ -48,6 +48,8 @@ import { HomeResumeCardComponent } from './components/home-resume-card/home-resu
 import { AppViewModalComponent } from './components/app-view-modal/app-view-modal.component';
 import { FilterBtnComponent } from './components/filter-btn/filter-btn.component';
 import { DetailAppModalComponent } from './components/detail-app-modal/detail-app-modal.component';
+import { NotificationsModule } from './notifications/notifications.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -76,6 +78,7 @@ import { DetailAppModalComponent } from './components/detail-app-modal/detail-ap
     DetailAppModalComponent,
   ],
   imports: [
+    NotificationsModule,
     BrowserAnimationsModule,
     NgxSpinnerModule,
     BrowserModule,
@@ -94,7 +97,7 @@ import { DetailAppModalComponent } from './components/detail-app-modal/detail-ap
       GanttChart,
       File,
       Repeat2,
-      PackageOpen,
+      PackageOpen
     }),
   ],
   providers: [

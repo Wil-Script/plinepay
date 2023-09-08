@@ -4,6 +4,7 @@ import { User } from 'src/app/models/user.model';
 import { AuthenticationService } from 'src/app/services/authGuard/authentication.service';
 import { Router } from '@angular/router';
 
+
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
@@ -15,12 +16,13 @@ export class LoginComponent implements OnInit{
     private authenticationService:AuthenticationService,
     private router:Router) {}
   user!:User
-
+ 
+ 
   ngOnInit(){
     if(this.authenticationService.isUserLoggedIn()){
       this.router.navigate(['dashboard'])
     }
-    this.user =new User("",0,'','','',0,'','','','','',false,0,'',0,false)
+    this.user =new User("",0,'','','',0,'','','','','',false,0,'',0,'')
   }
   setVar(type: string, value: string) {
     switch (type) {
@@ -38,6 +40,7 @@ export class LoginComponent implements OnInit{
   };
   
   login() {
+    
     if (this.user.password == '' || this.user.email == '') {
       return alert('Veuillez remplir tous les champs');
     }
