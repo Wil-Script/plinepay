@@ -110,6 +110,7 @@ export class AccountActivationComponent implements OnInit {
   ngOnInit(): void {
     this.getMethodsPayment();
   }
+  
   phoneNumberChecker(phone: string) {
     let number = phone.trim();
     if (number.length <= 8) return false;

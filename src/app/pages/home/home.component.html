@@ -31,17 +31,17 @@
       <div class="resume-grid">
         <app-home-resume-card
           [label]="'Balance totale'"
-          [value]="'0.00'"
+          [value]="total_amount"
           [type]="'balance'"
         ></app-home-resume-card>
         <app-home-resume-card
           [label]="'Nombres d\'operation'"
-          [value]="'0'"
+          [value]="operations_number"
           [type]="'operation'"
         ></app-home-resume-card>
         <app-home-resume-card
           [label]="'Transaction réussies'"
-          [value]="'0'"
+          [value]="success_operations"
           [type]="'transaction'"
         ></app-home-resume-card>
       </div>

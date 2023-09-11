@@ -14,13 +14,17 @@ import { Notification } from 'src/app/notifications/model/notification';
 @Injectable({ providedIn: 'root' })
 export class AuthService {
   notification = { title: 'Accès Refusé', 
-  text: 'Email ou mot de passe incorrect.', 
-  level: 'error', options: { timeout: 8 } 
-};
-notificationInscription = { title: 'Succès', 
-  text: 'Compte crée avec succès', 
-  level: 'success', options: { timeout: 6 } 
-};
+        text: 'Email ou mot de passe incorrect.', 
+        level: 'error', options: { timeout: 8 } 
+  };
+  notificationEchec = { title: 'Erreur', 
+        text: 'Erreur Survenue.', 
+        level: 'error', options: { timeout: 4 } 
+  };
+  notificationInscription = { title: 'Succès', 
+    text: 'Compte crée avec succès', 
+    level: 'success', options: { timeout: 6 } 
+  };
   constructor(
     private http: HttpClient,
     private router: Router,
@@ -84,7 +88,13 @@ notificationInscription = { title: 'Succès',
         }
         this.SpinnerSevice.hide();
         this.router.navigate(['/otp']);
-      });
+      },
+      error =>{
+        this.SpinnerSevice.hide();
+        const n = new Notification(this.notificationEchec);
+        return this._notificationsService.addNotification(n);
+      }
+      );
   }
   //recupération OTP
   callBackOtp(otp: string) {
