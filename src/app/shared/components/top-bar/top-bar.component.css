@@ -21,14 +21,8 @@
 .menu-container .menu-left {
   width: 20%;
 }
-.menu-left span {
-  font-size: 1.6rem;
-  font-weight: bold;
-  font-family: var(--headingFont);
-}
-.menu-left span b {
-  font-family: var(--headingFont);
-  color: var(--mainColor);
+.menu-left img {
+  width: 110px;
 }
 .avatar-container {
   padding: 4px;

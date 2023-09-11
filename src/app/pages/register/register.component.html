@@ -1,7 +1,9 @@
 <div class="auth">
   <div class="form-side">
     <div class="head-area">
-      <a href="#">Pline<b>Pay</b></a>
+      <a href="#">
+        <img src="assets/logo-text.svg" alt="" />
+      </a>
       <div class="sliders">
         <div [class.active]="blockView" (click)="prev()"></div>
         <div [class.active]="!blockView"></div>
@@ -12,7 +14,10 @@
       <div class="form-head">
         <span>Inscription</span>
         <!--commentaire à compléter-->
-        <p></p>
+        <p>
+          Inscrivez-vous et découvrez une nouvelle façon de gerer avec facilité
+          les paiements de votre activité.
+        </p>
       </div>
       <form>
         <div class="input-group" [style.display]="blockView ? 'flex' : 'none'">
@@ -96,13 +101,17 @@
       <div class="footer">
         <span>2023 PlinePay | Tous droits reservés</span>
         <a href="#">A propos</a>
-        <a href="#">Termes etconditions d'utilisation</a>
+        <a href="#">Termes et conditions d'utilisation</a>
         <a href="#">confidentialité</a>
       </div>
     </div>
     <img src="assets/bg.png" alt="" />
   </div>
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-  <p style="color: white">Veuillez patienter ... </p>  
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-spin-clockwise"
+>
+  <p style="color: white">Veuillez patienter ...</p>
 </ngx-spinner>

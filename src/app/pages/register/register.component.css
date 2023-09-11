@@ -27,9 +27,8 @@
   color: var(--black);
   user-select: none;
 }
-.head-area a b {
-  color: #ffc300;
-  font-family: var(--headingFont);
+.head-area a img {
+  width: 120px;
 }
 .head-area .sliders {
   display: flex;
@@ -52,7 +51,6 @@
   padding: 0 20%;
   display: flex;
   flex-direction: column;
-  align-items: center;
   width: 100%;
   height: 500px;
 }
@@ -61,7 +59,8 @@
 }
 .form-head span {
   font-family: var(--headingFont);
-  font-size: 2rem;
+  font-size: 1.8rem;
+  font-weight: bold;
 }
 .form-head p {
   font-size: 0.9rem;
@@ -135,9 +134,10 @@ form p a {
 }
 .image-side-txt h1 {
   font-family: var(--headingFont);
+  font-size: 1.4rem;
 }
 .image-side-txt p {
-  margin-top: 16px;
+  margin-top: 8px;
   color: var(--grey-txt);
 }
 

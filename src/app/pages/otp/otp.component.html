@@ -1,6 +1,9 @@
 <div class="opt-container">
   <div class="brand-logo">
-    <span> Pline<b>Pay</b> </span>
+    <!-- <span> Pline<b>Pay</b> </span> -->
+    <a href="#">
+      <img src="assets/logo-text.svg" alt="" />
+    </a>
   </div>
   <div class="otp-block">
     <div class="otp-header">
@@ -48,14 +51,18 @@
         />
         <input
           [(ngModel)]="otp.number5"
-         type="text" min="0" id="input-5" maxlength="1" required />
+          type="text"
+          min="0"
+          id="input-5"
+          maxlength="1"
+          required
+        />
       </div>
-      <button (click)="sendOtp()">
-        Vérifier</button>
+      <button (click)="sendOtp()">Vérifier</button>
     </div>
     <div class="otp-footer">
       <span>
-        Vous n’avez pas reçu le code ?
+        Vous n’avez pas reçu le code ? <br />
         <a (click)="getCodeOtp()">
           <b>Renvoyer le code</b>
         </a>
@@ -64,6 +71,10 @@
   </div>
   <span>Pline<b>Pay</b> 2023 | Tous droits reservés </span>
 </div>
-<ngx-spinner bdColor="rgba(51, 51, 51, 0.8)" size="default" type="ball-spin-clockwise">  
-  <p style="color: white">Veuillez patienter ... </p>  
+<ngx-spinner
+  bdColor="rgba(51, 51, 51, 0.8)"
+  size="default"
+  type="ball-spin-clockwise"
+>
+  <p style="color: white">Veuillez patienter ...</p>
 </ngx-spinner>

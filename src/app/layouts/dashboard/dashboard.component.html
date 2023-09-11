@@ -1,4 +1,36 @@
 <app-top-bar></app-top-bar>
+<div
+  class="bar"
+  *ngIf="profileComplete == 'false' || !profileCertified"
+  [class.comp]="msgType == 'profileUncomplete'"
+  [class.approv]="msgType == 'profileApprov'"
+>
+  <svg
+    xmlns="http://www.w3.org/2000/svg"
+    width="20"
+    height="20"
+    viewBox="0 0 24 24"
+    fill="none"
+    stroke="currentColor"
+    stroke-width="2"
+    stroke-linecap="round"
+    stroke-linejoin="round"
+    class="lucide lucide-alert-circle"
+  >
+    <circle cx="12" cy="12" r="10" />
+    <line x1="12" x2="12" y1="8" y2="12" />
+    <line x1="12" x2="12.01" y1="16" y2="16" />
+  </svg>
+  <span *ngIf="msgType == 'profileUncomplete'">
+    Veuillez completez votre profile pour utiliser PlinePay.
+    <b><a href="/activation" class="underline">Je complète mon profile.</a> </b>
+    En savoir plus.
+  </span>
+  <span *ngIf="msgType == 'profileApprov'">
+    Compte en cours d'approbation... Nous verifions vos documents.
+    <b class="underline">En savoir plus.</b>
+  </span>
+</div>
 <div class="body">
-    <router-outlet></router-outlet>
+  <router-outlet></router-outlet>
 </div>

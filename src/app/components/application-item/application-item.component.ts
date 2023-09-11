@@ -35,7 +35,7 @@ export class ApplicationItemComponent {
       case 'DESACTIVATED':
         return 'Désactivé';
       case 'ACTIVATED':
-        return 'Activé';
+        return 'Mode Production';
       case 'APPROVED':
         return 'Approuvé';
         default:

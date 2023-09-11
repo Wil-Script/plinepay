@@ -8,14 +8,8 @@
   height: 100vh;
   background: #f8f8f8;
 }
-.opt-container .brand-logo span {
-  font-size: 1.6rem;
-  font-weight: bold;
-  font-family: var(--headingFont);
-}
-.brand-logo span b {
-  font-family: var(--headingFont);
-  color: var(--mainColor);
+.opt-container .brand-logo img {
+  width: 120px;
 }
 .opt-container .otp-block {
   padding: 30px;
@@ -80,12 +74,13 @@
 }
 .otp-footer {
   margin-top: 80px;
+  text-align: center;
 }
 .otp-footer span a b {
   text-decoration: underline;
 }
-.opt > span{
-    font-size: .7rem;
+.opt > span {
+  font-size: 0.7rem;
 }
 .otp-footer span a:hover {
   cursor: pointer;
