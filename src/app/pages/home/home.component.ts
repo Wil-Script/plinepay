@@ -3,6 +3,8 @@ import { Applicationservice } from 'src/app/services/application.service';
 import { Application } from 'src/app/models/application';
 import { Response } from 'src/app/models/response.model';
 import { User } from 'src/app/models/user.model';
+import { NgxSpinnerService } from 'ngx-spinner';
+import { HomeStatservice } from 'src/app/services/Home.Stat.service';
 
 @Component({
   selector: 'app-home',
@@ -22,21 +24,44 @@ export class HomeComponent implements OnInit {
   img = '';
   key = '';
   appId = ''
+  //infos homepage
+  operations_number='';
+  total_amount ='';
+  success_operations = '';
 
-  constructor(private applicationService: Applicationservice) {}
+  constructor(
+    private applicationService: Applicationservice,
+    private spinnerService:NgxSpinnerService,
+    private homeStatsService:HomeStatservice) {}
 
   ngOnInit() {
     this.user = JSON.parse(localStorage.getItem("userDto")||''); 
     this.applicationService
       .getApplicationList()
       .subscribe(
-        (requestReponse) =>
+        (requestReponse) =>{
           (this.applicationList = requestReponse.applicationDtos)
+          this.getStatData();
+        }
       );
 
     setTimeout(() => {
       console.log(this.applicationList);
     }, 1000);
+  }
+  getStatData(){
+    this.spinnerService.show();
+    this.homeStatsService
+    .getHomeStats()
+    .subscribe(
+      (requestReponse) =>{
+        //(this.applicationList = requestReponse.applicationDtos)
+         this.total_amount=requestReponse.total_amount;
+         this.operations_number = requestReponse.operations_number;
+         this.success_operations = requestReponse.success_operations;
+      }
+    );
+    this.spinnerService.hide();
   }
   createAppVisible = false;
   activeAccountVisible = true;
