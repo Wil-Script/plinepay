@@ -19,7 +19,63 @@
     </div>
     <span>{{ label }}</span>
   </div>
-  <span class="title-2">
-    {{ value }} <span *ngIf="label == 'Balance totale'">XAF</span>
-  </span>
+  <div class="body-value flex items-center gap-3">
+    <span class="title-2">
+      {{ value }}
+    </span>
+    <div
+      class="comment"
+      *ngIf="type == 'balance'"
+      [class.normal]="percent == 0"
+      [class.baisse]="percent < 0"
+    >
+      <lucide-angular
+        name="trending-up"
+        [size]="14"
+        *ngIf="percent > 0"
+      ></lucide-angular>
+      <lucide-angular
+        name="trending-down"
+        [size]="14"
+        *ngIf="percent < 0"
+      ></lucide-angular>
+      <span *ngIf="type == 'balance'">{{ percent.toFixed(2) }}%</span>
+    </div>
+    <div
+      class="comment"
+      *ngIf="type == 'operation'"
+      [class.normal]="percent == 0"
+      [class.baisse]="percent < 0"
+    >
+      <lucide-angular
+        name="trending-up"
+        [size]="14"
+        *ngIf="percent > 0"
+      ></lucide-angular>
+      <lucide-angular
+        name="trending-down"
+        [size]="14"
+        *ngIf="percent < 0"
+      ></lucide-angular>
+      <span *ngIf="type == 'operation'">{{ percent }}%</span>
+    </div>
+    <div
+      class="comment"
+      *ngIf="type == 'transaction'"
+      [class.normal]="percent == 0"
+      [class.baisse]="percent < 0"
+    >
+      <lucide-angular
+        name="trending-up"
+        [size]="14"
+        *ngIf="percent > 0"
+      ></lucide-angular>
+      <lucide-angular
+        name="trending-down"
+        [size]="14"
+        *ngIf="percent < 0"
+      ></lucide-angular>
+      <span *ngIf="type == 'transaction'">{{ percent }}%</span>
+    </div>
+  </div>
 </div>

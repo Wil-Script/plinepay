@@ -19,7 +19,7 @@
           les paiements de votre activité.
         </p>
       </div>
-      <form>
+      <form (ngSubmit)="register()">
         <div class="input-group" [style.display]="blockView ? 'flex' : 'none'">
           <app-input
             (newItemEvent)="setVar('nom', $event)"

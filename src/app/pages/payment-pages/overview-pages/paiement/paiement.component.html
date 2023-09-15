@@ -12,6 +12,7 @@
         Choisir une application
       </option>
       <option *ngFor="let app of apps" [value]="app.id">
+        <img src="{{ app.logoURL }}" alt="" />
         {{ app.name }}
       </option>
     </select>
@@ -63,7 +64,8 @@
             paiement.status === 'ABORTED' || paiement.status === 'ERROR'
           "
         >
-          {{ paiement.amount }} {{ paiement.currency }}
+          {{ formatPrice(paiement.amount) }} 
+          <!-- {{ paiement.currency }} -->
         </td>
         <td>{{ paiement.reason }}</td>
         <td>

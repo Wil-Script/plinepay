@@ -7,20 +7,17 @@ import { API_URL } from '../app.constantes';
 @Injectable({ providedIn: 'root' })
 export class HomeStatservice {
   constructor(private http: HttpClient) {}
-  
+
   configUrl = 'assets/config.json';
 
-
-  getHomeStats(): Observable<any> {
+  getHomeStats(time: string): Observable<any> {
     return this.http
-      .post<any>(`${API_URL}/applications/dashboard`, {})
+      .post<any>(`${API_URL}/applications/dashboard`, { filter: time })
       .pipe(
         tap((response) => this.log(response)),
         catchError((error) => this.handleError(error, []))
       );
   }
-
- 
 
   private handleError(error: Error, errorValue: any) {
     console.error(error);

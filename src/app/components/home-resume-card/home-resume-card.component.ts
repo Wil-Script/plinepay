@@ -9,4 +9,5 @@ export class HomeResumeCardComponent {
   @Input() label = '';
   @Input() value = '';
   @Input() type = '';
+  @Input() percent = 0;
 }

@@ -16,6 +16,7 @@ import { PaiementComponent } from './pages/payment-pages/overview-pages/paiement
 import { PaiementTousComponent } from './pages/payment-pages/overview-pages/paiement-tous/paiement-tous.component';
 import { LitigesComponent } from './pages/payment-pages/overview-pages/litiges/litiges.component';
 import { RouteGuardService } from './services/routeGuard/route-guard.service';
+import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -24,9 +25,19 @@ const routes: Routes = [
   { path: 'otp', component: OtpComponent },
   { path: 'activation', component: AccountActivationComponent },
   {
+    path: 'application/:id',
+    component: ApplicationDetailComponent,
+    // children: [
+    //   {
+    //     path:'',
+    //     // component:
+    //   }
+    // ]
+  },
+  {
     path: 'dashboard',
     component: DashboardComponent,
-    canActivate:[RouteGuardService],
+    canActivate: [RouteGuardService],
     children: [
       {
         path: '',

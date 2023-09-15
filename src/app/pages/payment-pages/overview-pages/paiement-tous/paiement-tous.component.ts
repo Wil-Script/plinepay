@@ -32,6 +32,12 @@ export class PaiementTousComponent implements OnInit {
     });
   }
 
+  formatPrice(amount: any) {
+    return new Intl.NumberFormat('bas-CM', {
+      style: 'currency',
+      currency: 'XOF',
+    }).format(amount);
+  }
   getPaymentStatus(status: string) {
     this.SpinnerSevice.show();
     this.status = status;

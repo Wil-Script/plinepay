@@ -39,11 +39,7 @@
           <span class="key-a" *ngIf="keyVisibility == true">{{ key }}</span>
         </div>
         <div class="btns">
-          <button *ngIf="keyVisibility == false" (click)="keyVisibility = true">
-            Voir la clé publique
-          </button>
           <button
-            *ngIf="keyVisibility == true"
             (click)="copySomething(key, 'key')"
             class="flex items-center justify-center gap-2"
           >
@@ -53,6 +49,10 @@
               [color]="'white'"
             ></lucide-angular>
             Copier la clé
+          </button>
+          <button *ngIf="keyVisibility == false" (click)="keyVisibility = true" 
+          class="mask">
+            Voir la clé publique
           </button>
           <button
             class="mask"

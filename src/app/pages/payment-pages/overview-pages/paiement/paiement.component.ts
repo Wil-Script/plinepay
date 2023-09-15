@@ -5,7 +5,7 @@ import { Applicationservice } from 'src/app/services/application.service';
 @Component({
   selector: 'app-paiement',
   templateUrl: './paiement.component.html',
-  styleUrls: ['./paiement.component.css']
+  styleUrls: ['./paiement.component.css'],
 })
 export class PaiementComponent implements OnInit {
   constructor(
@@ -22,6 +22,8 @@ export class PaiementComponent implements OnInit {
     this.SpinnerSevice.show();
     this.applicationService.getApplicationList().subscribe((response) => {
       this.apps = response.applicationDtos;
+      console.log(this.apps);
+
       this.applicationSelected = this.apps[0]?.id;
       this.getPayment(this.applicationSelected);
     });
@@ -36,6 +38,12 @@ export class PaiementComponent implements OnInit {
     });
   }
 
+  formatPrice(amount: any) {
+    return new Intl.NumberFormat('bas-CM', {
+      style: 'currency',
+      currency: 'XOF',
+    }).format(amount);
+  }
   getPaymentStatus(id: string, status: string) {
     this.SpinnerSevice.show();
     this.status = status;

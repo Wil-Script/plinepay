@@ -12,6 +12,7 @@ import { RegisterComponent } from './pages/register/register.component';
 import { InputComponent } from './components/input/input.component';
 import { CreateAppComponent } from './components/create-app/create-app.component';
 import { DashboardModule } from './layouts/dashboard/dashboard.module';
+import { ApplicationDetailPageModule } from './pages/application-detail-pages/application-detail-page.module';
 import { OtpComponent } from './pages/otp/otp.component';
 import { PaymentComponent } from './pages/payment/payment.component';
 import { OverviewComponent } from './pages/payment-pages/overview/overview.component';
@@ -19,6 +20,7 @@ import { FraudComponent } from './pages/payment-pages/fraud/fraud.component';
 import { PaymentLinkComponent } from './pages/payment-pages/payment-link/payment-link.component';
 import { PaiementComponent } from './pages/payment-pages/overview-pages/paiement/paiement.component';
 import { PaiementTousComponent } from './pages/payment-pages/overview-pages/paiement-tous/paiement-tous.component';
+import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import {
   LucideAngularModule,
   AppWindow,
@@ -37,6 +39,8 @@ import {
   Check,
   Loader,
   ArrowRightLeft,
+  TrendingUp,
+  TrendingDown,
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
@@ -54,6 +58,8 @@ import { AppViewModalComponent } from './components/app-view-modal/app-view-moda
 import { FilterBtnComponent } from './components/filter-btn/filter-btn.component';
 import { DetailAppModalComponent } from './components/detail-app-modal/detail-app-modal.component';
 import { NotificationsModule } from './notifications/notifications.module';
+import { BarChatComponent } from './components/bar-chat/bar-chat.component';
+import { LineChatComponent } from './components/line-chat/line-chat.component';
 
 @NgModule({
   declarations: [
@@ -74,6 +80,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     ActivateAccountModalComponent,
     ButtonComponent,
     ApplicationItemComponent,
+    ApplicationDetailComponent,
     ApplicationItemSkeletonComponent,
     HomeResumeCardComponent,
     AppViewModalComponent,
@@ -81,6 +88,8 @@ import { NotificationsModule } from './notifications/notifications.module';
     PaiementComponent,
     PaiementTousComponent,
     DetailAppModalComponent,
+    BarChatComponent,
+    LineChatComponent,
   ],
   imports: [
     NotificationsModule,
@@ -90,6 +99,7 @@ import { NotificationsModule } from './notifications/notifications.module';
     AppRoutingModule,
     HttpClientModule,
     DashboardModule,
+    ApplicationDetailPageModule,
     FormsModule,
     LucideAngularModule.pick({
       AppWindow,
@@ -108,6 +118,8 @@ import { NotificationsModule } from './notifications/notifications.module';
       Check,
       Loader,
       ArrowRightLeft,
+      TrendingUp,
+      TrendingDown,
     }),
   ],
   providers: [

@@ -1,6 +1,9 @@
 <div class="homepage">
   <div class="application-block">
-    <div class="empty-block complete-register" *ngIf="user.traderAccountIsComplet==='false'">
+    <div
+      class="empty-block complete-register"
+      *ngIf="user.traderAccountIsComplet === 'false'"
+    >
       <span class="title">Activez votre compte</span>
       <p>
         Juste quelques petites minutes pour <b>activer votre compte</b> avant de
@@ -9,13 +12,17 @@
 
       <button><a href="./activation">Activer mon compte</a></button>
     </div>
-    <div class="empty-block" style="margin-top: 24px; background: #f0faeb">
+    <div
+      class="empty-block"
+      style="margin-top: 24px; background: #f0faeb"
+      *ngIf="!applicationList.length"
+    >
       <span class="title"
         >Un site e-commerce, une application mobile, etc ?</span
       >
       <p>
-        Donner à vos clients le moyen de s'offrir vos produits ou
-        services et exploser la rentabilité de votre activité.
+        Donner à vos clients le moyen de s'offrir vos produits ou services et
+        exploser la rentabilité de votre activité.
       </p>
       <button
         (click)="showCreateApp()"
@@ -24,24 +31,51 @@
         Connecter mon application
       </button>
     </div>
+    <div class="stat-block" *ngIf="applicationList.length">
+      <div class="stat-group">
+        <div>
+          <app-line-chart></app-line-chart>
+        </div>
+        <div>
+          <app-bar-chart></app-bar-chart>
+        </div>
+        <div></div>
+      </div>
+    </div>
   </div>
   <div class="recent-activities">
     <div class="resume">
-      <span class="title-4"> Resumé de votre activité </span>
+      <div class="resume-head">
+        <span class="title-4"> Resumé de votre activité </span>
+        <select
+          name=""
+          id=""
+          [(ngModel)]="filterTime"
+          (change)="getStatData(filterTime)"
+        >
+          <option value="TODAY">Aujourd'hui</option>
+          <option value="LAST_3_DAYS">3 derniers jours</option>
+          <option value="THIS_WEEK">Cette semaine</option>
+          <option value="THIS_MONTH">Ce mois</option>
+        </select>
+      </div>
       <div class="resume-grid">
         <app-home-resume-card
           [label]="'Balance totale'"
-          [value]="total_amount"
+          [value]="formatPrice(total_amount)"
           [type]="'balance'"
+          [percent]="amount_percent"
         ></app-home-resume-card>
         <app-home-resume-card
           [label]="'Nombres d\'operation'"
           [value]="operations_number"
           [type]="'operation'"
+          [percent]="operation_percent"
         ></app-home-resume-card>
         <app-home-resume-card
           [label]="'Transaction réussies'"
           [value]="success_operations"
+          [percent]="success_operation_percent"
           [type]="'transaction'"
         ></app-home-resume-card>
       </div>
@@ -63,9 +97,9 @@
             *ngFor="let item of applicationList"
             [name]="item.name"
             [logoUrl]="item.logoURL"
-            [balance]="item.balance"
+            [balance]="formatPrice(item.balance)"
             [percent]="item.percent"
-            [statusApplication]="item.statusApplication"
+            [mode]="item.applicationMode"
             (click)="share(item)"
           ></app-application-item>
         </div>

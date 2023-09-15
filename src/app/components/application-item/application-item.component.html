@@ -5,18 +5,21 @@
   <div class="app-txt">
     <div class="top-txt">
       <span>{{ name }}</span>
-      <div class="app-activity" [ngStyle]="{'background-color':getBgColor(statusApplication)}">
-        <span>{{displayName(statusApplication)}} </span>
+      <div
+        class="app-activity"
+        [ngStyle]="{ 'background-color': getBgColor(mode) }"
+      >
+        <span>{{ mode }} </span>
       </div>
     </div>
     <div class="bottom-txt">
       <div class="elt-item">
         <span>Balance</span>
-        <span>{{ balance  }} XAF</span>
+        <span>{{ balance }}</span>
       </div>
       <div class="elt-item">
         <span>Taux</span>
-        <span> {{percent}} %</span>
+        <span> {{ percent }} %</span>
       </div>
     </div>
   </div>

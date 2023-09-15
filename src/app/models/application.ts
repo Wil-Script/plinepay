@@ -6,6 +6,7 @@ export class Application {
     public percent: number,
     public logoURL: string,
     public id?: string,
+    public applicationMode?: string,
     public balance: number = 0
   ) {}
 }
