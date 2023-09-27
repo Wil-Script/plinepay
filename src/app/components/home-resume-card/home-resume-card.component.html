@@ -57,7 +57,7 @@
         [size]="14"
         *ngIf="percent < 0"
       ></lucide-angular>
-      <span *ngIf="type == 'operation'">{{ percent }}%</span>
+      <span *ngIf="type == 'operation'">{{ percent.toFixed(2) }}%</span>
     </div>
     <div
       class="comment"
@@ -75,7 +75,7 @@
         [size]="14"
         *ngIf="percent < 0"
       ></lucide-angular>
-      <span *ngIf="type == 'transaction'">{{ percent }}%</span>
+      <span *ngIf="type == 'transaction'">{{ percent.toFixed(2) }}%</span>
     </div>
   </div>
 </div>

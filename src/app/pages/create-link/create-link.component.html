@@ -1,0 +1,227 @@
+<div class="top-bar">
+  <div class="part-left">
+    <div class="close-icon"></div>
+    <div class="sep-bar"></div>
+    <span>Créer un lien de paiement</span>
+  </div>
+  <div class="part-right">
+    <a routerLink="../">Fermer</a>
+  </div>
+</div>
+<div class="page">
+  <div class="link-mod">
+    <div class="app-group">
+      <span>Choisir l'application liée</span>
+      <select [(ngModel)]="product.app">
+        <option value="" ngDefaultControl disabled>
+          Choisir l'application
+        </option>
+        <option value="Maisonier">Maisonier</option>
+        <option value="Shrein">Shrein</option>
+        <option value="Shop Woman">Shop Woman</option>
+      </select>
+    </div>
+    <hr class="my-8" />
+    <div class="input-group">
+      <div class="input-elt">
+        <span>Nom produit/service</span>
+        <input
+          type="text"
+          placeholder="Entrez le nom du produit"
+          [(ngModel)]="product.name"
+        />
+      </div>
+      <div class="input-elt">
+        <span>Description produit</span>
+        <textarea
+          placeholder="Parlez de votre produit ou service"
+          [(ngModel)]="product.desc"
+        ></textarea>
+      </div>
+      <div class="dobble-input">
+        <div class="input-elt">
+          <span>Prix</span>
+          <input type="number" placeholder="0.00" [(ngModel)]="product.price" />
+        </div>
+        <div class="input-elt">
+          <span>Dévise</span>
+          <select [(ngModel)]="product.currency">
+            <option value="" ngDefaultControl disabled>
+              Choisir une dévise
+            </option>
+            <option value="Euro">Euro ($)</option>
+            <option value="$">Dollar américain ($)</option>
+            <option value="XAF">XAF (FCFA)</option>
+          </select>
+        </div>
+      </div>
+      <div class="img-input">
+        <span>Image produit</span>
+        <label class="image-guetter">
+          <div class="image-guetter-txt" *ngIf="!img">
+            <input
+              #image
+              type="file"
+              multiple
+              accept="image/jpeg, image/png, image/jpg"
+              (change)="getImage(image)"
+            />
+            <lucide-angular
+              name="image-plus"
+              [size]="30"
+              [color]="'#505050'"
+            ></lucide-angular>
+            <span>Cliquer pour ajouter une image</span>
+            <span>JPG, PNG, JPEG</span>
+          </div>
+          <img
+            *ngIf="img"
+            src="{{ img }}"
+            alt=""
+            style="
+              width: 100%;
+              height: 70px;
+              border-radius: 8px;
+              object-fit: cover;
+            "
+          />
+        </label>
+      </div>
+    </div>
+    <button class="btn-active">Créer un lien de paiement</button>
+  </div>
+  <div class="show-mod">
+    <div class="show-head">
+      <span>Aperçu</span>
+      <div class="view-mode">
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-smartphone"
+          >
+            <rect width="14" height="20" x="5" y="2" rx="2" ry="2" />
+            <path d="M12 18h.01" />
+          </svg>
+        </button>
+        <button>
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="24"
+            height="24"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="lucide lucide-laptop"
+          >
+            <path
+              d="M20 16V7a2 2 0 0 0-2-2H6a2 2 0 0 0-2 2v9m16 0H4m16 0 1.28 2.55a1 1 0 0 1-.9 1.45H3.62a1 1 0 0 1-.9-1.45L4 16"
+            />
+          </svg>
+        </button>
+      </div>
+    </div>
+    <div class="show-body">
+      <div class="web" *ngIf="!mobileView">
+        <div class="tab-bar">
+          <div class="tab-btn">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+          <div class="tab-search">Lorem ipsum dolor</div>
+          <div class="tab-btn">
+            <div></div>
+            <div></div>
+            <div></div>
+          </div>
+        </div>
+        <div class="web-body">
+          <div class="web-show">
+            <div class="web-show-head">
+              <img
+                src="https://img.freepik.com/vecteurs-libre/creation-logo-local-magasin-dessine-main_23-2149575766.jpg?w=360"
+                alt=""
+              />
+              <span>{{ product.app || "Nom de l'application" }}</span>
+            </div>
+            <div class="web-show-body">
+              <span>{{ product.name || "Nom du produit" }}</span>
+              <p>
+                {{
+                  product.desc ||
+                    "Lorem ipsum dolor sit amet, consectetur adipisicing elit."
+                }}
+              </p>
+              <p class="mt-4">
+                Prix
+                <b
+                  >{{ product.price || "0.00" }}
+                  {{ product.currency || "" }}</b
+                >
+              </p>
+            </div>
+            <div class="web-show-img">
+              <img *ngIf="img" src="{{ img }}" alt="" />
+            </div>
+          </div>
+          <div class="web-card">
+            <div class="payment-link">
+              <button>
+                <div class="icon"></div>
+                <span>Payer via mobile</span>
+              </button>
+              <button>
+                <div class="icon"></div>
+                <span>Payer via carte bancaire</span>
+              </button>
+            </div>
+            <div class="web-card-body">
+              <div class="card-mobile">
+                <p class="text-xs">
+                  Les paiements mobiles se font uniquement via
+                  <b>Orange Mobile Money</b> et <b>MTN Mobile Money</b>.
+                </p>
+                <div class="mobile-group">
+                  <div class="mobile-item">
+                    <img src="assets/om.jpg" alt="" />
+                    <span>Payer avec <b>Orange Mobile Money</b></span>
+                  </div>
+                  <div class="mobile-item">
+                    <img src="assets/momo.jpg" alt="" />
+                    <span>Payer avec <b>MTN Mobile Money</b></span>
+                  </div>
+                </div>
+                <div class="flex flex-col w-full mt-10">
+                  <span class="font-bold text-xs"> Entrez votre numéro </span>
+                  <input
+                    type="text"
+                    placeholder="+237 6 - -  - -  - -"
+                    class="border rounded-xl h-11 mt-2 px-3 outline-none"
+                  />
+                </div>
+                <button
+                  class="h-12 w-full rounded-xl text-sm font-bold mt-9 bg-mainColor cursor-not-allowed"
+                >
+                  Acheter
+                </button>
+              </div>
+              <div class="card-bank"></div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="mobile" *ngIf="mobileView"></div>
+    </div>
+  </div>
+</div>

@@ -31,29 +31,108 @@
     >
   </nav>
   <div class="menu-right flex items-center justify-end h-full">
-    <a class="avatar-container" title="Deconnexion">
-      <img src="assets/user2.webp" alt="Pline Pay logo" />
-    </a>
-    <div class="more-option">
-      <div class="user-block">
-        <span>{{ user.name }}</span>
-        <span>{{ user.email }}</span>
+    <div class="app-menu">
+      <div class="more-app-icon">
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="currentColor"
+          stroke-width="2"
+          stroke-linecap="round"
+          stroke-linejoin="round"
+          class="lucide lucide-grid-2x2"
+        >
+          <rect width="18" height="18" x="3" y="3" rx="2" />
+          <path d="M3 12h18" />
+          <path d="M12 3v18" />
+        </svg>
       </div>
-      <div class="option-block">
-        <a>
-          <span>Mon compte</span>
-        </a>
-        <a>
-          <span>Paramètres</span>
-        </a>
-        <a>
-          <span>Mes préférences</span>
-        </a>
+      <div class="app-container">
+        <div class="app-contain-head">
+          <span>Extensions</span>
+        </div>
+        <div class="app-list">
+          <a routerLink="#" class="app-item" title="Gestionnaire de facture">
+            <div class="icon">
+              <img src="assets/icons-bill.png" alt="" />
+            </div>
+            <span>Factures</span>
+          </a>
+          <a routerLink="#" class="app-item">
+            <div class="icon">
+              <img
+                src="https://img.icons8.com/cute-clipart/64/shop.png"
+                alt="shop"
+              />
+            </div>
+            <span>loremsum</span>
+          </a>
+          <a routerLink="#" class="app-item">
+            <div class="icon">
+              <img src="https://img.icons8.com/arcade/64/link.png" alt="link" />
+            </div>
+            <span>Lien de paiement</span>
+          </a>
+          <a routerLink="#" class="app-item">
+            <div class="icon">
+              <img
+                src="https://img.icons8.com/3d-fluency/94/folder-invoices--v1.png"
+                alt="folder-invoices--v1"
+              />
+            </div>
+            <span>loremsum</span>
+          </a>
+          <a routerLink="#" class="app-item">
+            <div class="icon">
+              <img
+                src="https://img.icons8.com/fluency/48/high-risk--v1.png"
+                alt="high-risk--v1"
+              />
+            </div>
+            <span>loremsum</span>
+          </a>
+          <a routerLink="/create-link" class="app-item">
+            <div class="icon">
+              <img
+                width="50"
+                height="50"
+                src="https://img.icons8.com/ios/50/plus--v1.png"
+                alt="plus--v1"
+              />
+            </div>
+            <span>Ajouter</span>
+          </a>
+        </div>
       </div>
-      <div class="option-block">
-        <a (click)="logout()">
-          <span>Deconnexion</span>
-        </a>
+    </div>
+    <div class="user-info">
+      <div class="avatar-container" title="Deconnexion">
+        <img src="assets/user2.webp" alt="Pline Pay logo" />
+      </div>
+      <div class="more-option">
+        <div class="user-block">
+          <span>{{ user.name }}</span>
+          <span>{{ user.email }}</span>
+        </div>
+        <div class="option-block">
+          <a>
+            <span>Mon compte</span>
+          </a>
+          <a>
+            <span>Paramètres</span>
+          </a>
+          <a>
+            <span>Mes préférences</span>
+          </a>
+        </div>
+        <div class="option-block">
+          <a (click)="logout()">
+            <span>Deconnexion</span>
+          </a>
+        </div>
       </div>
     </div>
   </div>

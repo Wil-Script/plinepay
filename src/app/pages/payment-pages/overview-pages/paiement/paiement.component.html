@@ -57,14 +57,17 @@
         <th>Client</th>
         <th>Action</th>
       </tr>
-      <tr *ngFor="let paiement of paiments">
+      <tr
+        *ngFor="let paiement of paiments"
+        (click)="showPaymentDetail(paiement.id)"
+      >
         <td
           class="price"
           [class.error]="
             paiement.status === 'ABORTED' || paiement.status === 'ERROR'
           "
         >
-          {{ formatPrice(paiement.amount) }} 
+          {{ formatPrice(paiement.amount) }}
           <!-- {{ paiement.currency }} -->
         </td>
         <td>{{ paiement.reason }}</td>
@@ -90,7 +93,11 @@
         </td>
         <td>{{ paiement.paymentMethodDto.code }}</td>
         <td>{{ paiement.processingNumber }}</td>
-        <td><button>consulter</button></td>
+        <td>
+          <a routerLink="/dashboard/paiement/paiement-detail/{{ paiement.id }}"
+            >consulter</a
+          >
+        </td>
       </tr>
     </table>
     <div *ngIf="paiments.length === 0" class="empty-data-table">

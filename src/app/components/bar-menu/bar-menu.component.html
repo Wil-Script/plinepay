@@ -1,0 +1,65 @@
+<div class="menu-container md:px-28 md:flex md:justify-between">
+    <div class="menu-left flex items-center justify-start h-full">
+      <a href="/dashboard">
+        <img src="assets/logo-text.svg" alt="" />
+      </a>
+    </div>
+    <nav class="menu-center md:flex md:h-full">
+      <a
+        href="/dashboard"
+        [class.active]="route == '/dashboard'"
+        class="px-6 flex items-center h-full"
+        >Accueil</a
+      >
+      <a
+        href="/dashboard/paiement"
+        [class.active]="route == '/dashboard/paiement'"
+        class="px-6 flex items-center h-full"
+        >Paiement</a
+      >
+      <a
+        href="/dashboard/rapport"
+        [class.active]="route == '/dashboard/rapport'"
+        class="px-6 flex items-center h-full"
+        >Rapport</a
+      >
+      <a
+        href="/dashboard/facture"
+        [class.active]="route == '/dashboard/facture'"
+        class="px-6 flex items-center h-full"
+        >Facture</a
+      >
+    </nav>
+    <div class="menu-right flex items-center justify-end h-full">
+      <a class="avatar-container" title="Deconnexion">
+        <img src="assets/user2.webp" alt="Pline Pay logo" />
+      </a>
+      <div class="more-option">
+        <div class="user-block">
+          <span>{{ user.name }}</span>
+          <span>{{ user.email }}</span>
+        </div>
+        <div class="option-block">
+          <a>
+            <span>Mon compte</span>
+          </a>
+          <a>
+            <span>Paramètres</span>
+          </a>
+          <a>
+            <span>Mes préférences</span>
+          </a>
+        </div>
+        <div class="option-block">
+          <a (click)="logout()">
+            <span>Deconnexion</span>
+          </a>
+        </div>
+      </div>
+      <!-- <lucide-angular
+        name="trending-down"
+        [size]="14"
+      ></lucide-angular> -->
+    </div>
+  </div>
+  

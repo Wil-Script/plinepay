@@ -1,12 +1,10 @@
 import { Injectable } from '@angular/core';
-import { HttpClient, HttpErrorResponse } from '@angular/common/http';
-import { catchError, map, Observable, of, tap } from 'rxjs';
-import { Response } from '../models/response.model';
-import { Application } from '../models/application';
+import { HttpClient } from '@angular/common/http';
+import { catchError, Observable, of, tap } from 'rxjs';
 import { API_URL } from '../app.constantes';
 
 @Injectable({ providedIn: 'root' })
-export class Applicationservice {
+export class PaymentService {
   constructor(private http: HttpClient) {}
   paymentObject = {
     operationType: '',
@@ -20,22 +18,6 @@ export class Applicationservice {
     firstResult: '0', //page
     maxResults: '10', // size
   };
-  configUrl = 'assets/config.json';
-
-  createApp(application: Application) {
-    return this.http.post<Application>(
-      `${API_URL}/applications/add`,
-      application
-    );
-  }
-  getApplicationList(): Observable<Response> {
-    return this.http
-      .post<Response>(`${API_URL}/applications/retrieve/all`, {})
-      .pipe(
-        tap((response) => this.log(response)),
-        catchError((error) => this.handleError(error, []))
-      );
-  }
   getSingleAppPayments(id: string): Observable<any> {
     this.paymentObject.applicationId = id;
     return this.http
@@ -45,19 +27,15 @@ export class Applicationservice {
         catchError((error) => this.handleError(error, []))
       );
   }
-  getApp(id: string): Observable<any> {
-    // this.paymentObject.applicationId = id;
-    let app = {
-      entityId: id,
-      firstResult: 0,
-      numberElement: 0,
+  getSinglePayment(id: string): Observable<any> {
+    let data = {
+      transactionId: id,
+      operationType: 'ONLINE_PAYMENT',
     };
-    return this.http
-      .post<any>(`${API_URL}/applications/retrieve/one`, app)
-      .pipe(
-        tap((response) => this.log(response)),
-        catchError((error) => this.handleError(error, []))
-      );
+    return this.http.post<any>(`${API_URL}/payments/retrieve/one`, data).pipe(
+      tap((response) => this.log(response)),
+      catchError((error) => this.handleError(error, []))
+    );
   }
   getAllPayments(): Observable<any> {
     this.paymentObject.applicationId = '';

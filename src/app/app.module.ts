@@ -12,15 +12,18 @@ import { RegisterComponent } from './pages/register/register.component';
 import { InputComponent } from './components/input/input.component';
 import { CreateAppComponent } from './components/create-app/create-app.component';
 import { DashboardModule } from './layouts/dashboard/dashboard.module';
-import { ApplicationDetailPageModule } from './pages/application-detail-pages/application-detail-page.module';
+// import { ApplicationDetailPageModule } from './pages/application-detail-pages/application-detail-page.module';
 import { OtpComponent } from './pages/otp/otp.component';
+import { StatistiqueApplicationComponent } from './pages/application-detail-pages/statistique/statistique.component';
+import { PaiementApplicationComponent } from './pages/application-detail-pages/paiement/paiement.component';
+import { OverviewApplicationComponent } from './pages/application-detail-pages/overview/overview.component';
 import { PaymentComponent } from './pages/payment/payment.component';
+import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import { OverviewComponent } from './pages/payment-pages/overview/overview.component';
 import { FraudComponent } from './pages/payment-pages/fraud/fraud.component';
 import { PaymentLinkComponent } from './pages/payment-pages/payment-link/payment-link.component';
 import { PaiementComponent } from './pages/payment-pages/overview-pages/paiement/paiement.component';
 import { PaiementTousComponent } from './pages/payment-pages/overview-pages/paiement-tous/paiement-tous.component';
-import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
 import {
   LucideAngularModule,
   AppWindow,
@@ -41,6 +44,8 @@ import {
   ArrowRightLeft,
   TrendingUp,
   TrendingDown,
+  ArrowLeft,
+  Grid2x2,
 } from 'lucide-angular';
 import { RapportComponent } from './pages/rapport/rapport.component';
 import { FactureComponent } from './pages/facture/facture.component';
@@ -60,6 +65,9 @@ import { DetailAppModalComponent } from './components/detail-app-modal/detail-ap
 import { NotificationsModule } from './notifications/notifications.module';
 import { BarChatComponent } from './components/bar-chat/bar-chat.component';
 import { LineChatComponent } from './components/line-chat/line-chat.component';
+import { PaiementDetailComponent } from './pages/paiement-detail/paiement-detail.component';
+import { BarMenuComponent } from './components/bar-menu/bar-menu.component';
+import { CreateLinkComponent } from './pages/create-link/create-link.component';
 
 @NgModule({
   declarations: [
@@ -80,7 +88,6 @@ import { LineChatComponent } from './components/line-chat/line-chat.component';
     ActivateAccountModalComponent,
     ButtonComponent,
     ApplicationItemComponent,
-    ApplicationDetailComponent,
     ApplicationItemSkeletonComponent,
     HomeResumeCardComponent,
     AppViewModalComponent,
@@ -90,6 +97,13 @@ import { LineChatComponent } from './components/line-chat/line-chat.component';
     DetailAppModalComponent,
     BarChatComponent,
     LineChatComponent,
+    ApplicationDetailComponent,
+    StatistiqueApplicationComponent,
+    PaiementApplicationComponent,
+    OverviewApplicationComponent,
+    PaiementDetailComponent,
+    BarMenuComponent,
+    CreateLinkComponent,
   ],
   imports: [
     NotificationsModule,
@@ -99,7 +113,7 @@ import { LineChatComponent } from './components/line-chat/line-chat.component';
     AppRoutingModule,
     HttpClientModule,
     DashboardModule,
-    ApplicationDetailPageModule,
+    // ApplicationDetailPageModule,
     FormsModule,
     LucideAngularModule.pick({
       AppWindow,
@@ -120,6 +134,8 @@ import { LineChatComponent } from './components/line-chat/line-chat.component';
       ArrowRightLeft,
       TrendingUp,
       TrendingDown,
+      ArrowLeft,
+      Grid2x2,
     }),
   ],
   providers: [

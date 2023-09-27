@@ -2,6 +2,8 @@ import { Component, OnInit } from '@angular/core';
 import { NgxSpinnerService } from 'ngx-spinner';
 import { Application } from 'src/app/models/application';
 import { Applicationservice } from 'src/app/services/application.service';
+import { Router } from '@angular/router';
+
 @Component({
   selector: 'app-paiement',
   templateUrl: './paiement.component.html',
@@ -10,7 +12,8 @@ import { Applicationservice } from 'src/app/services/application.service';
 export class PaiementComponent implements OnInit {
   constructor(
     private SpinnerSevice: NgxSpinnerService,
-    private applicationService: Applicationservice
+    private applicationService: Applicationservice,
+    private router: Router
   ) {}
   application = new Application('', '', false, 0, '', '');
   apps: Application[] = [];
@@ -57,5 +60,8 @@ export class PaiementComponent implements OnInit {
   //chargement des paiements de l'application sélectionnée
   loadPayments(idApp: any) {
     this.getPayment(idApp);
+  }
+  showPaymentDetail(id: string) {
+    this.router.navigate([`/dashboard/paiement/paiement-detail/${id}`]);
   }
 }

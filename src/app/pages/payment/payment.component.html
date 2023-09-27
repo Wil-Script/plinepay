@@ -1,32 +1,34 @@
 <div class="dashboard-page">
   <div class="dashboard-menu">
-    <span class="title">Menu</span>
-    <nav class="menu-content">
-      <a href="/dashboard/paiement">
-        <lucide-angular
-          name="app-window"
-          [size]="18"
-          [strokeWidth]="1.5"
-        ></lucide-angular>
-        <span>Aperçu général</span>
-      </a>
-      <a href="/dashboard/paiement/fraude">
-        <lucide-angular
-          name="alert-triangle"
-          [size]="18"
-          [strokeWidth]="1.5"
-        ></lucide-angular>
-        <span>Fraude et risque</span>
-      </a>
-      <a href="/dashboard/paiement/lien-payment">
-        <lucide-angular
-          name="link-2"
-          [size]="18"
-          [strokeWidth]="1.5"
-        ></lucide-angular>
-        <span>Liens de paiement</span>
-      </a>
-    </nav>
+    <div class="menu-con">
+      <span class="title">Menu</span>
+      <nav class="menu-content">
+        <a href="/dashboard/paiement">
+          <lucide-angular
+            name="app-window"
+            [size]="18"
+            [strokeWidth]="1.5"
+          ></lucide-angular>
+          <span>Aperçu général</span>
+        </a>
+        <a href="/dashboard/paiement/fraude">
+          <lucide-angular
+            name="alert-triangle"
+            [size]="18"
+            [strokeWidth]="1.5"
+          ></lucide-angular>
+          <span>Fraude et risque</span>
+        </a>
+        <a href="/dashboard/paiement/lien-payment">
+          <lucide-angular
+            name="link-2"
+            [size]="18"
+            [strokeWidth]="1.5"
+          ></lucide-angular>
+          <span>Liens de paiement</span>
+        </a>
+      </nav>
+    </div>
   </div>
   <div class="dashboard-content">
     <router-outlet></router-outlet>

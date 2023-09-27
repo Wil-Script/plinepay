@@ -11,7 +11,7 @@ import { Router } from '@angular/router';
   styleUrls: ['./login.component.css'],
   //providers: [AuthService],
 })
-export class LoginComponent implements OnInit{
+export class LoginComponent implements OnInit {
   constructor(private authService: AuthService,
     private authenticationService:AuthenticationService,
     private router:Router) {}

@@ -6,7 +6,6 @@
   height: 100vh;
 }
 .app-overview {
-  /* padding: 24px; */
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -34,7 +33,7 @@
   margin-bottom: 34px;
   height: 84px;
   width: 84px;
-  background: teal;
+  background: #f5f5f5;
   border-radius: 16px;
 }
 .app-head .app-name {
@@ -79,8 +78,41 @@
   display: flex;
   width: 100%;
   height: 50px;
-  border-top: 1px solid var(--border);
+  /* border-top: 1px solid var(--border); */
 }
 .menu-tab a {
-  padding: 10px 20px;
+  padding: 0px 20px;
+  display: flex;
+  align-items: center;
+  column-gap: 8px;
+  transition: 0.3s ease;
+  font-size: 0.95rem;
+  font-weight: bold;
+  border-radius: 16px 16px 0 0;
+}
+.menu-tab a svg {
+  width: 18px;
+  height: 18px;
+}
+.menu-tab a:first-child {
+  border-radius: 0 16px 0 0;
+}
+.menu-tab a:hover {
+  background: #202020;
+  color: white;
+}
+.menu-tab a:hover svg {
+  stroke: white;
+}
+.menu-tab a.active {
+  background: #202020;
+  color: white;
+}
+.menu-tab a.active svg {
+  stroke: white;
+}
+.body {
+  padding: 20px;
+  width: 100%;
+  height: calc(100% - 120px);
 }

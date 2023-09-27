@@ -1,1 +1,33 @@
-<p>paiement works!</p>
+
+<div class="resume-head">
+    <span class="title-4"> Resumé de votre activité </span>
+    <select
+      name=""
+      id=""
+      [(ngModel)]="filterTime"
+      (change)="getStatData(filterTime)"
+    >
+      <option value="TODAY">Aujourd'hui</option>
+      <option value="LAST_3_DAYS">3 derniers jours</option>
+      <option value="THIS_WEEK">Cette semaine</option>
+      <option value="THIS_MONTH">Ce mois</option>
+    </select>
+  </div>
+<div class="resume-grid">
+  <app-home-resume-card
+    [label]="'Balance totale'"
+    [type]="'balance'"
+  ></app-home-resume-card>
+  <app-home-resume-card
+    [label]="'Nombres d\'operation'"
+    [type]="'operation'"
+  ></app-home-resume-card>
+  <app-home-resume-card
+    [label]="'Transaction réussies'"
+    [type]="'transaction'"
+  ></app-home-resume-card>
+</div>
+<div class="key-app">
+  <div class=""></div>
+  <button></button>
+</div>

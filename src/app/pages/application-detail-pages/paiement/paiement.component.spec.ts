@@ -1,16 +1,16 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { PaiementComponent } from './paiement.component';
+import { PaiementApplicationComponent } from './paiement.component';
 
-describe('PaiementComponent', () => {
-  let component: PaiementComponent;
-  let fixture: ComponentFixture<PaiementComponent>;
+describe('PaiementApplicationComponent', () => {
+  let component: PaiementApplicationComponent;
+  let fixture: ComponentFixture<PaiementApplicationComponent>;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-      declarations: [PaiementComponent]
+      declarations: [PaiementApplicationComponent]
     });
-    fixture = TestBed.createComponent(PaiementComponent);
+    fixture = TestBed.createComponent(PaiementApplicationComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

@@ -17,6 +17,11 @@ import { PaiementTousComponent } from './pages/payment-pages/overview-pages/paie
 import { LitigesComponent } from './pages/payment-pages/overview-pages/litiges/litiges.component';
 import { RouteGuardService } from './services/routeGuard/route-guard.service';
 import { ApplicationDetailComponent } from './pages/application-detail/application-detail.component';
+import { StatistiqueApplicationComponent } from './pages/application-detail-pages/statistique/statistique.component';
+import { PaiementApplicationComponent } from './pages/application-detail-pages/paiement/paiement.component';
+import { OverviewApplicationComponent } from './pages/application-detail-pages/overview/overview.component';
+import { PaiementDetailComponent } from './pages/paiement-detail/paiement-detail.component';
+import { CreateLinkComponent } from './pages/create-link/create-link.component';
 
 const routes: Routes = [
   { path: '', component: LoginComponent },
@@ -24,15 +29,24 @@ const routes: Routes = [
   { path: 'register', component: RegisterComponent },
   { path: 'otp', component: OtpComponent },
   { path: 'activation', component: AccountActivationComponent },
+  { path: 'create-link', component: CreateLinkComponent },
   {
     path: 'application/:id',
     component: ApplicationDetailComponent,
-    // children: [
-    //   {
-    //     path:'',
-    //     // component:
-    //   }
-    // ]
+    children: [
+      {
+        path: '',
+        component: OverviewApplicationComponent,
+      },
+      {
+        path: 'statistique',
+        component: StatistiqueApplicationComponent,
+      },
+      {
+        path: 'paiement',
+        component: PaiementApplicationComponent,
+      },
+    ],
   },
   {
     path: 'dashboard',
@@ -66,6 +80,10 @@ const routes: Routes = [
             ],
           },
           {
+            path: 'paiement-detail/:id',
+            component: PaiementDetailComponent,
+          },
+          {
             path: 'fraude',
             component: FraudComponent,
           },
@@ -82,6 +100,10 @@ const routes: Routes = [
       {
         path: 'facture',
         component: FactureComponent,
+      },
+      {
+        path: 'paiement-detail/:id',
+        component: PaiementDetailComponent,
       },
     ],
   },

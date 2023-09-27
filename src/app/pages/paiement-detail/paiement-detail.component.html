@@ -1,0 +1,130 @@
+<div class="paiement-detail-page">
+  <div class="head">
+    <a routerLink="../..">
+      <lucide-angular name="arrow-left" [size]="14"></lucide-angular>Retour</a
+    >
+  </div>
+  <div class="bol">
+    <div class="top-section">
+      <div class="left-section">
+        <span>Paiement</span>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <div class="price-block">
+        <span>{{ formatPrice(paiement?.amount) }}</span>
+      </div>
+      <div class="state">{{ paiement?.status }}</div>
+    </div>
+  </div>
+  <div class="bol">
+    <div class="top-section">
+      <div class="left-section">
+        <span>Produit / service</span>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <table>
+        <tr>
+          <td class="key">Articles</td>
+          <td>Qté</td>
+          <td class="key">Prix unitaire</td>
+          <td>Montant</td>
+        </tr>
+        <tr>
+          <td class="key">Sac à pommes</td>
+          <td class="font-bold">01</td>
+          <td class="key font-bold">{{ formatPrice(paiement?.amount) }}</td>
+          <td class="font-bold">{{ formatPrice(paiement?.amount) }}</td>
+        </tr>
+        <tr>
+          <td class=""></td>
+          <td class=""></td>
+          <td class="key font-bold">Total</td>
+          <td class="font-bold">{{ formatPrice(paiement?.amount) }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="bol">
+    <div class="top-section">
+      <div class="left-section">
+        <span> Moyen de paiement </span>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <table>
+        <tr>
+          <td class="key">Type</td>
+          <td class="font-bold">Paiement mobile</td>
+        </tr>
+        <tr>
+          <td class="key">Opérateur</td>
+          <td class="font-bold">{{paiementMethod?.name}} ({{paiementMethod?.code}})</td>
+        </tr>
+        <tr>
+          <td class="key">Frais opérateur</td>
+          <td class="font-bold">{{paiementMethod?.percentFees}}%</td>
+        </tr>
+        <tr>
+          <td class="key">Numéro client</td>
+          <td class="font-bold">{{ paiement?.processingNumber }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="bol">
+    <div class="top-section">
+      <div class="left-section">
+        <span>Détails du paiement</span>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <table>
+        <tr>
+          <td class="key">Montant</td>
+          <td class="font-bold">75.000 XAF</td>
+        </tr>
+        <tr>
+          <td class="key">Frais</td>
+          <td class="font-bold">{{ paiement?.fees }}%</td>
+        </tr>
+        <tr>
+          <td class="key">Net</td>
+          <td class="font-bold">{{ formatPrice(paiement?.amount) }}</td>
+        </tr>
+        <tr>
+          <td class="key">Etat</td>
+          <td class="font-bold">{{ paiement?.status }}</td>
+        </tr>
+        <tr>
+          <td class="key">Raison du paiement</td>
+          <td>{{ paiement?.reason }}</td>
+        </tr>
+        <tr>
+          <td class="key">Effectué le</td>
+          <td>{{ paiement?.reason }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="bol">
+    <div class="top-section">
+      <div class="left-section">
+        <span>Application</span>
+      </div>
+    </div>
+    <div class="bottom-section">
+      <table>
+        <tr>
+          <td class="key">Nom de l'application</td>
+          <td class="font-bold">{{ paiement?.applicationName }}</td>
+        </tr>
+      </table>
+    </div>
+  </div>
+  <div class="btns">
+    <button>Imprimer le reçu</button>
+    <button>Afficher le reçu</button>
+  </div>
+</div>

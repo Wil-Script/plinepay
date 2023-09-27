@@ -8,6 +8,9 @@
         <span>Nom de l'application</span>
         <span class="title-2">{{ name }}</span>
       </div>
+      <a routerLink="/application/{{ app }}">
+        <b>En savoir plus</b>
+      </a>
     </div>
     <div class="situation">
       <span>Status</span>
@@ -50,8 +53,11 @@
             ></lucide-angular>
             Copier la clé
           </button>
-          <button *ngIf="keyVisibility == false" (click)="keyVisibility = true" 
-          class="mask">
+          <button
+            *ngIf="keyVisibility == false"
+            (click)="keyVisibility = true"
+            class="mask"
+          >
             Voir la clé publique
           </button>
           <button
